@@ -4,5 +4,53 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/NhanNutBatKi.unity
+    guid: 9cdaa1517e2eb0548ac23c6fbfc0f5ec
+  - enabled: 1
+    path: Assets/Scenes/DNDK.unity
+    guid: 3c6502b40ebc8814295b5c3a05de5e68
+  - enabled: 1
+    path: Assets/Scenes/DangNhap.unity
+    guid: 7de495c63e3c873429a3b6156bfcf4cb
+  - enabled: 1
+    path: Assets/Scenes/DangKi.unity
+    guid: 592a20f7993d77447b79ff37c261fb29
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 7fa7efa0a91b76046915bf8f52dbabcc
+  - enabled: 1
+    path: Assets/Scenes/HeroInfo.unity
+    guid: c4340724c5eeed647b3544b50fced1e0
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 2c29536df0714ec46a87f537fb0e65f1
+  - enabled: 1
+    path: Assets/Scenes/PK.unity
+    guid: a9fd3de9776e2c645976a0480b9cd4f8
+  - enabled: 1
+    path: Assets/Scenes/PK_SOLO.unity
+    guid: 2fb201e7ecc9d624e954b58b4fe77ea8
+  - enabled: 1
+    path: Assets/Scenes/PK_TEAM.unity
+    guid: 23627d71835255a4ca5ce47040c4c957
+  - enabled: 1
+    path: Assets/Scenes/PL.unity
+    guid: e2bd772ded38e6d4598a0f2345b55671
+  - enabled: 1
+    path: Assets/Scenes/PL_SOLO.unity
+    guid: 0eb60ade742867b4993d4fd3ef6cb119
+  - enabled: 1
+    path: Assets/Scenes/PL_TEAM.unity
+    guid: 9b29d80d0a9cb684b8ee60cb2290ee15
+  - enabled: 1
+    path: Assets/Scenes/tuong.unity
+    guid: f8367330272144f44b957faa27bed9f1
+  - enabled: 1
+    path: Assets/Scenes/chitiettuong.unity
+    guid: 8e8a5f61a9832f04185b0bf185b660ab
+  - enabled: 1
+    path: Assets/Scenes/UI_Shop_Khodo.unity
+    guid: 417a5a669d109dc45a510307753503ff
   m_configObjects: {}
