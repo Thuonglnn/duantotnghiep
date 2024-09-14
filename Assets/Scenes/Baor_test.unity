@@ -1056,7 +1056,7 @@ MonoBehaviour:
   runSpeed: 2.5
   walkSpeed: 1
   rotationSpeed: 10
-  jumpForce: 3.11
+  jumpForce: 5
 --- !u!1 &1802880024
 GameObject:
   m_ObjectHideFlags: 3
