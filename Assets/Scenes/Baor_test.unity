@@ -318,6 +318,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3471671226700884293, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1714924000}
+    - targetCorrespondingSourceObject: {fileID: 3471671226700884293, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1714924002}
   m_SourcePrefab: {fileID: 100100000, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
 --- !u!1 &135592555
 GameObject:
@@ -1057,6 +1060,20 @@ MonoBehaviour:
   walkSpeed: 1
   rotationSpeed: 10
   jumpForce: 5
+--- !u!114 &1714924002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714923995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7003f7bc5223cde42b02dc2e4d9f9c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboResetTime: 0.8
+  resetAttackTime: 0.4
 --- !u!1 &1802880024
 GameObject:
   m_ObjectHideFlags: 3
