@@ -19,6 +19,8 @@ public class EnemyAI : MonoBehaviour
 
     public float health;
 
+
+
     // Tuần tra = Patroling
 
     public Vector3 walkPoint;
@@ -36,15 +38,16 @@ public class EnemyAI : MonoBehaviour
     public float sightRange, attRange;
     public bool playerInSightRange, playerInAttRange;
 
-    private void Awake()
-    {
-        player = GameObject.Find("PlayerObj").transform;
-        agent = GetComponent<NavMeshAgent>();
-    }
+    // private void Awake()
+    // {
+    //     player = GameObject.Find("PlayerObj").transform;
+    //     agent = GetComponent<NavMeshAgent>();
+    // }
 
     void Start()
     {
-
+        player = GameObject.Find("PlayerObj").transform;
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -90,25 +93,25 @@ public class EnemyAI : MonoBehaviour
     private void AttPlayer()
     {
         // Cho quái không di chuyển
-        // agent.SetDestination(transform.position);
+        agent.SetDestination(transform.position);
 
         transform.LookAt(player);
 
         if (!att)
         {
             /// Att 
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
             if (CloseCombat)
             {
                 // Cận chiến
+
+
             }
             else
             {
                 // Tầm xa
-
+                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+                rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
             }
             ///
