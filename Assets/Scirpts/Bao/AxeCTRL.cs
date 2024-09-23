@@ -17,6 +17,7 @@ public class AxeCTRL : MonoBehaviour
     bool isGrounded = true;
 
 
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -36,8 +37,25 @@ public class AxeCTRL : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+       
+
+
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
-        velocity = (verticalInput != 0 || horizontalInput != 0) ? (runPressed ? runSpeed : walkSpeed) : 0f;
+        if ((verticalInput != 0 || horizontalInput != 0 ))
+        {
+            if (runPressed)
+            {
+                velocity = runSpeed; 
+            }
+            else
+            {
+                velocity = walkSpeed; 
+            }
+        }
+        else
+        {
+            velocity = 0f; 
+        }
 
         animator.SetFloat(VelocityHash, velocity);
 
@@ -109,5 +127,13 @@ public class AxeCTRL : MonoBehaviour
         
         
     }
+
+   public static AxeCTRL instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+   
 }
 
