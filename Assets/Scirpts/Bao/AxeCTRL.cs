@@ -11,7 +11,7 @@ public class AxeCTRL : MonoBehaviour
     public float runSpeed = 2f;
     public float walkSpeed = 1f; 
     public float rotationSpeed = 10f;
-    public float jumpForce =1f;
+    public float jumpForce =5f;
     float velocity = 0.0f;
     int VelocityHash;
     bool isGrounded = true;
@@ -90,7 +90,10 @@ public class AxeCTRL : MonoBehaviour
         }
         
         // Di chuyển nhân vật
-        rb.MovePosition(rb.position + movement);
+        if(isGrounded)
+        {
+            rb.MovePosition(rb.position + movement);
+        }
     }
 
 
