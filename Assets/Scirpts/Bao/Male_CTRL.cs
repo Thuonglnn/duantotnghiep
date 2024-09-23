@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AxeCTRL : MonoBehaviour
+public class Male_CTRL : MonoBehaviour
 {
     Animator animator;
     Rigidbody rb;
@@ -128,7 +128,7 @@ public class AxeCTRL : MonoBehaviour
         
     }
 
-   public static AxeCTRL instance;
+   public static Male_CTRL instance;
 
     void Awake()
     {

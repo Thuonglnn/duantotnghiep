@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class Axe_Attack : MonoBehaviour
 {
     Animator animator;
     int attackCount;
@@ -51,7 +51,7 @@ public class Attack : MonoBehaviour
         
     }
 
-    public static Attack instance;
+    public static Axe_Attack instance;
 
     void Awake()
     {
