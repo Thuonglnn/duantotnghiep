@@ -5,7 +5,7 @@ using UnityEngine;
 public class Axe_Attack : MonoBehaviour
 {
     Animator animator;
-    int attackCount;
+    public static int attackCount;
 
     public float comboResetTime = 0.5f;
     public float resetAttackTime = 0.3f;
@@ -24,6 +24,9 @@ public class Axe_Attack : MonoBehaviour
     {
         isWalk = true;
         animator.SetBool("Skill1", false);
+        animator.SetBool("Skill2", false);
+        animator.SetBool("Skill3", false);
+
         if (Time.time - comboAttackTime > comboResetTime)
         {
             attackCount = 0;
@@ -46,7 +49,18 @@ public class Axe_Attack : MonoBehaviour
         if(Input.GetKey(KeyCode.Q))
         {
             animator.SetBool("Skill1", true);
-            
+        }
+        if(Input.GetKey(KeyCode.E))
+        {
+            animator.SetBool("Skill2", true);
+        }
+        if(Input.GetKey(KeyCode.R))
+        {
+            animator.SetBool("Skill3", true);
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            animator.SetTrigger("Blocking");
         }
         
     }
