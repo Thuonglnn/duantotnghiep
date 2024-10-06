@@ -6,6 +6,8 @@ public class Bow : MonoBehaviour
 {
     [Header("Arrow")]
     [SerializeField] private Rigidbody arrowPrefab;
+    [SerializeField] private Rigidbody arrowPrefab1;
+
     [SerializeField] private Transform arrowPos;
     [SerializeField] private Transform arrowEquipParent;
     [SerializeField] private float arrowForce = 1000f;
@@ -106,6 +108,15 @@ public class Bow : MonoBehaviour
         bowAudio.PlayOneShot(releaseStringClip);
         Vector3 _dir = _hitPoint - arrowPos.position;
         currentArrow = Instantiate(arrowPrefab, arrowPos.position, arrowPos.rotation);
+        currentArrow.AddForce(_dir * arrowForce, ForceMode.Force);
+    }
+
+    // mui ten cuong hoa 
+     public void Fire1(Vector3 _hitPoint)
+    {
+        bowAudio.PlayOneShot(releaseStringClip);
+        Vector3 _dir = _hitPoint - arrowPos.position;
+        currentArrow = Instantiate(arrowPrefab1, arrowPos.position, arrowPos.rotation);
         currentArrow.AddForce(_dir * arrowForce, ForceMode.Force);
     }
 }

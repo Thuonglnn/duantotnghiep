@@ -1452,7 +1452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783317288}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1460,7 +1460,7 @@ Transform:
   - {fileID: 722692021}
   - {fileID: 1237435119}
   - {fileID: 941867702}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 613787019701610952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &783317291
 MonoBehaviour:
@@ -2028,6 +2028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 8528669096816281946, guid: bd80fc579a4085e4d88b444d7fa163b4, type: 3}
+  arrowPrefab1: {fileID: 0}
   arrowPos: {fileID: 2108472118}
   arrowEquipParent: {fileID: 3530349126420956909}
   arrowForce: 1000
@@ -3257,6 +3258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 783317290}
   - {fileID: 5313992370653004477}
   - {fileID: 1673394882}
   - {fileID: 655373528}
@@ -4916,6 +4918,7 @@ GameObject:
   - component: {fileID: 613787019701610952}
   - component: {fileID: 286060891985095263}
   - component: {fileID: 9141872777176004915}
+  - component: {fileID: 9141872777176004918}
   - component: {fileID: 9141872777176004916}
   - component: {fileID: 9141872777176004917}
   m_Layer: 6
@@ -5382,7 +5385,7 @@ MonoBehaviour:
   freeLook: {fileID: 783317289}
   aimLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   spine: {fileID: 6109128036636690130}
   spineOffset: {x: 0, y: 110, z: -5}
   footStep: {fileID: 655373529}
@@ -5402,6 +5405,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064649b6e74f5ae4d93723a880567777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9141872777176004918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261695525491687410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab7331911872cf429b16d0a2ecfe476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkillAttack_1: {fileID: 0}
+  SkillAttack_2: {fileID: 0}
+  SkillAttack_3: {fileID: 0}
+  axe: {fileID: 0}
 --- !u!1 &9190931196314038491
 GameObject:
   m_ObjectHideFlags: 0
@@ -5442,6 +5461,5 @@ SceneRoots:
   - {fileID: 431810062}
   - {fileID: 4441698237770332238}
   - {fileID: 613787019701610952}
-  - {fileID: 783317290}
   - {fileID: 546663250}
   - {fileID: 1834716450}

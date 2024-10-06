@@ -123,12 +123,12 @@ public class MovementManager : MonoBehaviour
 
 
 
-        /*        // Chỉ xoay khi đi thẳng
-                if(_vInput > 0 && _direction.magnitude > 0.1f) 
-                {
-                    Quaternion _targetRotation = Quaternion.LookRotation(_direction);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, Time.fixedDeltaTime * 10f); 
-                }*/
+    //     /*        // Chỉ xoay khi đi thẳng
+    //             if(_vInput > 0 && _direction.magnitude > 0.1f) 
+    //             {
+    //                 Quaternion _targetRotation = Quaternion.LookRotation(_direction);
+    //                 transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, Time.fixedDeltaTime * 10f); 
+    //             }*/
 
 
         // Xoay nhân vật theo camera bất kể di chuyển hay không
