@@ -51,6 +51,9 @@ EditorBuildSettings:
     path: Assets/Scenes/chitiettuong.unity
     guid: 8e8a5f61a9832f04185b0bf185b660ab
   - enabled: 1
-    path: Assets/Scenes/UI_Shop_Khodo.unity
-    guid: 417a5a669d109dc45a510307753503ff
+    path: Assets/Scenes/TuDo.unity
+    guid: a3cbd6a8318ed2f4796bfc83107e926b
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: b379db363593e1346aa2d9752a805268
   m_configObjects: {}
