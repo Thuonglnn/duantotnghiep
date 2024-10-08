@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using StarterAssets;
-using UnityEngine.InputSystem;
-using Unity.Mathematics;
+// using UnityEngine.InputSystem;
+// using Unity.Mathematics;
 
 
 public class Aiming : MonoBehaviour
