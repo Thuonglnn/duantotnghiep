@@ -20,8 +20,6 @@ public class Axe_Effect : MonoBehaviour
         NormalAttack_2.Stop();
         SkillAttack_2.Stop();
         SkillAttack_3.Stop();
-
-        
     }
 
     // Update is called once per frame

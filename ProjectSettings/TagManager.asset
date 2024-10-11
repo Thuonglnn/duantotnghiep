@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - CinemachineTarget
+  - enemy
+  - HealthBar
   layers:
   - Default
   - TransparentFX
