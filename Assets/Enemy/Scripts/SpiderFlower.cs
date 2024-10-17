@@ -28,6 +28,7 @@ public class SpiderFlower : MonoBehaviour
     public float attDelay;
     bool att;
     public GameObject projectile;
+    public GameObject deathfx;
 
     // Giai đoạn = States
 
@@ -64,7 +65,10 @@ public class SpiderFlower : MonoBehaviour
         if (health <= 0)
         {
             anim.SetBool("Die", true);
-            Invoke(nameof(DestroyEnemy), 2.5f);
+
+            DestroyEnemy();
+            Instantiate(deathfx, transform.position, Quaternion.identity);
+            //Invoke(nameof(DestroyEnemy), 2.5f);
         }
     }
 
