@@ -11,10 +11,9 @@ public class SpiderGreenAI : MonoBehaviour
 
     public NavMeshAgent agent;
 
-    public Transform player;
+    private Transform player;
 
     public LayerMask GroundMask, PlayerMask;
-    public GameObject playerObj;
 
     public bool CloseCombat;
 
@@ -48,7 +47,7 @@ public class SpiderGreenAI : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animation>();
-        player = playerObj.transform;
+        player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

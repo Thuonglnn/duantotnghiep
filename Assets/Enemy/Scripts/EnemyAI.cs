@@ -14,7 +14,6 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
 
     public LayerMask GroundMask, PlayerMask;
-    public GameObject playerObj;
 
     public bool CloseCombat;
 
@@ -48,7 +47,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        player = playerObj.transform;
+        player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

@@ -445,14 +445,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 7223091030153931944}
-  player: {fileID: 0}
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
-  playerObj: {fileID: 0}
   CloseCombat: 1
   health: 100
   walkPoint: {x: 0, y: 0, z: 0}

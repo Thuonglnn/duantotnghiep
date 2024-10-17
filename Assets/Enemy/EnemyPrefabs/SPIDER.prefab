@@ -1953,18 +1953,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2513699271677200098}
-  player: {fileID: 0}
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
-  playerObj: {fileID: 0}
   CloseCombat: 1
   health: 100
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 80
+  walkPointRange: 20
   attDelay: 2
   projectile: {fileID: 7409002231588883754, guid: c9b699dff1172fd4caf0bf9793650d9a, type: 3}
   sightRange: 7
