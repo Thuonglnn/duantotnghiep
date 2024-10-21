@@ -28,6 +28,8 @@ public class Bow_CTRL : MonoBehaviour
     public Transform LookAt1;
     public Transform Follow1;
 
+    Vector2 input;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -111,16 +113,12 @@ public class Bow_CTRL : MonoBehaviour
         // Tính toán hướng di chuyển trong XZ dựa trên hướng camera
         Vector3 movement = (forward * Input.GetAxis("Vertical") + right * Input.GetAxis("Horizontal")).normalized * velocity * Time.fixedDeltaTime;
 
-        if (movement != Vector3.zero)
-        {
-            // Tính toán hướng quay mục tiêu trong  XZ
-            Quaternion targetRotation = Quaternion.LookRotation(movement);
-            // Xoay nhân vật quanh trục Y
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
-        }
+        
 
         if (isAiming)
         {
+            animator.SetBool("isAming",true);
+
             freeLookCamera.m_LookAt = LookAt; 
             freeLookCamera.m_Follow = Follow; 
 
@@ -128,15 +126,30 @@ public class Bow_CTRL : MonoBehaviour
             freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.y = 0.4f;
             freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.z = 0.4f;
 
-            //freeLookCamera.m_XAxis.m_MaxSpeed = 0f;
-            //freeLookCamera.m_YAxis.m_MaxSpeed = 0f;
+            input.x = Input.GetAxis("Horizontal");
+            input.y = Input.GetAxis("Vertical");
+
+            animator.SetFloat("InputX",input.x);
+            animator.SetFloat("InputY",input.y);
+
             
-            Quaternion aimRotation = Quaternion.Euler(0, 90, 0) * Quaternion.LookRotation(forward);
+            //Quaternion aimRotation = Quaternion.Euler(0, 90, 0) * Quaternion.LookRotation(forward);
+            Quaternion aimRotation = Quaternion.LookRotation(forward);
+
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, aimRotation, rotationSpeed * Time.fixedDeltaTime));
             
         }
         else
         {
+            animator.SetBool("isAming",false);
+            if (movement != Vector3.zero)
+            {
+                // Tính toán hướng quay mục tiêu trong  XZ
+                Quaternion targetRotation = Quaternion.LookRotation(movement);
+                // Xoay nhân vật quanh trục Y
+                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+            }
+
             freeLookCamera.m_LookAt = LookAt1; 
             freeLookCamera.m_Follow = Follow1; 
 

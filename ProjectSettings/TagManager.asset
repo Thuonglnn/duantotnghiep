@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Ground
   - CinemachineTarget
-  - enemy
   - HealthBar
+  - Enemy
   layers:
   - Default
   - TransparentFX
