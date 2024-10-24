@@ -55,20 +55,16 @@ public class GhoulZombieAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
-        playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
-
-        if (!playerInSightRange && !playerInAttRange) Patroling();
-        if (playerInSightRange && !playerInAttRange) ChasePlayer();
-        if (playerInSightRange && playerInAttRange) AttPlayer();
-
-        if (health <= 0)
+        if (health > 0)
         {
-            anim.Play("Death");
-            Invoke(nameof(DestroyEnemy), 2.5f);
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
+            playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
+
+            if (!playerInSightRange && !playerInAttRange) Patroling();
+            if (playerInSightRange && !playerInAttRange) ChasePlayer();
+            if (playerInSightRange && playerInAttRange) AttPlayer();
         }
+
     }
 
 
@@ -161,9 +157,14 @@ public class GhoulZombieAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
+        if (health <= 0)
+        {
+            anim.Play("Death");
+            Invoke(nameof(DestroyEnemy), 2.5f);
+        }
     }
 
     private void DestroyEnemy()

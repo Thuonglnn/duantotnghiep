@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &103084720 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6521091795894525885, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
-  m_PrefabInstance: {fileID: 4499154590424675626}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &206701403
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +928,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1633385581}
-  player: {fileID: 263098064}
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1370,7 +1364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4308944480718410, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1537,6 +1531,10 @@ PrefabInstance:
     - target: {fileID: 8661098080852197212, guid: f1eb089896bc8e34382aa54683a6313b, type: 3}
       propertyPath: m_Name
       value: Arena
+      objectReference: {fileID: 0}
+    - target: {fileID: 8661098080852197212, guid: f1eb089896bc8e34382aa54683a6313b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1798,15 +1796,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2247290598754640334, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 806
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2247290598754640334, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.79
+      value: 2.22
       objectReference: {fileID: 0}
     - target: {fileID: 2247290598754640334, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.8070216
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2247290598754640334, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2394,10 +2392,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8163853029220607853, guid: 04f1547ec056c524baceb7d9ebb72e7b, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 103084720}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

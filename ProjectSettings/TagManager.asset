@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+  - Monter
+  - Bullet
+  - SpiderFlower
+  - SpiderGreen
+  - SpiderQueen
+  - Goblin
+  - GhoulZombie
+  - CaveTroll
   layers:
   - Default
   - TransparentFX

@@ -56,26 +56,24 @@ public class GoblinAI : MonoBehaviour
     {
 
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
-        playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
+        if (health > 0)
+        {
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
+            playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
 
-        if (!playerInSightRange && !playerInAttRange)
-        {
-            anim.SetBool("PlayerInSignR", false);
-            Patroling();
+            if (!playerInSightRange && !playerInAttRange)
+            {
+                anim.SetBool("PlayerInSignR", false);
+                Patroling();
+            }
+            if (playerInSightRange && !playerInAttRange)
+            {
+                anim.SetBool("PlayerInAttR", false);
+                ChasePlayer();
+            }
+            if (playerInSightRange && playerInAttRange) AttPlayer();
         }
-        if (playerInSightRange && !playerInAttRange)
-        {
-            anim.SetBool("PlayerInAttR", false);
-            ChasePlayer();
-        }
-        if (playerInSightRange && playerInAttRange) AttPlayer();
 
-        if (health <= 0)
-        {
-            anim.SetBool("Die", true);
-            Invoke(nameof(DestroyEnemy), 2.5f);
-        }
     }
 
 
@@ -156,9 +154,14 @@ public class GoblinAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
+        if (health <= 0)
+        {
+            anim.SetTrigger("Die");
+            Invoke(nameof(DestroyEnemy), 2.5f);
+        }
     }
 
     private void DestroyEnemy()

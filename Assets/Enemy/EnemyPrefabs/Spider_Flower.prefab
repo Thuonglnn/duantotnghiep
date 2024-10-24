@@ -106,11 +106,12 @@ GameObject:
   - component: {fileID: 4308944480718410}
   - component: {fileID: 95844267038306482}
   - component: {fileID: 3997897297391964143}
+  - component: {fileID: 5966716052346304551}
   - component: {fileID: 2697685873303637847}
-  - component: {fileID: 3305084877979665100}
+  - component: {fileID: 1033540393469849680}
   m_Layer: 0
   m_Name: Spider_Flower
-  m_TagString: Untagged
+  m_TagString: SpiderFlower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,6 +181,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5966716052346304551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143180963066806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8acae5aa3acfef40bacc854e84fbc7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 2697685873303637847}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  CloseCombat: 1
+  health: 100
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 8
+  attDelay: 2
+  projectile: {fileID: 0}
+  deathfx: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+  sightRange: 8
+  attRange: 2
+  playerInSightRange: 0
+  playerInAttRange: 0
 --- !u!195 &2697685873303637847
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -202,36 +233,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3305084877979665100
-MonoBehaviour:
+--- !u!136 &1033540393469849680
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143180963066806}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8acae5aa3acfef40bacc854e84fbc7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 2697685873303637847}
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  PlayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  CloseCombat: 1
-  health: 100
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  attDelay: 2
-  projectile: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
-  deathfx: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
-  sightRange: 7
-  attRange: 3
-  playerInSightRange: 0
-  playerInAttRange: 0
+  serializedVersion: 2
+  m_Radius: 1.09
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1149313386028478
 GameObject:
   m_ObjectHideFlags: 0

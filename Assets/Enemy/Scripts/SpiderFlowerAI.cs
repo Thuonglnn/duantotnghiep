@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
-
-public class BossCaveTroll : MonoBehaviour
+public class SpiderFlowerAI : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public NavMeshAgent agent;
 
     private Transform player;
@@ -32,25 +28,24 @@ public class BossCaveTroll : MonoBehaviour
     public float attDelay;
     bool att;
     public GameObject projectile;
+    public GameObject deathfx;
 
     // Giai đoạn = States
 
-    public float sightRange, attRange, sightRange2;
+    public float sightRange, attRange;
     public bool playerInSightRange, playerInAttRange;
-
-    // private void Awake()
+    // Start is called before the first frame update
+    // public static SpiderFlower spiderFlower { get; set; }
+    // public void Awake()
     // {
-    //     player = GameObject.Find("PlayerObj").transform;
-    //     agent = GetComponent<NavMeshAgent>();
+    //     spiderFlower = this;
     // }
 
-    public float timeLeft = 10.0f;
     void Start()
     {
         anim = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-
     }
 
     // Update is called once per frame
@@ -58,38 +53,32 @@ public class BossCaveTroll : MonoBehaviour
     {
 
 
-
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
         playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
 
         if (!playerInSightRange && !playerInAttRange)
         {
-            anim.SetBool("PlayerInAttR", false);
             anim.SetBool("PlayerInSignR", false);
-            //Patroling();
+            Patroling();
         }
         if (playerInSightRange && !playerInAttRange)
         {
             anim.SetBool("PlayerInAttR", false);
-            sightRange2 = 9999f;
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange2, PlayerMask);
             ChasePlayer();
         }
-        if (playerInSightRange && playerInAttRange)
-        {
-            AttPlayer();
-            timeLeft -= Time.deltaTime;
-            if (timeLeft <= 0)
-            {
-                anim.SetTrigger("HeavyAtt");
-                timeLeft = 10f;
-            }
-        }
+        if (playerInSightRange && playerInAttRange) AttPlayer();
 
         if (health <= 0)
         {
             anim.SetBool("Die", true);
-            Invoke(nameof(DestroyEnemy), 10f);
+
+            DestroyEnemy();
+            Instantiate(deathfx, transform.position, Quaternion.identity);
+            //Invoke(nameof(DestroyEnemy), 2.5f);
+        }
+        else
+        {
+            //
         }
     }
 
@@ -144,9 +133,6 @@ public class BossCaveTroll : MonoBehaviour
             {
                 // Cận chiến
                 anim.SetBool("PlayerInAttR", true);
-
-
-
             }
             else
             {
@@ -174,7 +160,7 @@ public class BossCaveTroll : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
     }
@@ -185,7 +171,7 @@ public class BossCaveTroll : MonoBehaviour
     }
 
 
-
 }
+
 
 

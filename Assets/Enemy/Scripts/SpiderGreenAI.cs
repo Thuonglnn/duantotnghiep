@@ -54,20 +54,21 @@ public class SpiderGreenAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health > 0)
+        {
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
+            playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
 
-
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
-        playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
-
-        if (!playerInSightRange && !playerInAttRange) Patroling();
-        if (playerInSightRange && !playerInAttRange) ChasePlayer();
-        if (playerInSightRange && playerInAttRange) AttPlayer();
-
-        if (health <= 0)
+            if (!playerInSightRange && !playerInAttRange) Patroling();
+            if (playerInSightRange && !playerInAttRange) ChasePlayer();
+            if (playerInSightRange && playerInAttRange) AttPlayer();
+        }
+        else
         {
             anim.Play("Death");
             Invoke(nameof(DestroyEnemy), 2.5f);
         }
+
     }
 
 
@@ -148,7 +149,7 @@ public class SpiderGreenAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
     }

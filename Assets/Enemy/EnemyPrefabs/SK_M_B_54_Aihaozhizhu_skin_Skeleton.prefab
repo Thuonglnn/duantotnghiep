@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SK_M_B_54_Aihaozhizhu_skin_Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
+      propertyPath: m_TagString
+      value: SpiderQueen
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_Controller
       value: 
@@ -77,10 +85,13 @@ PrefabInstance:
       addedObject: {fileID: 375151124638579596}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4763841117323147032}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 9196467418207347157}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8163853029220607853}
+      addedObject: {fileID: 2368189347899139464}
   m_SourcePrefab: {fileID: 100100000, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
 --- !u!1 &4057028800065719025 stripped
 GameObject:
@@ -114,6 +125,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4763841117323147032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057028800065719025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796db8cf83756f942bad9da008b21b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 9196467418207347157}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  CloseCombat: 1
+  health: 100
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 8
+  attDelay: 1
+  projectile: {fileID: 0}
+  sightRange: 8
+  attRange: 3
+  playerInSightRange: 0
+  playerInAttRange: 0
 --- !u!195 &9196467418207347157
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -136,33 +176,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8163853029220607853
-MonoBehaviour:
+--- !u!136 &2368189347899139464
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4057028800065719025}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 796db8cf83756f942bad9da008b21b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 9196467418207347157}
-  player: {fileID: 0}
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  PlayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  CloseCombat: 1
-  health: 100
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 25
-  attDelay: 2
-  projectile: {fileID: 7409002231588883754, guid: c9b699dff1172fd4caf0bf9793650d9a, type: 3}
-  sightRange: 7
-  attRange: 3
-  playerInSightRange: 0
-  playerInAttRange: 0
+  serializedVersion: 2
+  m_Radius: 7.06
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 7.16, z: 0}

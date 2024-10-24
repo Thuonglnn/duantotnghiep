@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SpiderFlower : MonoBehaviour
+
+
+public class SpiderQueenAI : MonoBehaviour
 {
+    // Start is called before the first frame update
+
     public NavMeshAgent agent;
 
-    private Transform player;
+    Transform player;
 
     public LayerMask GroundMask, PlayerMask;
 
@@ -28,13 +32,19 @@ public class SpiderFlower : MonoBehaviour
     public float attDelay;
     bool att;
     public GameObject projectile;
-    public GameObject deathfx;
 
     // Giai đoạn = States
 
     public float sightRange, attRange;
     public bool playerInSightRange, playerInAttRange;
-    // Start is called before the first frame update
+
+
+    // private void Awake()
+    // {
+    //     player = GameObject.Find("PlayerObj").transform;
+    //     agent = GetComponent<NavMeshAgent>();
+    // }
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -46,30 +56,25 @@ public class SpiderFlower : MonoBehaviour
     void Update()
     {
 
-
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
-        playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
-
-        if (!playerInSightRange && !playerInAttRange)
+        if (health > 0)
         {
-            anim.SetBool("PlayerInSignR", false);
-            Patroling();
-        }
-        if (playerInSightRange && !playerInAttRange)
-        {
-            anim.SetBool("PlayerInAttR", false);
-            ChasePlayer();
-        }
-        if (playerInSightRange && playerInAttRange) AttPlayer();
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
+            playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
 
-        if (health <= 0)
-        {
-            anim.SetBool("Die", true);
-
-            DestroyEnemy();
-            Instantiate(deathfx, transform.position, Quaternion.identity);
-            //Invoke(nameof(DestroyEnemy), 2.5f);
+            if (!playerInSightRange && !playerInAttRange)
+            {
+                anim.SetBool("PlayerInSignR", false);
+                Patroling();
+            }
+            if (playerInSightRange && !playerInAttRange)
+            {
+                anim.SetBool("PlayerInAttR", false);
+                ChasePlayer();
+            }
+            if (playerInSightRange && playerInAttRange) AttPlayer();
         }
+
+
     }
 
 
@@ -150,9 +155,15 @@ public class SpiderFlower : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
+
+        if (health <= 0)
+        {
+            anim.SetBool("Die", true);
+            Invoke(nameof(DestroyEnemy), 10f);
+        }
     }
 
     private void DestroyEnemy()
@@ -160,6 +171,5 @@ public class SpiderFlower : MonoBehaviour
         Destroy(gameObject);
     }
 }
-
 
 

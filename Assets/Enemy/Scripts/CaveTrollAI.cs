@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 
 
-public class EnemyAI : MonoBehaviour
+public class CaveTrollAI : MonoBehaviour
 {
     // Start is called before the first frame update
 
     public NavMeshAgent agent;
 
-    public Transform player;
+    private Transform player;
 
     public LayerMask GroundMask, PlayerMask;
 
@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
 
     // Giai đoạn = States
 
-    public float sightRange, attRange;
+    public float sightRange, attRange, sightRange2;
     public bool playerInSightRange, playerInAttRange;
 
     // private void Awake()
@@ -44,38 +44,48 @@ public class EnemyAI : MonoBehaviour
     //     agent = GetComponent<NavMeshAgent>();
     // }
 
+    public float timeLeft = 10.0f;
     void Start()
     {
         anim = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
-        playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
-
-        if (!playerInSightRange && !playerInAttRange)
+        if (health > 0)
         {
-            anim.SetBool("PlayerInSignR", false);
-            Patroling();
-        }
-        if (playerInSightRange && !playerInAttRange)
-        {
-            anim.SetBool("PlayerInAttR", false);
-            ChasePlayer();
-        }
-        if (playerInSightRange && playerInAttRange) AttPlayer();
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
+            playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
 
-        if (health <= 0)
-        {
-            anim.SetBool("Die", true);
-            Invoke(nameof(DestroyEnemy), 2.5f);
+            if (!playerInSightRange && !playerInAttRange)
+            {
+                anim.SetBool("PlayerInAttR", false);
+                anim.SetBool("PlayerInSignR", false);
+                //Patroling();
+            }
+            if (playerInSightRange && !playerInAttRange)
+            {
+                anim.SetBool("PlayerInAttR", false);
+                sightRange2 = 9999f;
+                playerInSightRange = Physics.CheckSphere(transform.position, sightRange2, PlayerMask);
+                ChasePlayer();
+            }
+            if (playerInSightRange && playerInAttRange)
+            {
+                AttPlayer();
+                timeLeft -= Time.deltaTime;
+                if (timeLeft <= 0)
+                {
+                    anim.SetTrigger("HeavyAtt");
+                    timeLeft = 10f;
+                }
+            }
         }
+
     }
 
 
@@ -129,6 +139,9 @@ public class EnemyAI : MonoBehaviour
             {
                 // Cận chiến
                 anim.SetBool("PlayerInAttR", true);
+
+
+
             }
             else
             {
@@ -156,15 +169,23 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
+        if (health <= 0)
+        {
+            anim.SetTrigger("Die");
+            Invoke(nameof(DestroyEnemy), 10f);
+        }
     }
 
     private void DestroyEnemy()
     {
         Destroy(gameObject);
     }
+
+
+
 }
 
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
@@ -21,6 +22,8 @@ public class BulletProjectile : MonoBehaviour
         bulletRigidbody.velocity = transform.forward * speed;
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<BulletTarget>() != null)
@@ -33,7 +36,7 @@ public class BulletProjectile : MonoBehaviour
             // Hit something else
             Instantiate(vfxHitRed, transform.position, Quaternion.identity);
         }
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 
 }
