@@ -157,9 +157,25 @@ public class GhoulZombieAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, float CritRate, float CritDamage)
     {
-        health -= damage;
+
+        if (Random.Range(0f, 1f) <= CritRate)
+        {
+            damage *= CritDamage;
+            DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+                 gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+                gameObject.transform.position.z - 0.2f), damage + "", Color.red);
+            health -= damage;
+        }
+        else
+        {
+            DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+                 gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+                gameObject.transform.position.z - 0.2f), damage + "", Color.white);
+            health -= damage;
+        }
+
         if (health <= 0)
         {
             anim.Play("Death");

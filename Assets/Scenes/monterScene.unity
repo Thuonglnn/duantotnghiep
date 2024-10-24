@@ -333,10 +333,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPIDER
       objectReference: {fileID: 0}
-    - target: {fileID: 100108, guid: 8c00db5be83e04b4c88b073e10fba9b9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 8c00db5be83e04b4c88b073e10fba9b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.5199995
@@ -622,6 +618,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1734329473}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &487170455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4520808173153930619, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
+  m_PrefabInstance: {fileID: 4499154590424675626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &487170460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487170455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594c1cf50476f2d4abd1083c45949700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &886251835
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,10 +857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: troll
       objectReference: {fileID: 0}
-    - target: {fileID: 1862107410815556, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4876443625621520, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -893,6 +902,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
+--- !u!1 &1369146201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369146203}
+  - component: {fileID: 1369146202}
+  m_Layer: 0
+  m_Name: PopUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1369146202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369146201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5681c3c03b2e7b24a956bfb91e2ea371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 164662080380378423, guid: 91039a499239b8b47b99fdd14d88d954, type: 3}
+--- !u!4 &1369146203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369146201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633385579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,10 +1416,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider_Flower
       objectReference: {fileID: 0}
-    - target: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4308944480718410, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.9
@@ -1552,10 +1602,6 @@ PrefabInstance:
     - target: {fileID: 881787440511004919, guid: 1dde30f6702837b479d537149820fcba, type: 3}
       propertyPath: m_Name
       value: Ghoul
-      objectReference: {fileID: 0}
-    - target: {fileID: 881787440511004919, guid: 1dde30f6702837b479d537149820fcba, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3976709253382200502, guid: 1dde30f6702837b479d537149820fcba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2273,7 +2319,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4520808173153930619, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 487170460}
   m_SourcePrefab: {fileID: 100100000, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
 --- !u!1001 &4747012251795031021
 PrefabInstance:
@@ -2326,10 +2375,6 @@ PrefabInstance:
     - target: {fileID: 9011887291537401152, guid: a6dd4d0fd2ebb304280aca3a01b48d82, type: 3}
       propertyPath: m_Name
       value: Goblin
-      objectReference: {fileID: 0}
-    - target: {fileID: 9011887291537401152, guid: a6dd4d0fd2ebb304280aca3a01b48d82, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2388,10 +2433,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SK_M_B_54_Aihaozhizhu_skin_Skeleton
       objectReference: {fileID: 0}
-    - target: {fileID: 4057028800065719025, guid: 04f1547ec056c524baceb7d9ebb72e7b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2415,3 +2456,4 @@ SceneRoots:
   - {fileID: 4499154590424675626}
   - {fileID: 2042859820}
   - {fileID: 3338310396826083936}
+  - {fileID: 1369146203}

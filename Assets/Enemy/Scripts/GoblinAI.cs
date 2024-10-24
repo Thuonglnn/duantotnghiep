@@ -154,15 +154,60 @@ public class GoblinAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, float CritRate, float CritDamage)
     {
-        health -= damage;
+
+        if (Random.Range(0f, 1f) <= CritRate)
+        {
+            damage *= CritDamage;
+            DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+                 gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+                gameObject.transform.position.z - 0.2f), damage + "", Color.red);
+            health -= damage;
+        }
+        else
+        {
+            DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+                 gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+                gameObject.transform.position.z - 0.2f), damage + "", Color.white);
+            health -= damage;
+        }
+
         if (health <= 0)
         {
+            anim.SetBool("PlayerInAttR", false);
+            anim.SetBool("PlayerInSignR", false);
             anim.SetTrigger("Die");
             Invoke(nameof(DestroyEnemy), 2.5f);
         }
     }
+
+    // public void dealDamage(GameObject target)
+    // {
+    //     var atm = target.GetComponent<AttributesManager>();
+    //     if (atm != null)
+    //     {
+    //         totalDamage = attack;
+    //         if (Random.Range(0f, 1f) < CritRate)
+    //         {
+    //             totalDamage *= CritDamage;
+    //             DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+    //                  gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+    //                 gameObject.transform.position.z - 0.2f), totalDamage + "", Color.red);
+    //             atm.takeDamage((int)totalDamage);
+    //         }
+    //         else
+    //         {
+    //             DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+    //                  gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+    //                 gameObject.transform.position.z - 0.2f), totalDamage + "", Color.white);
+    //             atm.takeDamage((int)totalDamage);
+    //         }
+
+
+
+    //     }
+    // }
 
     private void DestroyEnemy()
     {
