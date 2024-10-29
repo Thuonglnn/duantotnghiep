@@ -1966,7 +1966,7 @@ MonoBehaviour:
   walkPointRange: 20
   attDelay: 2
   projectile: {fileID: 7409002231588883754, guid: c9b699dff1172fd4caf0bf9793650d9a, type: 3}
-  sightRange: 7
+  sightRange: 9999
   attRange: 1.5
   playerInSightRange: 0
   playerInAttRange: 0

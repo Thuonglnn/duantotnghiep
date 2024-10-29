@@ -50,6 +50,7 @@ public class SpiderQueenAI : MonoBehaviour
         anim = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame

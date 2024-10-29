@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3786436447393773472
+--- !u!1001 &1176409300794683186
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6767788
+      value: 771.03815
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.99578
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.736351
+      value: 37.50102
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_Name
-      value: SK_M_B_54_Aihaozhizhu_skin_Skeleton
+      value: SK_M_B_54_Aihaozhizhu_skin_Skeleton 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_IsActive
@@ -82,33 +82,33 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 375151124638579596}
+      addedObject: {fileID: 6411750663959607250}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4763841117323147032}
+      addedObject: {fileID: 5887891273118577154}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9196467418207347157}
+      addedObject: {fileID: 7119049743919778026}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2368189347899139464}
+      addedObject: {fileID: 7676523245926307977}
   m_SourcePrefab: {fileID: 100100000, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
---- !u!1 &4057028800065719025 stripped
+--- !u!1 &2058738591241605731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
-  m_PrefabInstance: {fileID: 3786436447393773472}
+  m_PrefabInstance: {fileID: 1176409300794683186}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &375151124638579596
+--- !u!54 &6411750663959607250
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4057028800065719025}
+  m_GameObject: {fileID: 2058738591241605731}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 10
+  m_Drag: 10
+  m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -125,19 +125,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4763841117323147032
+--- !u!114 &5887891273118577154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4057028800065719025}
+  m_GameObject: {fileID: 2058738591241605731}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 796db8cf83756f942bad9da008b21b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 9196467418207347157}
+  agent: {fileID: 7119049743919778026}
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -150,21 +150,21 @@ MonoBehaviour:
   walkPointRange: 8
   attDelay: 1
   projectile: {fileID: 0}
-  sightRange: 8
+  sightRange: 9999
   attRange: 3
   playerInSightRange: 0
   playerInAttRange: 0
---- !u!195 &9196467418207347157
+--- !u!195 &7119049743919778026
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4057028800065719025}
+  m_GameObject: {fileID: 2058738591241605731}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -176,13 +176,13 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &2368189347899139464
+--- !u!136 &7676523245926307977
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4057028800065719025}
+  m_GameObject: {fileID: 2058738591241605731}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -195,7 +195,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7.06
+  m_Radius: 8.41
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 7.16, z: 0}
+  m_Center: {x: 0, y: 9.36, z: 0}

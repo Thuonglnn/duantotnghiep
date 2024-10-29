@@ -3329,7 +3329,7 @@ MonoBehaviour:
   walkPointRange: 200
   attDelay: 4
   projectile: {fileID: 0}
-  sightRange: 40
+  sightRange: 9999
   attRange: 5.58
   sightRange2: 9999
   playerInSightRange: 1

@@ -207,7 +207,7 @@ MonoBehaviour:
   attDelay: 2
   projectile: {fileID: 0}
   deathfx: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
-  sightRange: 8
+  sightRange: 9999
   attRange: 2
   playerInSightRange: 0
   playerInAttRange: 0
