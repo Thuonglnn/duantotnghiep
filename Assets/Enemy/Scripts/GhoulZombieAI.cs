@@ -11,9 +11,10 @@ public class GhoulZombieAI : MonoBehaviour
 
     public NavMeshAgent agent;
 
-    public Transform player;
+    private Transform player;
 
     public LayerMask GroundMask, PlayerMask;
+
 
     public bool CloseCombat;
 
@@ -47,27 +48,23 @@ public class GhoulZombieAI : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animation>();
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
-        playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
-
-        if (!playerInSightRange && !playerInAttRange) Patroling();
-        if (playerInSightRange && !playerInAttRange) ChasePlayer();
-        if (playerInSightRange && playerInAttRange) AttPlayer();
-
-        if (health <= 0)
+        if (health > 0)
         {
-            anim.Play("Death");
-            Invoke(nameof(DestroyEnemy), 2.5f);
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, PlayerMask);
+            playerInAttRange = Physics.CheckSphere(transform.position, attRange, PlayerMask);
+
+            if (!playerInSightRange && !playerInAttRange) Patroling();
+            if (playerInSightRange && !playerInAttRange) ChasePlayer();
+            if (playerInSightRange && playerInAttRange) AttPlayer();
         }
+
     }
 
 
@@ -160,9 +157,30 @@ public class GhoulZombieAI : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage, float CritRate, float CritDamage)
     {
-        health -= damage;
+
+        if (Random.Range(0f, 1f) <= CritRate)
+        {
+            damage *= CritDamage;
+            DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+                 gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+                gameObject.transform.position.z - 0.2f), damage + "", Color.red);
+            health -= damage;
+        }
+        else
+        {
+            DamagePopUp.damagePopUp.createPopUp(new Vector3(gameObject.transform.position.x,
+                 gameObject.transform.position.y + Random.Range(0.4f, 0.8f),
+                gameObject.transform.position.z - 0.2f), damage + "", Color.white);
+            health -= damage;
+        }
+
+        if (health <= 0)
+        {
+            anim.Play("Death");
+            Invoke(nameof(DestroyEnemy), 2.5f);
+        }
     }
 
     private void DestroyEnemy()

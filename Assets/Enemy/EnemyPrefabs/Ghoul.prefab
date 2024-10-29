@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 770722104442621369}
   m_Layer: 0
   m_Name: Ghoul
-  m_TagString: Untagged
+  m_TagString: GhoulZombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -351,7 +351,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.008842, y: 0.62827015, z: -11.92}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5364990980462624749}
@@ -418,9 +418,9 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881787440511004919}
   m_Enabled: 1
-  m_AgentTypeID: -334000983
+  m_AgentTypeID: 0
   m_Radius: 0.7
-  m_Speed: 1
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 58
   m_AngularSpeed: 50
@@ -445,7 +445,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 7223091030153931944}
-  player: {fileID: 0}
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -458,7 +457,7 @@ MonoBehaviour:
   walkPointRange: 5
   attDelay: 1
   projectile: {fileID: 7409002231588883754, guid: c9b699dff1172fd4caf0bf9793650d9a, type: 3}
-  sightRange: 8
+  sightRange: 9999
   attRange: 1
   playerInSightRange: 0
   playerInAttRange: 0
