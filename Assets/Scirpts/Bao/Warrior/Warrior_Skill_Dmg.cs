@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Warrior_Skill_Dmg : MonoBehaviour
+public class Warrior_Skill_Dmg : NetworkBehaviour
 {
     AttributesManager player;
 
@@ -12,26 +13,34 @@ public class Warrior_Skill_Dmg : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject != null)
+        if(IsOwner)
         {
-            player = playerObject.GetComponent<AttributesManager>();
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.GetComponent<AttributesManager>();
+            }
         }
+        
         DestroyAfterTime();
     }
 
     void OnTriggerStay (Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(IsOwner)
         {
-            AttributesManager enemy = other.GetComponent<AttributesManager>();
-            if (enemy != null && Time.time >= lastDamageTime + damageInterval)
+            if(other.CompareTag("Player"))
             {
-                player.DealDmg(enemy.gameObject, player.atk-3);
+                AttributesManager enemy = other.GetComponent<AttributesManager>();
+                if (enemy != null && Time.time >= lastDamageTime + damageInterval)
+                {
+                    player.DealDmg(enemy.gameObject, player.atk-3);
 
-                lastDamageTime = Time.time;
+                    lastDamageTime = Time.time;
+                }
             }
         }
+        
         
     }
 

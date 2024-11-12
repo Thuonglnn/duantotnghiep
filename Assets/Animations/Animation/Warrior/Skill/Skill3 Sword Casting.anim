@@ -105556,21 +105556,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.8
-    functionName: skillAttack3
+    functionName: PlaySkillAttack3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5333333
-    functionName: skillAttack3_1
+    functionName: PlaySkillAttack3_1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.9333334
-    functionName: skillAttack3_stop
+    functionName: StopSkillAttack3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

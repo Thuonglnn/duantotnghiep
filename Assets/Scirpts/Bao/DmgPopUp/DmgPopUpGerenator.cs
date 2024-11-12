@@ -1,44 +1,45 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
+using Unity.Netcode;
 
-public class DmgPopUpGerenator : MonoBehaviour
+public class DmgPopUpGerenator : NetworkBehaviour
 {
-    public static DmgPopUpGerenator current;
+    public static DmgPopUpGerenator Instance { get; private set; }
 
     public GameObject prefabPopUp;
     public GameObject prefabPopUpCrit;
 
-    
     private void Awake()
     {
-        current = this;
+        // Singleton Pattern
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void Update()
+    [ClientRpc]
+    private void CreatePopUpClientRpc(Vector3 position, string text, Color color, bool isCrit = false)
     {
-    }
-
-    public void CreaterPopUp(Vector3 postion, string text, Color color)
-    {
-        var popup = Instantiate(prefabPopUp, postion, Quaternion.identity);
+        GameObject popupPrefab = isCrit ? prefabPopUpCrit : prefabPopUp;
+        var popup = Instantiate(popupPrefab, position, Quaternion.identity);
         var temp = popup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         temp.text = text;
         temp.faceColor = color;
 
-        Destroy(popup,1f);
+        Destroy(popup, 1f);
     }
 
-    public void CreaterPopUpCrit(Vector3 postion, string text, Color color)
+    public void CreatePopUp(Vector3 position, string text, Color color, bool isCrit = false)
     {
-        var popup = Instantiate(prefabPopUpCrit, postion, Quaternion.identity);
-        var temp = popup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        temp.text = text;
-        temp.faceColor = color;
-
-        Destroy(popup,1f);
+        if (IsOwner)
+        {
+            CreatePopUpClientRpc(position, text, color, isCrit);
+        }
     }
-
 }

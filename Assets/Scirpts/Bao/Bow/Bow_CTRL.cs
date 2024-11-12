@@ -6,11 +6,8 @@ using UnityEngine;
 public class Bow_CTRL : MonoBehaviour
 {
     Animator animator;
-
-    
     Rigidbody rb;
     Camera mainCamera;
-
     public float runSpeed = 2f;
     public float walkSpeed = 1f; 
     public float rotationSpeed = 10f;
@@ -22,12 +19,20 @@ public class Bow_CTRL : MonoBehaviour
     public static bool isAiming;
 
     public CinemachineFreeLook freeLookCamera;
+
+    // nhìn vao đâu khi ngắm c
     public Transform LookAt;
     public Transform Follow;
-
+    // nhìn vào đâu khi hết ngắm 
     public Transform LookAt1;
     public Transform Follow1;
 
+    // giới hạn ngắm 
+    public float minAimAngle = -30f;  
+    public float maxAimAngle = 60f; 
+    // giới hạn camera
+    public float minAimYValue = 0.4f;   // Giới hạn nhìn xuống (ví dụ nhìn vào phần bụng)
+    public float maxAimYValue = 0.6f; 
     Vector2 input;
 
     void Start()
@@ -113,11 +118,9 @@ public class Bow_CTRL : MonoBehaviour
         // Tính toán hướng di chuyển trong XZ dựa trên hướng camera
         Vector3 movement = (forward * Input.GetAxis("Vertical") + right * Input.GetAxis("Horizontal")).normalized * velocity * Time.fixedDeltaTime;
 
-        
-
         if (isAiming)
         {
-            animator.SetBool("isAming",true);
+            animator.SetBool("isAming", true);
 
             freeLookCamera.m_LookAt = LookAt; 
             freeLookCamera.m_Follow = Follow; 
@@ -129,15 +132,26 @@ public class Bow_CTRL : MonoBehaviour
             input.x = Input.GetAxis("Horizontal");
             input.y = Input.GetAxis("Vertical");
 
-            animator.SetFloat("InputX",input.x);
-            animator.SetFloat("InputY",input.y);
+            animator.SetFloat("InputX", input.x);
+            animator.SetFloat("InputY", input.y);
 
-            
-            //Quaternion aimRotation = Quaternion.Euler(0, 90, 0) * Quaternion.LookRotation(forward);
-            Quaternion aimRotation = Quaternion.LookRotation(forward);
+            // Tính toán hướng quay 
+            Vector3 cameraForward = mainCamera.transform.forward;
+            Vector3 cameraRight = mainCamera.transform.right;
 
+             float cameraPitch = mainCamera.transform.eulerAngles.x;
+
+            // Nếu góc Pitch lớn hơn 180, chuyển sang giá trị âm
+            if (cameraPitch > 180f)
+                cameraPitch -= 360f;
+
+            // Giới hạn góc Pitch trong khoảng 
+            cameraPitch = Mathf.Clamp(cameraPitch, minAimAngle, maxAimAngle);
+
+
+            // Giữ nhân vật xoay theo cả hướng camera lên xuống
+            Quaternion aimRotation = Quaternion.Euler(cameraPitch, mainCamera.transform.eulerAngles.y, 0);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, aimRotation, rotationSpeed * Time.fixedDeltaTime));
-            
         }
         else
         {
@@ -172,18 +186,13 @@ public class Bow_CTRL : MonoBehaviour
             // animator.SetBool("isJumping", false); 
             // animator.SetBool("isFalling", false);  
         }
-        
-        
     }
 
     public static Bow_CTRL instance;
-
     void Awake()
     {
         instance = this;
     }
-
-
    
 }
 

@@ -534,7 +534,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660227563954621730}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.034145065, y: -0.79029495, z: -0.044224553, w: 0.610174}
+  m_LocalRotation: {x: -0.03414499, y: -0.79029495, z: -0.044224456, w: 0.610174}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1622,7 +1622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468470724305066610}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.04520889, y: -0.78936255, z: -0.058554377, w: 0.6094541}
+  m_LocalRotation: {x: -0.045208815, y: -0.7893626, z: -0.05855428, w: 0.60945415}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4704,7 +4704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 267600621987050042}
   - component: {fileID: 2138757294605476293}
-  - component: {fileID: 5689914234543761045}
+  - component: {fileID: 1077370408336232541}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -4754,7 +4754,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5689914234543761045
+--- !u!114 &1077370408336232541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4763,13 +4763,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4315923903247045697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc689f2b104f56d4fbb66a38555316f1, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 2
-  walkSpeed: 1
-  rotationSpeed: 10
-  jumpForce: 5
+  GlobalObjectIdHash: 3311793886
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &4345933149387795534
 GameObject:
   m_ObjectHideFlags: 0
@@ -7691,7 +7696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7490831067853823462}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.023040662, y: -0.7909686, z: -0.029842174, w: 0.61069405}
+  m_LocalRotation: {x: -0.023040585, y: -0.79096866, z: -0.029842075, w: 0.6106941}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

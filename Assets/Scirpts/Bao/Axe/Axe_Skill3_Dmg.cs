@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Axe_Skill3_Dmg : MonoBehaviour
+public class Axe_Skill3_Dmg : NetworkBehaviour
 {
-    AttributesManager player;
+    public AttributesManager player;
 
     // thoi gian tre khi gay dmg thieu dot
     public float damageInterval = 0.5f;
@@ -14,32 +15,40 @@ public class Axe_Skill3_Dmg : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject != null)
-        {
-            player = playerObject.GetComponent<AttributesManager>();
-        }
+        // if(IsOwner)
+        // {
+        //     GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        //     if (playerObject != null)
+        //     {
+        //         player = playerObject.GetComponent<AttributesManager>();
+        //     }
+        // }
+        
     }
 
     void OnTriggerStay (Collider other)
     {
-        if(other.gameObject.CompareTag("Enemy") )
+        if(IsOwner)
         {
-            AttributesManager enemy = other.GetComponent<AttributesManager>();
-            if (enemy != null)
+            if(other.gameObject.CompareTag("Player") )
             {
-                if (!enemyLastDamageTime.ContainsKey(enemy))
+                AttributesManager enemy = other.GetComponent<AttributesManager>();
+                if (enemy != null)
                 {
-                    enemyLastDamageTime[enemy] = 0f;
-                }
+                    if (!enemyLastDamageTime.ContainsKey(enemy))
+                    {
+                        enemyLastDamageTime[enemy] = 0f;
+                    }
 
-                if (Time.time >= enemyLastDamageTime[enemy] + damageInterval)
-                {
-                    player.DealDmg(enemy.gameObject, player.atk - 4);
-                    enemyLastDamageTime[enemy] = Time.time;
+                    if (Time.time >= enemyLastDamageTime[enemy] + damageInterval)
+                    {
+                        player.DealDmg(enemy.gameObject, player.atk - 4);
+                        enemyLastDamageTime[enemy] = Time.time;
+                    }
                 }
             }
         }
+        
         
     }
 

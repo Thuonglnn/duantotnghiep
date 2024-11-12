@@ -879,9 +879,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1017132116319720516, guid: 3909712135422594b9771b643b110112, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.24677704
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017132116319720516, guid: 3909712135422594b9771b643b110112, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.05820058
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017132116319720516, guid: 3909712135422594b9771b643b110112, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9414936
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017132116319720516, guid: 3909712135422594b9771b643b110112, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.22204444
+      objectReference: {fileID: 0}
     - target: {fileID: 1049229034995091640, guid: 3909712135422594b9771b643b110112, type: 3}
       propertyPath: m_Name
       value: Bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204980969745681464, guid: 3909712135422594b9771b643b110112, type: 3}
+      propertyPath: maxAimAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204980969745681464, guid: 3909712135422594b9771b643b110112, type: 3}
+      propertyPath: minAimAngle
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907033022615896492, guid: 3909712135422594b9771b643b110112, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

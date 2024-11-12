@@ -150934,7 +150934,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.8666667
-    functionName: OnColliderSkill3
+    functionName: EnableSkill3ColliderServerRpc
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -150948,7 +150948,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 3.1
-    functionName: OffColliderSkill3
+    functionName: DisableSkill3ColliderServerRpc
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
