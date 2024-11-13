@@ -51826,21 +51826,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6
-    functionName: PlayNormalAttack1
+    functionName: normalAttack1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6333333
-    functionName: EnableWeaponColliderServerRpc
+    functionName: OnCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.76666665
-    functionName: DisableWeaponColliderServerRpc
+    functionName: OffCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

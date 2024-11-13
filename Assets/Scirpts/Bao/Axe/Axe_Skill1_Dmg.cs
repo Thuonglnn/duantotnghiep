@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Warrior_Skill3_Dmg : MonoBehaviour
+public class Axe_Skill1_Dmg : MonoBehaviour
 {
     AttributesManager player;
 
     // thoi gian tre khi gay dmg thieu dot
-    public float damageInterval = 0.5f;
+    public float damageInterval = 1f;
     // tung quai vat se co thoi gian gay dmg rieng
     private Dictionary<AttributesManager, float> enemyLastDamageTime = new Dictionary<AttributesManager, float>();
 
@@ -19,7 +18,6 @@ public class Warrior_Skill3_Dmg : MonoBehaviour
         {
             player = playerObject.GetComponent<AttributesManager>();
         }
-
         DestroyAfterTime();
     }
 
@@ -49,5 +47,6 @@ public class Warrior_Skill3_Dmg : MonoBehaviour
     {
         Destroy(gameObject, 3f);
     }
+
 
 }

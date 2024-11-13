@@ -2,76 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Netcode;
 
-public class AttributesManager : NetworkBehaviour
+public class AttributesManager : MonoBehaviour
 {
-    public NetworkVariable<int> hp = new NetworkVariable<int>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public int hp = 100;
     public int def = 100;
     public int atk = 10;
-    public float critRate = 0.5f; // 50%
-    public float critDamage = 2f; // 200%
+    public float critRate = 0.5f; //50%
+    public float critDamage = 2f; //200%
 
     public Slider healthBar;
-
-    private void Start()
+    void Start ()
     {
-        if (IsOwner && healthBar != null)
+        if(healthBar != null)
         {
-            healthBar.maxValue = hp.Value;
+            healthBar.maxValue = hp;
             healthBar.minValue = 0;
         }
     }
-
-    private void Update()
-    {
-        if (IsOwner && healthBar != null)
+    void Update ()
+    {   
+        if(healthBar != null)
         {
-            healthBar.value = hp.Value;
+            healthBar.value = hp;
         }
+        
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public void DealDmgServerRpc(NetworkObjectReference targetRef, int attack)
+    public void TakeDmg(int amount,bool isCrit)
     {
-        if (targetRef.TryGet(out NetworkObject targetObj))
+        hp -= amount-def;
+        if(isCrit == false)
         {
-            var targetAttributes = targetObj.GetComponent<AttributesManager>();
-
-            if (targetAttributes != null)
-            {
-                bool isCrit = Random.value <= critRate;
-                int finalDamage = isCrit ? Mathf.RoundToInt(attack * critDamage) : attack;
-
-                targetAttributes.TakeDmg(finalDamage, isCrit);
-            }
+            DmgPopUpGerenator.current.CreaterPopUp(transform.position, amount-def + "", Color.red);
         }
+        else
+        {
+            DmgPopUpGerenator.current.CreaterPopUpCrit(transform.position, amount-def + "", Color.yellow);
+        }
+        
     }
 
-    public void DealDmg(GameObject target, int attack)
+    public void DealDmg(GameObject target, int attack )
     {
-        if (IsOwner)
-        {
-            NetworkObjectReference targetRef = target.GetComponent<NetworkObject>();
-            DealDmgServerRpc(targetRef, attack);
-        }
-    }
+        var atm = target.GetComponent<AttributesManager>();
 
-    public void TakeDmg(int amount, bool isCrit)
-    {
-        if (IsServer)
+        if(atm != null)
         {
-            int damage = Mathf.Max(0, amount - def);
-            hp.Value -= damage;
+            bool isCrit = false;
+            int finalDamage = attack;
 
-            if (!isCrit)
+            if (Random.value <= critRate)
             {
-                DmgPopUpGerenator.Instance.CreatePopUp(transform.position, damage.ToString(), Color.red, false);
+                finalDamage = Mathf.RoundToInt(attack * critDamage);
+                isCrit = true;
             }
-            else
-            {
-                DmgPopUpGerenator.Instance.CreatePopUp(transform.position, damage.ToString(), Color.yellow, true);
-            }
+            
+            atm.TakeDmg(finalDamage,isCrit);
         }
     }
 }

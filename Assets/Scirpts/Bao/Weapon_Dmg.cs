@@ -1,24 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class Weapon_Dmg : NetworkBehaviour
+public class Weapon_Dmg : MonoBehaviour
 {
-    public AttributesManager player;
+    AttributesManager player;
+    
 
-    private void OnTriggerEnter(Collider other)
+    void Start()
     {
-        if (IsOwner)
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
         {
-            if (other.CompareTag("Player"))
-            {
-                AttributesManager enemy = other.GetComponent<AttributesManager>();
-                if (player != null && enemy != null)
-                {
-                    player.DealDmg(enemy.gameObject, player.atk);
-                }
-            }
+            player = playerObject.GetComponent<AttributesManager>();
         }
+
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        if(other.CompareTag("Enemy"))
+        {
+            AttributesManager  enemy = other.GetComponent<AttributesManager>();
+            player.DealDmg(enemy.gameObject,player.atk);
+        }
+        
+    }
+
+
 }
