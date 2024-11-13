@@ -127,6 +127,7 @@ public class GoblinAI : MonoBehaviour
             {
                 // Cận chiến
                 anim.SetBool("PlayerInAttR", true);
+                StartCoroutine(ExecuteAfterDelay());
             }
             else
             {
@@ -212,6 +213,18 @@ public class GoblinAI : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    private IEnumerator ExecuteAfterDelay()
+    {
+        // Chờ đợi  giây
+        yield return new WaitForSeconds(attDelay);
+
+        // Cận chiến
+
+        Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 8f, ForceMode.Impulse);
     }
 }
 

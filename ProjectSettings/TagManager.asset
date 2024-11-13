@@ -13,6 +13,7 @@ TagManager:
   - Goblin
   - GhoulZombie
   - CaveTroll
+  - monterpjt
   layers:
   - Default
   - TransparentFX

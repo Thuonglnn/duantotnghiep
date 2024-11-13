@@ -17,8 +17,8 @@ public class SkillQ : MonoBehaviour
 
     private void Start()
     {
-        float speed = 500f;
-        SkillQ1.velocity = transform.forward * speed * Time.deltaTime;
+        float speed = 30f;
+        SkillQ1.velocity = transform.forward * speed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,7 +31,7 @@ public class SkillQ : MonoBehaviour
         else
         {
             // Hit something else
-            Instantiate(vfxHitRed, transform.position, Quaternion.identity);
+            //Instantiate(vfxHitRed, transform.position, Quaternion.identity);
         }
         Destroy(gameObject, 5.0f);
     }

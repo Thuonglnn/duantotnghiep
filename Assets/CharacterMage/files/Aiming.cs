@@ -27,11 +27,14 @@ public class Aiming : MonoBehaviour
     private ThirdPersonController thirdPersonController;
     private StarterAssetsInputs starterAssetsInputs;
 
+    PlayerStatsController playerStatsController;
+
     private void Awake()
     {
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
+        playerStatsController = GetComponent<PlayerStatsController>();
     }
     private void Update()
     {
@@ -93,24 +96,51 @@ public class Aiming : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Q))
         {
-            animator.SetTrigger("SkillQ");
+            if (playerStatsController.IsSkillOnCooldown(PlayerStatsController.Skill.Q))
+            {
 
-            Vector3 aimDir = (MouseWorldPosition - spawnBulletPosition.position).normalized;
-            Instantiate(pfSkillQProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            }
+            else
+            {
+                animator.SetTrigger("SkillQ");
+
+                Vector3 aimDir = (MouseWorldPosition - spawnBulletPosition.position).normalized;
+                Instantiate(pfSkillQProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+                playerStatsController.UseSkill(PlayerStatsController.Skill.Q, 15);
+            }
+
         }
         if (Input.GetKey(KeyCode.E))
         {
-            animator.SetTrigger("SkillE");
-            Transform childTransform = gameObject.transform.GetChild(0);
-            childTransform.gameObject.SetActive(true);
+            if (playerStatsController.IsSkillOnCooldown(PlayerStatsController.Skill.E))
+            {
 
-            Invoke("SetActiveFalse", 4.0f);
+            }
+            else
+            {
+                animator.SetTrigger("SkillE");
+                Transform childTransform = gameObject.transform.GetChild(0);
+                childTransform.gameObject.SetActive(true);
+
+                Invoke("SetActiveFalse", 4.0f);
+                playerStatsController.UseSkill(PlayerStatsController.Skill.E, 10);
+            }
+
         }
         if (Input.GetKeyUp(KeyCode.R))
         {
-            animator.SetTrigger("SkillR");
-            Vector3 aimDir = (MouseWorldPosition).normalized;
-            Instantiate(pfSkillRProjectTile, MouseWorldPosition, Quaternion.LookRotation(aimDir, Vector3.up));
+            if (playerStatsController.IsSkillOnCooldown(PlayerStatsController.Skill.R))
+            {
+
+            }
+            else
+            {
+                animator.SetTrigger("SkillR");
+                Vector3 aimDir = (MouseWorldPosition).normalized;
+                Instantiate(pfSkillRProjectTile, MouseWorldPosition, Quaternion.LookRotation(aimDir, Vector3.up));
+                playerStatsController.UseSkill(PlayerStatsController.Skill.R, 30);
+            }
+
         }
 
 

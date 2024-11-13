@@ -121,10 +121,12 @@ public class GhoulZombieAI : MonoBehaviour
                 if (randomAtt > 1)
                 {
                     anim.Play("Attack1");
+                    StartCoroutine(ExecuteAfterDelay());
                 }
                 else
                 {
                     anim.Play("Attack2");
+                    StartCoroutine(ExecuteAfterDelay());
                 }
 
 
@@ -186,6 +188,18 @@ public class GhoulZombieAI : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    private IEnumerator ExecuteAfterDelay()
+    {
+        // Chờ đợi 2 giây
+        yield return new WaitForSeconds(attDelay);
+
+        // Cận chiến
+
+        Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 8f, ForceMode.Impulse);
     }
 }
 

@@ -163,6 +163,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 20
+  CritDamage: 120
+  CritRate: 20
+  DestroyTime: 0
+  vfxHit: {fileID: 4563802948693442, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
 --- !u!1001 &4326380311824714835
 PrefabInstance:
   m_ObjectHideFlags: 0

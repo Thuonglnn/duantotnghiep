@@ -1964,9 +1964,9 @@ MonoBehaviour:
   health: 100
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 20
-  attDelay: 2
-  projectile: {fileID: 7409002231588883754, guid: c9b699dff1172fd4caf0bf9793650d9a, type: 3}
-  sightRange: 7
+  attDelay: 1
+  projectile: {fileID: 4862776843488317273, guid: 416ffa141ccf2d14e86bfc6303cda09b, type: 3}
+  sightRange: 9999
   attRange: 1.5
   playerInSightRange: 0
   playerInAttRange: 0

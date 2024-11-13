@@ -10,6 +10,8 @@ public class DamageSystem : MonoBehaviour
     public float damageAmount = 20f;
     public float CritDamage = 120f;
     public float CritRate = 20f;
+    public float DestroyTime = 0;
+    [SerializeField] private Transform vfxHit;
 
 
     void Start()
@@ -30,30 +32,36 @@ public class DamageSystem : MonoBehaviour
         {
             case "SpiderQueen":
                 other.GetComponent<SpiderQueenAI>().TakeDamage(damageAmount, CritRate, CritDamage);
-                Destroy(gameObject);
+                Instantiate(vfxHit, transform.position, Quaternion.identity);
+                Destroy(gameObject, DestroyTime);
                 break;
             case "SpiderGreen":
                 other.GetComponent<SpiderGreenAI>().TakeDamage(damageAmount, CritRate, CritDamage);
-                Destroy(gameObject);
+                Instantiate(vfxHit, transform.position, Quaternion.identity);
+                Destroy(gameObject, DestroyTime);
                 break;
             case "SpiderFlower":
                 other.GetComponent<SpiderFlowerAI>().TakeDamage(damageAmount, CritRate, CritDamage);
-                Destroy(gameObject);
+                Instantiate(vfxHit, transform.position, Quaternion.identity);
+                Destroy(gameObject, DestroyTime);
                 break;
             case "GhoulZombie":
                 other.GetComponent<GhoulZombieAI>().TakeDamage(damageAmount, CritRate, CritDamage);
-                Destroy(gameObject);
+                Instantiate(vfxHit, transform.position, Quaternion.identity);
+                Destroy(gameObject, DestroyTime);
                 break;
             case "Goblin":
                 other.GetComponent<GoblinAI>().TakeDamage(damageAmount, CritRate, CritDamage);
-                Destroy(gameObject);
+                Instantiate(vfxHit, transform.position, Quaternion.identity);
+                Destroy(gameObject, DestroyTime);
                 break;
             case "CaveTroll":
                 other.GetComponent<CaveTrollAI>().TakeDamage(damageAmount, CritRate, CritDamage);
-                Destroy(gameObject);
+                Instantiate(vfxHit, transform.position, Quaternion.identity);
+                Destroy(gameObject, DestroyTime);
                 break;
             default:
-                Destroy(gameObject, 10f);
+                Destroy(gameObject, DestroyTime);
                 break;
         }
     }

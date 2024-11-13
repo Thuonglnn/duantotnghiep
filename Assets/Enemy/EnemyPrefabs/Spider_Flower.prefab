@@ -204,10 +204,10 @@ MonoBehaviour:
   health: 100
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 8
-  attDelay: 2
-  projectile: {fileID: 0}
+  attDelay: 1
+  projectile: {fileID: 4862776843488317273, guid: 416ffa141ccf2d14e86bfc6303cda09b, type: 3}
   deathfx: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
-  sightRange: 8
+  sightRange: 9999
   attRange: 2
   playerInSightRange: 0
   playerInAttRange: 0

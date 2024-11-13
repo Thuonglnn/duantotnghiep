@@ -117,6 +117,7 @@ public class SpiderGreenAI : MonoBehaviour
             {
                 // Cận chiến
                 anim.Play("Attack");
+                StartCoroutine(ExecuteAfterDelay());
             }
             else
             {
@@ -174,6 +175,17 @@ public class SpiderGreenAI : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+    private IEnumerator ExecuteAfterDelay()
+    {
+        // Chờ đợi  giây
+        yield return new WaitForSeconds(attDelay);
+
+        // Cận chiến
+
+        Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+        //rb.AddForce(transform.up * 1f, ForceMode.Impulse);
     }
 }
 
