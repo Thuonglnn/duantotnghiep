@@ -83,6 +83,19 @@ public class chuyentrang : MonoBehaviour
 
 
 
+// chuyển trang ở home
+
+public void shop()
+    {
+        SceneManager.LoadScene("Shop");
+        Time.timeScale = 1;
+    }
+    
+    public void tudo()
+    {
+        SceneManager.LoadScene("TuDo");
+        Time.timeScale = 1;
+    }
 
 
     public void tuong()
@@ -96,13 +109,15 @@ public class chuyentrang : MonoBehaviour
    
 
   
-
+// trở về trang chủ
     public void UndoHome()
     {
         SceneManager.LoadScene("Home");
         Time.timeScale = 1;
     }
 
+
+// từ chi tiết tướng trở về tướng
     public void Undotuong()
     {
         SceneManager.LoadScene("tuong");
