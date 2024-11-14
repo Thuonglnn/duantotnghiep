@@ -9,7 +9,7 @@ using Unity.Mathematics;
 
 public class Aiming : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera aimVitualCam;
+    [SerializeField] private CinemachineFreeLook aimVitualCam;
     [SerializeField] private float nomalSensitivity;
     [SerializeField] private float aimSensitivity;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();

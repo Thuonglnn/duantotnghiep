@@ -14,18 +14,19 @@ TagManager:
   - GhoulZombie
   - CaveTroll
   - monterpjt
+  - HealthBar
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
   - Player
-  - Player
   - Water
+  - UI
   - UI
   - Ground
   - Ground
-  - 
-  - 
   - 
   - 
   - 
