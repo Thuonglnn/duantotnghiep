@@ -24,15 +24,15 @@ public class Aiming : MonoBehaviour
     private Animator animator;
 
 
-    private ThirdPersonController thirdPersonController;
-    private StarterAssetsInputs starterAssetsInputs;
+    // private ThirdPersonController thirdPersonController;
+    // private StarterAssetsInputs starterAssetsInputs;
 
     PlayerStatsController playerStatsController;
 
     private void Awake()
     {
-        thirdPersonController = GetComponent<ThirdPersonController>();
-        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        // thirdPersonController = GetComponent<ThirdPersonController>();
+        // starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
         playerStatsController = GetComponent<PlayerStatsController>();
     }
@@ -52,11 +52,11 @@ public class Aiming : MonoBehaviour
             hitTransform = raycastHit.transform;
         }
 
-        if (starterAssetsInputs.aim)
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             aimVitualCam.gameObject.SetActive(true);
-            thirdPersonController.SetSensitivity(aimSensitivity);
-            thirdPersonController.SetRotateOnMove(false);
+            // thirdPersonController.SetSensitivity(aimSensitivity);
+            // thirdPersonController.SetRotateOnMove(false);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
 
             Vector3 worldAimTarget = MouseWorldPosition;
@@ -67,12 +67,12 @@ public class Aiming : MonoBehaviour
         else
         {
             aimVitualCam.gameObject.SetActive(false);
-            thirdPersonController.SetSensitivity(nomalSensitivity);
-            thirdPersonController.SetRotateOnMove(true);
+            // thirdPersonController.SetSensitivity(nomalSensitivity);
+            // thirdPersonController.SetRotateOnMove(true);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
 
-        if (starterAssetsInputs.shoot)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
             // if (hitTransform != null)
@@ -90,7 +90,7 @@ public class Aiming : MonoBehaviour
             // }
             Vector3 aimDir = (MouseWorldPosition - spawnBulletPosition.position).normalized;
             Instantiate(pfBulletProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-            starterAssetsInputs.shoot = false;
+            // starterAssetsInputs.shoot = false;
         }
 
 
