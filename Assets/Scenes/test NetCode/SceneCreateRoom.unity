@@ -1610,6 +1610,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+  m_IsActive: 1
 --- !u!81 &1174217078
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1649,6 +1650,8 @@ Camera:
     y: 0
     width: 1
     height: 1
+  near clip plane: 0.1
+  far clip plane: 5000
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
