@@ -5,11 +5,12 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using Unity.Mathematics;
+using Unity.Netcode;
 
 
-public class Aiming : MonoBehaviour
+public class Aiming : NetworkBehaviour
 {
-    [SerializeField] private CinemachineFreeLook aimVitualCam;
+    //[SerializeField] private CinemachineFreeLook aimVitualCam, mainVitualCam;
     [SerializeField] private float nomalSensitivity;
     [SerializeField] private float aimSensitivity;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
@@ -35,6 +36,8 @@ public class Aiming : MonoBehaviour
         // starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
         playerStatsController = GetComponent<PlayerStatsController>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     private void Update()
     {
@@ -52,9 +55,8 @@ public class Aiming : MonoBehaviour
             hitTransform = raycastHit.transform;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetMouseButton(1))
         {
-            aimVitualCam.gameObject.SetActive(true);
             // thirdPersonController.SetSensitivity(aimSensitivity);
             // thirdPersonController.SetRotateOnMove(false);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
@@ -63,13 +65,14 @@ public class Aiming : MonoBehaviour
             worldAimTarget.y = transform.position.y;
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+            animator.SetLayerWeight(2, 1);
         }
         else
         {
-            aimVitualCam.gameObject.SetActive(false);
             // thirdPersonController.SetSensitivity(nomalSensitivity);
             // thirdPersonController.SetRotateOnMove(true);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
+            animator.SetLayerWeight(2, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -141,6 +144,11 @@ public class Aiming : MonoBehaviour
                 playerStatsController.UseSkill(PlayerStatsController.Skill.R, 30);
             }
 
+        }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = true;
         }
 
 

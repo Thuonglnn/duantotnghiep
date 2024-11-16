@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerSpawner : NetworkBehaviour
 {
-    public GameObject playerPrefab; // Prefab của nhân vật
+    public GameObject playerPrefab, playerPrefab2; // Prefab của nhân vật
 
     public Transform hostSpawnPoint;   // Điểm spawn của Host
     public Transform clientSpawnPoint; // Điểm spawn của Client
@@ -18,7 +18,8 @@ public class PlayerSpawner : NetworkBehaviour
         if (IsHost) // Nếu là Host
         {
             Debug.Log("Spawning player for Host.");
-            SpawnPlayer(hostSpawnPoint.position);
+            //SpawnPlayer(hostSpawnPoint.position);
+            SpawnPlayer1(hostSpawnPoint.position);
         }
     }
 
@@ -38,7 +39,28 @@ public class PlayerSpawner : NetworkBehaviour
         // Tạo nhân vật tại vị trí đã chọn
         var playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
         var networkObject = playerInstance.GetComponent<NetworkObject>();
-        
+
+        if (networkObject != null)
+        {
+            if (clientId == 0)
+            {
+                clientId = NetworkManager.LocalClientId;
+            }
+
+            networkObject.SpawnAsPlayerObject(clientId);
+            Debug.Log($"Spawned player object for Client ID: {clientId}");
+        }
+        else
+        {
+            Debug.LogError("NetworkObject component not found on playerPrefab.");
+        }
+    }
+    private void SpawnPlayer1(Vector3 spawnPosition, ulong clientId = 0)
+    {
+        // Tạo nhân vật tại vị trí đã chọn
+        var playerInstance = Instantiate(playerPrefab2, spawnPosition, Quaternion.identity);
+        var networkObject = playerInstance.GetComponent<NetworkObject>();
+
         if (networkObject != null)
         {
             if (clientId == 0)
