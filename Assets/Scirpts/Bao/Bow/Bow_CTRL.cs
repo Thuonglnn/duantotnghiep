@@ -149,9 +149,9 @@ public class Bow_CTRL : MonoBehaviour
             cameraPitch = Mathf.Clamp(cameraPitch, minAimAngle, maxAimAngle);
 
 
-            // Giữ nhân vật xoay theo cả hướng camera lên xuống
-            Quaternion aimRotation = Quaternion.Euler(cameraPitch, mainCamera.transform.eulerAngles.y, 0);
+            Quaternion aimRotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, aimRotation, rotationSpeed * Time.fixedDeltaTime));
+
         }
         else
         {

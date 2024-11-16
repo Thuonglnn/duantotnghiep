@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e4e23d2b81da743967caa6f9a5938b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 8832820945963583891, guid: edd989a9c18a3b945a251fe89466f50d, type: 3}
+  playerPrefab: {fileID: 5612742973766186375, guid: 5c1c0315d224e6d4f90e4812bbb7b782, type: 3}
   hostSpawnPoint: {fileID: 1461114063}
   clientSpawnPoint: {fileID: 263579992}
 --- !u!4 &392981601
@@ -1678,7 +1678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1174217078
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1718,8 +1718,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
-  far clip plane: 500
+  near clip plane: 0.1
+  far clip plane: 5000
   field of view: 40
   orthographic: 0
   orthographic size: 10
@@ -1746,8 +1746,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174217077}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 1.675, z: -3.18}
+  m_LocalRotation: {x: -0.17095964, y: 0.7333365, z: 0.19998765, w: 0.6268934}
+  m_LocalPosition: {x: 7.9975195, y: 0.9, z: 10.193508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
