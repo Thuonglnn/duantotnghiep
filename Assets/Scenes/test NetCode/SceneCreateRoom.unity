@@ -1677,8 +1677,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174217077}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.01215118, y: 0.9871497, z: 0.12979873, w: -0.092412576}
-  m_LocalPosition: {x: 3.708059, y: -3.041842, z: -4.4168987}
+  m_LocalRotation: {x: -0.11346637, y: 0.88506156, z: 0.34517738, w: 0.29093656}
+  m_LocalPosition: {x: 2.4562163, y: -6.7391148, z: -3.4428968}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3293,6 +3293,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 2467500402550074913, guid: 5b530a9f1c0bfa84d95cbedcdf1cb5e4, type: 3}
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: hostSpawnPoint
       value: 

@@ -192,11 +192,22 @@ public class Bow_Attack : NetworkBehaviour
     [ServerRpc]
     void HandleAttackingServerRpc(Vector3 mouseWorldPosition)
     {
+        HandleAttackingClientRpc(mouseWorldPosition);
+    }
+    [ClientRpc]
+    void HandleAttackingClientRpc(Vector3 mouseWorldPosition)
+    {
         HandleShooting(mouseWorldPosition);
     }
 
     [ServerRpc]
     void HandleBigIceArrowServerRpc()
+    {
+        HandleBigIceArrowClientRpc();
+    }
+
+    [ClientRpc]
+    void HandleBigIceArrowClientRpc()
     {
         GameObject bigarrow =Instantiate(BigIceArrow, spawnBulletPosition.position, spawnBulletPosition.rotation);
         var BowSkillScript = bigarrow.GetComponent<Arrow_2>();
