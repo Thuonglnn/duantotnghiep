@@ -996,6 +996,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3471671226700884293, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5515373755871146819}
+    - targetCorrespondingSourceObject: {fileID: 3471671226700884293, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2284379389684553043}
     - targetCorrespondingSourceObject: {fileID: 5314179811100334559, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4748283969137678658}
@@ -1070,7 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 386652054
+  GlobalObjectIdHash: 3890680127
   InScenePlacedSourceGlobalObjectIdHash: 3890680127
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -1109,9 +1112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTimes:
-  - 10
-  - 8
-  - 12
+  - 6
+  - 6
+  - 6
   isCooldowns: 000000
   tmpCooldownTimers:
   - {fileID: 1319490044695928122}
@@ -1212,6 +1215,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 9193446572760559329}
+--- !u!114 &2284379389684553043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467500402550074913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2987437029355238555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4280119743823950847, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class Arrow_1 : NetworkBehaviour
+public class Arrow_2 : NetworkBehaviour
 {
     public float speed = 10f; 
     public float timeDestroy = 3f;
@@ -24,7 +24,7 @@ public class Arrow_1 : NetworkBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -38,7 +38,6 @@ public class Arrow_1 : NetworkBehaviour
             if (enemy != null)
             {
                 creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + dmgBonus);
-                Destroy(gameObject);
             }
         }
     }

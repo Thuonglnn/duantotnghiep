@@ -9,7 +9,7 @@ public class Character_Attack : NetworkBehaviour
     Animator animator;
     public float[] cooldownTimes = { 5f, 5f, 5f };
     float[] cooldownTimers = { 0f, 0f, 0f };
-    public bool[] isCooldowns = { false, false, false };
+    private bool[] isCooldowns = { false, false, false };
     public TextMeshProUGUI[] tmpCooldownTimers;
 
     private NetworkVariable<bool> normalAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);

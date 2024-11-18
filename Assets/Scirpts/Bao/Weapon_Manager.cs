@@ -25,21 +25,6 @@ public class Weapon_Manager : NetworkBehaviour
         SetSkill3Collider(false);
     }
 
-    void Update()
-    {
-        if (IsOwner)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                EnableWeaponColliderServerRpc();
-            }
-            if (Input.GetKeyUp(KeyCode.F))
-            {
-                DisableWeaponColliderServerRpc();
-            }
-        }
-    }
-
     [ServerRpc(RequireOwnership = false)]
     public void EnableWeaponColliderServerRpc()
     {
@@ -73,7 +58,6 @@ public class Weapon_Manager : NetworkBehaviour
         if (weaponCollider != null)
         {
             weaponCollider.enabled = isEnabled;
-            Debug.Log($"Weapon Collider {(isEnabled ? "Enabled" : "Disabled")} on {(IsServer ? "Server" : "Client")}");
         }
         else
         {
@@ -86,7 +70,6 @@ public class Weapon_Manager : NetworkBehaviour
         if (skill3Collider != null)
         {
             skill3Collider.enabled = isEnabled;
-            Debug.Log($"Skill3 Collider {(isEnabled ? "Enabled" : "Disabled")} on {(IsServer ? "Server" : "Client")}");
         }
         else
         {

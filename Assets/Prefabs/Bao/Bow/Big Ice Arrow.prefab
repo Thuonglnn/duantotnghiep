@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8980930331488810620}
   - component: {fileID: 7642105588225508313}
   - component: {fileID: -8479135210351980196}
-  - component: {fileID: 706499655338740232}
   - component: {fileID: 446053617866579679}
+  - component: {fileID: 7131082125328098262}
   m_Layer: 0
   m_Name: Big Ice Arrow
   m_TagString: Untagged
@@ -4940,20 +4940,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.046133447, y: 0.03995274, z: 0.7504024}
   m_Center: {x: 0, y: 0.006658788, z: 0.06959218}
---- !u!114 &706499655338740232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7538291151217991452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e3de92fe31a47448684722fea2a946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  timeDestroy: 3
 --- !u!114 &446053617866579679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4966,7 +4952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 2839126287
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -4975,6 +4961,23 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &7131082125328098262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538291151217991452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27469c035739a4e4988db204b535e226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  timeDestroy: 3
+  dmgBonus: 2
+  creatorAttributes: {fileID: 0}
+  creatorNetworkObject: {fileID: 0}
 --- !u!1 &8980930331210442615
 GameObject:
   m_ObjectHideFlags: 0
