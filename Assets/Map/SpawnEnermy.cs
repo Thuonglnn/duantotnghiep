@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Netcode;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : NetworkBehaviour
 {
     public List<GameObject> normalEnemies;      // Danh sách prefab quái thường
     public List<GameObject> eliteEnemies;       // Danh sách prefab quái cao cấp
@@ -15,17 +16,19 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        spawnTimer = spawnInterval;             // Đặt thời gian chờ ban đầu
+        spawnTimer = spawnInterval;
     }
 
     void Update()
     {
-        spawnTimer -= Time.deltaTime;           // Giảm thời gian chờ theo thời gian thực
+        if (!IsServer) return; // Chỉ máy chủ thực thi logic spawn
+
+        spawnTimer -= Time.deltaTime;
 
         if (spawnTimer <= 0)
         {
-            SpawnEnemyByStage();                // Gọi hàm spawn quái theo giai đoạn
-            spawnTimer = spawnInterval;         // Đặt lại thời gian chờ
+            SpawnEnemyByStage(); // Gọi hàm spawn quái theo giai đoạn
+            spawnTimer = spawnInterval;
         }
 
         // Nâng cấp giai đoạn khi đáp ứng điều kiện (có thể dựa trên thời gian hoặc điểm số)
@@ -42,36 +45,62 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemyToSpawn = null;
 
-        // Spawn theo giai đoạn
+        // Chọn prefab dựa trên giai đoạn
         switch (currentStage)
         {
-            case 1:  // Giai đoạn 1: chỉ spawn quái thường
+            case 1:
                 enemyToSpawn = normalEnemies[Random.Range(0, normalEnemies.Count)];
                 break;
-            case 2:  // Giai đoạn 2: spawn quái thường và quái cao cấp
-                enemyToSpawn = Random.value > 0.5f ?
-                               normalEnemies[Random.Range(0, normalEnemies.Count)] :
-                               eliteEnemies[Random.Range(0, eliteEnemies.Count)];
+            case 2:
+                enemyToSpawn = Random.value > 0.5f
+                    ? normalEnemies[Random.Range(0, normalEnemies.Count)]
+                    : eliteEnemies[Random.Range(0, eliteEnemies.Count)];
                 break;
-            case 3:  // Giai đoạn 3: spawn boss cùng các quái cao cấp
-
+            case 3:
                 if (Random.value > 0.8f)
-                    enemyToSpawn = bossPrefab;   // Spawn boss với tỉ lệ 20%
+                    enemyToSpawn = bossPrefab; // Spawn boss với tỉ lệ 20%
                 else
-                    enemyToSpawn = Random.value > 0.5f ?
-                               normalEnemies[Random.Range(0, normalEnemies.Count)] :
-                               eliteEnemies[Random.Range(0, eliteEnemies.Count)];
+                    enemyToSpawn = Random.value > 0.5f
+                        ? normalEnemies[Random.Range(0, normalEnemies.Count)]
+                        : eliteEnemies[Random.Range(0, eliteEnemies.Count)];
                 break;
         }
 
-        // Spawn quái được chọn
-        Instantiate(enemyToSpawn, spawnPoint.position, Quaternion.identity); //spawnPoint.rotation
+        if (enemyToSpawn != null)
+        {
+            // Spawn quái vật trên máy chủ và đồng bộ đến các máy khách
+            SpawnEnemyServerRpc(enemyToSpawn.name, spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+
+    [ServerRpc]
+    private void SpawnEnemyServerRpc(string prefabName, Vector3 position, Quaternion rotation)
+    {
+        GameObject prefab = FindPrefabByName(prefabName);
+        if (prefab != null)
+        {
+            GameObject enemy = Instantiate(prefab, position, rotation);
+            enemy.GetComponent<NetworkObject>().Spawn(); // Đồng bộ quái vật trên toàn bộ máy khách
+        }
+    }
+
+    private GameObject FindPrefabByName(string prefabName)
+    {
+        foreach (var enemy in normalEnemies)
+        {
+            if (enemy.name == prefabName) return enemy;
+        }
+        foreach (var enemy in eliteEnemies)
+        {
+            if (enemy.name == prefabName) return enemy;
+        }
+        if (bossPrefab.name == prefabName) return bossPrefab;
+
+        return null;
     }
 
     void UpdateStage()
     {
-        // Điều kiện để nâng cấp giai đoạn (có thể dựa trên thời gian hoặc điểm số)
-        // Ví dụ nâng cấp giai đoạn sau mỗi 30 giây
         if (Time.timeSinceLevelLoad > 90) currentStage = 3;
         else if (Time.timeSinceLevelLoad > 45) currentStage = 2;
         else currentStage = 1;

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.Netcode;
 
 
 
-public class GoblinAI : MonoBehaviour
+public class GoblinAI : NetworkBehaviour
 {
     // Start is called before the first frame update
 
