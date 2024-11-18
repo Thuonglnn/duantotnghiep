@@ -14,9 +14,9 @@ public class Bow_Attack : NetworkBehaviour
     [SerializeField] private Transform spawnBulletPosition;
 
     public GameObject arrowModel;
-    public NetworkObject Arrow;
-    public NetworkObject ArrowIce;
-    public NetworkObject BigIceArrow;
+    public GameObject Arrow;
+    public GameObject ArrowIce;
+    public GameObject BigIceArrow;
     public Transform transformArrow;
     public ParticleSystem SkillAttack_1;
 
@@ -198,7 +198,11 @@ public class Bow_Attack : NetworkBehaviour
     [ServerRpc]
     void HandleBigIceArrowServerRpc()
     {
-        Instantiate(BigIceArrow, spawnBulletPosition.position, spawnBulletPosition.rotation).Spawn();
+        GameObject bigarrow =Instantiate(BigIceArrow, spawnBulletPosition.position, spawnBulletPosition.rotation);
+        var BowSkillScript = bigarrow.GetComponent<Arrow_2>();
+        BowSkillScript.creatorNetworkObject = GetComponent<NetworkObject>(); // Gán NetworkObject của người tạo
+        BowSkillScript.creatorAttributes = GetComponent<AttributesManager>(); // Gán AttributesManager của người tạo
+        bigarrow.GetComponent<NetworkObject>().Spawn(); // Spawn qua mạng
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -221,12 +225,23 @@ public class Bow_Attack : NetworkBehaviour
         Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
         if (Skill1.Value)
         {
-            Instantiate(ArrowIce, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up)).Spawn();
+            GameObject arrowice = Instantiate(ArrowIce, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            var BowSkillScript = arrowice.GetComponent<Arrow_1>();
+            BowSkillScript.creatorNetworkObject = GetComponent<NetworkObject>(); // Gán NetworkObject của người tạo
+            BowSkillScript.creatorAttributes = GetComponent<AttributesManager>(); // Gán AttributesManager của người tạo
+            arrowice.GetComponent<NetworkObject>().Spawn(); // Spawn qua mạng
         }
         else
         {
-            Instantiate(Arrow, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up)).Spawn();
+            GameObject arrow = Instantiate(Arrow, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            var BowSkillScript = arrow.GetComponent<Arrow_1>();
+            BowSkillScript.creatorNetworkObject = GetComponent<NetworkObject>(); // Gán NetworkObject của người tạo
+            BowSkillScript.creatorAttributes = GetComponent<AttributesManager>(); // Gán AttributesManager của người tạo
+            arrow.GetComponent<NetworkObject>().Spawn(); // Spawn qua mạng
         }
+
+        
+       
     }
 
     
