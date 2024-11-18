@@ -18734,7 +18734,7 @@ AnimationClip:
     m_HasAdditiveReferencePose: 0
     m_LoopTime: 1
     m_LoopBlend: 0
-    m_LoopBlendOrientation: 0
+    m_LoopBlendOrientation: 1
     m_LoopBlendPositionY: 1
     m_LoopBlendPositionXZ: 0
     m_KeepOriginalOrientation: 1
@@ -36274,7 +36274,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.33333334
-    functionName: SetActiveArrowfalse
+    functionName: SetActiveArrowFalse
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

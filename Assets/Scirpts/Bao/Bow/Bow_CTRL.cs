@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Bow_CTRL : MonoBehaviour
+public class Bow_CTRL : NetworkBehaviour
 {
     Animator animator;
     Rigidbody rb;
@@ -11,16 +12,16 @@ public class Bow_CTRL : MonoBehaviour
     public float runSpeed = 2f;
     public float walkSpeed = 1f; 
     public float rotationSpeed = 10f;
-    public float jumpForce =5f;
+    public float jumpForce = 5f;
     float velocity = 0.0f;
     int VelocityHash;
     bool isGrounded = true;
 
-    public static bool isAiming;
+    public bool isAiming;
 
     public CinemachineFreeLook freeLookCamera;
 
-    // nhìn vao đâu khi ngắm c
+    // nhìn vao đâu khi ngắm
     public Transform LookAt;
     public Transform Follow;
     // nhìn vào đâu khi hết ngắm 
@@ -38,16 +39,23 @@ public class Bow_CTRL : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-
         VelocityHash = Animator.StringToHash("Velocity");
         rb = GetComponent<Rigidbody>();
-
-        //virtualCamera.GetComponent<CinemachineFreeLook>();
         mainCamera = Camera.main;
+        if (IsOwner)
+        {
+            freeLookCamera.gameObject.SetActive(true);
+        }
+        else
+        {
+            freeLookCamera.gameObject.SetActive(false);
+        }
     }
 
     void Update()
     {
+        if (!IsOwner) return; // Chỉ chạy mã nếu là client sở hữu
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -72,22 +80,15 @@ public class Bow_CTRL : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            animator.SetBool("isJumping", true); 
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-            
-            animator.SetBool("isFalling", false);  
-            animator.SetBool("isLanding", false); 
+            JumpServerRpc(); // Gọi hàm nhảy qua server
         }
 
-        
         if (!isGrounded && rb.velocity.y < 0)
         {
             animator.SetBool("isFalling", true);   
             animator.SetBool("isJumping", false); 
         }
 
-        
         if (isGrounded && rb.velocity.y == 0)
         {
             animator.SetBool("isLanding", true);  
@@ -97,15 +98,19 @@ public class Bow_CTRL : MonoBehaviour
         if(Input.GetMouseButtonDown(1))
         {
             isAiming = true;
+            UpdateAimingStateServerRpc(isAiming); // Cập nhật trạng thái ngắm qua server
         }
         if(Input.GetMouseButtonUp(1))
         {
             isAiming = false;
+            UpdateAimingStateServerRpc(isAiming); // Cập nhật trạng thái ngắm qua server
         }
     }
 
     void FixedUpdate()
     {
+        if (!IsOwner) return; // Chỉ chạy mã nếu là client sở hữu
+
         Vector3 forward = mainCamera.transform.forward;
         Vector3 right = mainCamera.transform.right;
 
@@ -125,7 +130,7 @@ public class Bow_CTRL : MonoBehaviour
             freeLookCamera.m_LookAt = LookAt; 
             freeLookCamera.m_Follow = Follow; 
 
-            freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.x = 0.4f;
+            freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.x = 2f;
             freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.y = 0.4f;
             freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.z = 0.4f;
 
@@ -134,20 +139,6 @@ public class Bow_CTRL : MonoBehaviour
 
             animator.SetFloat("InputX", input.x);
             animator.SetFloat("InputY", input.y);
-
-            // Tính toán hướng quay 
-            Vector3 cameraForward = mainCamera.transform.forward;
-            Vector3 cameraRight = mainCamera.transform.right;
-
-             float cameraPitch = mainCamera.transform.eulerAngles.x;
-
-            // Nếu góc Pitch lớn hơn 180, chuyển sang giá trị âm
-            if (cameraPitch > 180f)
-                cameraPitch -= 360f;
-
-            // Giới hạn góc Pitch trong khoảng 
-            cameraPitch = Mathf.Clamp(cameraPitch, minAimAngle, maxAimAngle);
-
 
             Quaternion aimRotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, aimRotation, rotationSpeed * Time.fixedDeltaTime));
@@ -167,7 +158,7 @@ public class Bow_CTRL : MonoBehaviour
             freeLookCamera.m_LookAt = LookAt1; 
             freeLookCamera.m_Follow = Follow1; 
 
-            freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.x = 0f;
+            freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.x = 1.5f;
             freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.y = 0f;
             freeLookCamera.GetComponent<CinemachineCameraOffset>().m_Offset.z = 0f;
 
@@ -176,23 +167,42 @@ public class Bow_CTRL : MonoBehaviour
         }
     }
 
-
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            // animator.SetBool("isLanding", true); 
-            // animator.SetBool("isJumping", false); 
-            // animator.SetBool("isFalling", false);  
         }
     }
 
-    public static Bow_CTRL instance;
-    void Awake()
+    [ServerRpc]
+    void JumpServerRpc()
     {
-        instance = this;
+        JumpClientRpc();
     }
-   
-}
 
+    [ClientRpc]
+    void JumpClientRpc()
+    {
+        if (IsOwner)
+        {
+            animator.SetBool("isJumping", true); 
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+            animator.SetBool("isFalling", false);  
+            animator.SetBool("isLanding", false); 
+        }
+    }
+
+    [ServerRpc]
+    void UpdateAimingStateServerRpc(bool isAiming)
+    {
+        UpdateAimingStateClientRpc(isAiming);
+    }
+
+    [ClientRpc]
+    void UpdateAimingStateClientRpc(bool isAiming)
+    {
+        this.isAiming = isAiming;
+    }
+}

@@ -1,23 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Arrow_1 : MonoBehaviour
+public class Arrow_1 : NetworkBehaviour
 {
     public float speed = 10f; 
-
     public float timeDestroy = 3f;
 
     void Start()
     {
-       
+        if (IsServer)
+        {
+            Invoke("DestroyArrow", timeDestroy);
+        }
     }
 
     void Update()
     {
-        // Di chuyển mũi tên theo hướng mà nó đang đối diện
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
 
-        Destroy(gameObject,timeDestroy);
+    [ServerRpc]
+    public void RequestDestroyServerRpc()
+    {
+        DestroyArrow();
+    }
+
+    [ClientRpc]
+    void DestroyArrowClientRpc()
+    {
+        Destroy(gameObject);
+    }
+
+    private void DestroyArrow()
+    {
+        DestroyArrowClientRpc();
+        Destroy(gameObject);
     }
 }

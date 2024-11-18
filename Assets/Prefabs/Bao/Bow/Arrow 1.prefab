@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2819480241978900301}
   - component: {fileID: 4006140963125709258}
   - component: {fileID: 2507640278958306959}
+  - component: {fileID: 4321373966821335212}
   - component: {fileID: -9126867833802459597}
   - component: {fileID: -644112304232557209}
   - component: {fileID: 1556092003872163492}
@@ -86,6 +87,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536857158424616757}
   m_Mesh: {fileID: 3895490744231193624, guid: 3f1a17348672f6347a9a1e797d876de4, type: 3}
+--- !u!114 &4321373966821335212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536857158424616757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1838193407
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &-9126867833802459597
 MonoBehaviour:
   m_ObjectHideFlags: 0

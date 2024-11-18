@@ -22,20 +22,10 @@ public class Character_Attack : NetworkBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        if (animator == null)
-        {
-            Debug.LogError("Animator component is missing!");
-        }
     }
 
     void Update()
     {
-        if (animator == null)
-        {
-            Debug.LogError("Animator component is missing in Update method!");
-            return;
-        }
-
         if (IsOwner)
         {
             HandleInput();
@@ -112,11 +102,6 @@ public class Character_Attack : NetworkBehaviour
     [ClientRpc]
     void UpdateAnimationStateClientRpc(string parameter, bool state)
     {
-        if (animator == null)
-        {
-            Debug.LogError("Animator component is missing in ClientRpc!");
-            return;
-        }
         animator.SetBool(parameter, state);
     }
 

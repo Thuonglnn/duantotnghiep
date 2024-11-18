@@ -14715,6 +14715,7 @@ GameObject:
   - component: {fileID: 198357973136645638}
   - component: {fileID: 199550515350852312}
   - component: {fileID: -7214647699805297214}
+  - component: {fileID: -7865330410898782969}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -19630,7 +19631,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56e689aa9cf0894aa5faa9fb8be0721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToDestroy: 0
+--- !u!114 &-7865330410898782969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845955007268882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1988778204445182
 GameObject:
   m_ObjectHideFlags: 0

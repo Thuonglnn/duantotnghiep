@@ -29504,6 +29504,7 @@ GameObject:
   - component: {fileID: 6019106030888778229}
   - component: {fileID: 4172615541328225308}
   - component: {fileID: 3166552796332134363}
+  - component: {fileID: -2781809660331001812}
   m_Layer: 0
   m_Name: Meteors AOE
   m_TagString: Untagged
@@ -34475,3 +34476,24 @@ MonoBehaviour:
   CritRate: 20
   DestroyTime: 10
   vfxHit: {fileID: 4563802948693442, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+--- !u!114 &-2781809660331001812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7957833072274404953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

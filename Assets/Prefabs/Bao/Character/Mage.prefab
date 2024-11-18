@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 336730232577119098, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.1332011
@@ -52,11 +56,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
+    - target: {fileID: 4670482354528719409, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: pfBulletProjectTile
+      value: 
+      objectReference: {fileID: 2629201528684244513, guid: 7170e59c700ba744c8a29539b2204a5e, type: 3}
+    - target: {fileID: 4670482354528719409, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: pfSkillQProjectTile
+      value: 
+      objectReference: {fileID: 1774005943228851233, guid: cb251659284f42e469b1729a194d50dc, type: 3}
+    - target: {fileID: 4670482354528719409, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: pfSkillRProjectTile
+      value: 
+      objectReference: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c, type: 3}
     - target: {fileID: 8018548028742318578, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 405463792
+      value: 86077281
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8451061642857054613, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 336730232577119098, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

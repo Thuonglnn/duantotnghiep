@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8455195984042833381}
   - component: {fileID: 4375008410168628804}
   - component: {fileID: 7615290741190667739}
+  - component: {fileID: 8586215992703237825}
   m_Layer: 0
   m_Name: Magic fire pro blue
   m_TagString: Untagged
@@ -4946,6 +4947,27 @@ MonoBehaviour:
   CritRate: 20
   DestroyTime: 40
   vfxHit: {fileID: 4563802948693442, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+--- !u!114 &8586215992703237825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774005943228851233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &3008946240095832813
 GameObject:
   m_ObjectHideFlags: 0
