@@ -49,7 +49,7 @@ public class Aiming : NetworkBehaviour
             hitTransform = raycastHit.transform;
         }
 
-        
+
         if (Input.GetMouseButton(1))
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
@@ -57,7 +57,7 @@ public class Aiming : NetworkBehaviour
             worldAimTarget.y = transform.position.y;
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
-            animator.SetLayerWeight(2, 1);
+            animator.SetLayerWeight(1, 1);
             animator.SetBool("isAming", true);
 
             input.x = Input.GetAxis("Horizontal");
@@ -68,7 +68,7 @@ public class Aiming : NetworkBehaviour
         else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
-            animator.SetLayerWeight(2, 0);
+            animator.SetLayerWeight(1, 0);
             animator.SetBool("isAming", false);
         }
 
@@ -76,7 +76,7 @@ public class Aiming : NetworkBehaviour
         {
             //animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
             ShootServerRpc(mouseWorldPosition);
-            
+
         }
 
         if (Input.GetKeyUp(KeyCode.Q))
@@ -116,25 +116,63 @@ public class Aiming : NetworkBehaviour
     [ServerRpc]
     private void ShootServerRpc(Vector3 mouseWorldPosition)
     {
+        // Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+        // GameObject bullet = Instantiate(pfBulletProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        // var BowSkillScript = bullet.GetComponent<BulletProjectile>();
+        // BowSkillScript.creatorNetworkObject = GetComponent<NetworkObject>(); // Gán NetworkObject của người tạo
+        // BowSkillScript.creatorAttributes = GetComponent<AttributesManager>();
+        // bullet.GetComponent<NetworkObject>().Spawn();
+        ShootClientRpc(mouseWorldPosition);
+    }
+
+    [ClientRpc]
+    private void ShootClientRpc(Vector3 mouseWorldPosition)
+    {
         Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
         GameObject bullet = Instantiate(pfBulletProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        var BowSkillScript = bullet.GetComponent<BulletProjectile>();
+        BowSkillScript.creatorNetworkObject = GetComponent<NetworkObject>(); // Gán NetworkObject của người tạo
+        BowSkillScript.creatorAttributes = GetComponent<AttributesManager>();
         bullet.GetComponent<NetworkObject>().Spawn();
     }
 
     [ServerRpc]
     private void UseSkillQServerRpc(Vector3 mouseWorldPosition)
     {
+        // Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+        // GameObject skillQ = Instantiate(pfSkillQProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        // skillQ.GetComponent<NetworkObject>().Spawn();
+        UseSkillQClientRpc(mouseWorldPosition);
+    }
+
+    [ClientRpc]
+    private void UseSkillQClientRpc(Vector3 mouseWorldPosition)
+    {
         Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-        GameObject skillQ = Instantiate(pfSkillQProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-        skillQ.GetComponent<NetworkObject>().Spawn();
+        GameObject bullet = Instantiate(pfSkillQProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        var BowSkillScript = bullet.GetComponent<SkillQ>();
+        BowSkillScript.creatorNetworkObject = GetComponent<NetworkObject>(); // Gán NetworkObject của người tạo
+        BowSkillScript.creatorAttributes = GetComponent<AttributesManager>();
+        bullet.GetComponent<NetworkObject>().Spawn();
     }
 
     [ServerRpc]
     private void UseSkillRServerRpc(Vector3 mouseWorldPosition)
     {
-        Vector3 aimDir = mouseWorldPosition.normalized;
-        GameObject skillR = Instantiate(pfSkillRProjectTile, mouseWorldPosition, Quaternion.LookRotation(aimDir, Vector3.up));
-        skillR.GetComponent<NetworkObject>().Spawn();
+        // Vector3 aimDir = mouseWorldPosition.normalized;
+        // GameObject skillR = Instantiate(pfSkillRProjectTile, mouseWorldPosition, Quaternion.LookRotation(aimDir, Vector3.up));
+        // skillR.GetComponent<NetworkObject>().Spawn();
+        UseSkillRClientRpc(mouseWorldPosition);
+    }
+    [ClientRpc]
+    private void UseSkillRClientRpc(Vector3 mouseWorldPosition)
+    {
+        Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+        GameObject bullet = Instantiate(pfSkillRProjectTile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        var BowSkillScript = bullet.GetComponent<CharacterDmgSkill>();
+        BowSkillScript.creatorNetworkObject = GetComponent<NetworkObject>(); // Gán NetworkObject của người tạo
+        BowSkillScript.creatorAttributes = GetComponent<AttributesManager>();
+        bullet.GetComponent<NetworkObject>().Spawn();
     }
 
     [ServerRpc]

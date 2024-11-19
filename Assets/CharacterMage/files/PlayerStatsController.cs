@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 public class PlayerStatsController : MonoBehaviour
 {
-    public Slider healthSlider;
-    public Slider manaSlider;
+    // public Slider healthSlider;
+    // public Slider manaSlider;
 
-    public int maxHealth = 100;
-    public int maxMana = 100;
+    // public int maxHealth = 100;
+    // public int maxMana = 100;
 
-    private int currentHealth;
-    private int currentMana;
+    // private int currentHealth;
+    // private int currentMana;
 
     // Enum đại diện cho các kỹ năng
     public enum Skill { Q, E, R }
@@ -46,16 +46,16 @@ public class PlayerStatsController : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
-        currentMana = maxMana;
+        // currentHealth = maxHealth;
+        // currentMana = maxMana;
 
-        healthSlider.maxValue = maxHealth;
-        manaSlider.maxValue = maxMana;
+        // healthSlider.maxValue = maxHealth;
+        // manaSlider.maxValue = maxMana;
 
-        healthSlider.value = currentHealth;
-        manaSlider.value = currentMana;
+        // healthSlider.value = currentHealth;
+        // manaSlider.value = currentMana;
 
-        StartCoroutine(RegenerateManaOverTime());
+        //StartCoroutine(RegenerateManaOverTime());
 
         // Khởi tạo giá trị maxValue cho các Slider cooldown
         qCooldownSlider.maxValue = skillCooldownTimes[Skill.Q];
@@ -68,51 +68,51 @@ public class PlayerStatsController : MonoBehaviour
         rCooldownSlider.gameObject.SetActive(false);
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        healthSlider.value = currentHealth;
-    }
+    // public void TakeDamage(int damage)
+    // {
+    //     currentHealth -= damage;
+    //     currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    //     healthSlider.value = currentHealth;
+    // }
 
-    public void Heal(int amount)
-    {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        healthSlider.value = currentHealth;
-    }
+    // public void Heal(int amount)
+    // {
+    //     currentHealth += amount;
+    //     currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    //     healthSlider.value = currentHealth;
+    // }
 
     public void UseSkill(Skill skill, int manaCost)
     {
-        if (skillCooldownStatus[skill] || currentMana < manaCost)
+        if (skillCooldownStatus[skill]) //|| currentMana < manaCost
         {
             Debug.Log("Skill is on cooldown or not enough mana.");
             return;
         }
 
         // Giảm mana và bắt đầu cooldown cho kỹ năng
-        currentMana -= manaCost;
-        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
-        manaSlider.value = currentMana;
+        // currentMana -= manaCost;
+        // currentMana = Mathf.Clamp(currentMana, 0, maxMana);
+        // manaSlider.value = currentMana;
 
         StartCoroutine(SkillCooldownRoutine(skill));
     }
 
-    private IEnumerator RegenerateManaOverTime()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
-            RegenerateMana(1);
-        }
-    }
+    // private IEnumerator RegenerateManaOverTime()
+    // {
+    //     while (true)
+    //     {
+    //         yield return new WaitForSeconds(1f);
+    //         RegenerateMana(1);
+    //     }
+    // }
 
-    public void RegenerateMana(int amount)
-    {
-        currentMana += amount;
-        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
-        manaSlider.value = currentMana;
-    }
+    // public void RegenerateMana(int amount)
+    // {
+    //     currentMana += amount;
+    //     currentMana = Mathf.Clamp(currentMana, 0, maxMana);
+    //     manaSlider.value = currentMana;
+    // }
 
     // Coroutine để xử lý cooldown của kỹ năng
     private IEnumerator SkillCooldownRoutine(Skill skill)

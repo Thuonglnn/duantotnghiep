@@ -5,6 +5,8 @@ using UnityEngine;
 public class DametoPlayer : MonoBehaviour
 {
     public int damageAmount = 20;
+    public int Atk = 20;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,7 @@ public class DametoPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerStatsController>().TakeDamage(damageAmount);
+            //other.GetComponent<AttributesManager>().DealDmg()
             Destroy(gameObject);
         }
 

@@ -1494,6 +1494,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1133506804 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4003440782148559424, guid: f1eb089896bc8e34382aa54683a6313b, type: 3}
+  m_PrefabInstance: {fileID: 1812795036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1163624867
 GameObject:
   m_ObjectHideFlags: 3
@@ -1707,8 +1712,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174217077}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.011302572, y: 0.97679675, z: -0.20712104, w: -0.053303692}
-  m_LocalPosition: {x: 3.719767, y: -1.2479749, z: -3.1074927}
+  m_LocalRotation: {x: 0.31148097, y: -0.108035006, z: 0.0356691, w: 0.9434171}
+  m_LocalPosition: {x: -1.2961774, y: 8.292122, z: -22.398762}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2907,6 +2912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapArena
       objectReference: {fileID: 0}
+    - target: {fileID: 8661098080852197212, guid: f1eb089896bc8e34382aa54683a6313b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3328,15 +3337,15 @@ PrefabInstance:
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 1049229034995091640, guid: 3909712135422594b9771b643b110112, type: 3}
+      objectReference: {fileID: 5612742973766186375, guid: 5c1c0315d224e6d4f90e4812bbb7b782, type: 3}
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: playerPrefab2
       value: 
-      objectReference: {fileID: 1049229034995091640, guid: 3909712135422594b9771b643b110112, type: 3}
+      objectReference: {fileID: 5612742973766186375, guid: 5c1c0315d224e6d4f90e4812bbb7b782, type: 3}
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: hostSpawnPoint
       value: 
-      objectReference: {fileID: 226639853}
+      objectReference: {fileID: 1133506804}
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: clientSpawnPoint
       value: 

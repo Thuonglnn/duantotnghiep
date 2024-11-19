@@ -7,6 +7,8 @@ public class CharacterDmgSkill : NetworkBehaviour
 {
     public AttributesManager creatorAttributes;
     public NetworkObject creatorNetworkObject;
+    public float DestroyTime = 3f;
+    public int AtkBonus = 10;
 
     // Thời gian trễ khi gây sát thương
     public float damageInterval = 0.8f;
@@ -41,7 +43,7 @@ public class CharacterDmgSkill : NetworkBehaviour
                 // Kiểm tra nếu đã qua thời gian trễ có thể gây sát thương
                 if (Time.time >= enemyLastDamageTime[enemy] + damageInterval)
                 {
-                    creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk - 4);
+                    creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + AtkBonus);
                     enemyLastDamageTime[enemy] = Time.time;
                 }
             }
@@ -50,6 +52,6 @@ public class CharacterDmgSkill : NetworkBehaviour
 
     void DestroyAfterTime()
     {
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, DestroyTime);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class SkillQ : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class SkillQ : MonoBehaviour
     [SerializeField] private Transform vfxHitRed;
 
     private Rigidbody SkillQ1;
+    public AttributesManager creatorAttributes;
+    public NetworkObject creatorNetworkObject;
+
+    private Rigidbody bulletRigidbody;
+
+    public int dmgBonus = 2;
 
     private void Awake()
     {
@@ -34,6 +41,39 @@ public class SkillQ : MonoBehaviour
             //Instantiate(vfxHitRed, transform.position, Quaternion.identity);
         }
         Destroy(gameObject, 5.0f);
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
+            if (other.GetComponent<NetworkObject>() == creatorNetworkObject)
+            {
+                return; // Bỏ qua nếu đúng là người tạo ra
+            }
+
+            AttributesManager enemy = other.GetComponent<AttributesManager>();
+            if (enemy != null)
+            {
+                creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + dmgBonus);
+            }
+        }
+    }
+
+    [ServerRpc]
+    public void RequestDestroyServerRpc()
+    {
+        DestroyArrow();
+    }
+
+    [ClientRpc]
+    void DestroyArrowClientRpc()
+    {
+        Destroy(gameObject);
+    }
+
+    private void DestroyArrow()
+    {
+        DestroyArrowClientRpc();
+        Destroy(gameObject);
     }
 
 }
