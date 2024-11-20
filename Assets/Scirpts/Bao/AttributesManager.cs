@@ -12,15 +12,26 @@ public class AttributesManager : NetworkBehaviour
     public float critRate = 0.5f; // 50%
     public float critDamage = 2f; // 200%
 
+    Animator animator;
+
+    ScoreManager scoreManager;
+
+    public AttributesManager attributesManager;
+
     public Slider healthBar;
+
+    bool isDie = false;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        scoreManager = GetComponent<ScoreManager>();
         if (IsOwner && healthBar != null)
         {
             healthBar.maxValue = hp.Value;
             healthBar.minValue = 0;
         }
+       
     }
 
     private void Update()
@@ -28,6 +39,19 @@ public class AttributesManager : NetworkBehaviour
         if (IsOwner && healthBar != null)
         {
             healthBar.value = hp.Value;
+
+            if(attributesManager)
+            {
+                if(attributesManager.hp.Value<=0 && !isDie)
+                {
+                    isDie = true;
+                    animator.SetBool("Death",true);
+                    ScoreManager.Instance.IncreaseScoreServerRpc(IsHost);
+                }
+                else{
+                    animator.SetBool("Death",false);
+                }
+            }
         }
     }
 

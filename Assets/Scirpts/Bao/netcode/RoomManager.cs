@@ -20,7 +20,7 @@ public class RoomManager : NetworkBehaviour
     public TextMeshProUGUI joinCodeText;
 
     private void Awake() {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     private async void Start()
