@@ -6438,7 +6438,7 @@ GameObject:
   - component: {fileID: 1313584480}
   - component: {fileID: 1313584481}
   m_Layer: 5
-  m_Name: hostScore
+  m_Name: Lose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6525,7 +6525,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -8783,7 +8783,7 @@ GameObject:
   - component: {fileID: 1850774010}
   - component: {fileID: 1850774009}
   m_Layer: 5
-  m_Name: clientScore
+  m_Name: Win
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8818,8 +8818,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283453661
-  m_fontColor: {r: 0.8679245, g: 0.31523672, b: 0.31523672, a: 1}
+    rgba: 4283487965
+  m_fontColor: {r: 0.8666667, g: 0.84081715, b: 0.31372547, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9272,8 +9272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e47ffe9904cf04c9c9395499b632c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TMP_hostScore: {fileID: 1313584481}
-  TMP_clientScore: {fileID: 1850774009}
+  TMP_youWin: {fileID: 1850774009}
+  TMP_youLoss: {fileID: 1313584481}
 --- !u!1 &1936475389
 GameObject:
   m_ObjectHideFlags: 0
