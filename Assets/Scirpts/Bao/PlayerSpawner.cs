@@ -1,30 +1,38 @@
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSpawner : NetworkBehaviour
 {
-    public GameObject playerPrefab, playerPrefab2; // Prefab của nhân vật
+    public GameObject Char1, Char2, Char3, Char4; // Các nhân vật
+    public Button[] characterButtons; // Danh sách các nút chọn nhân vật
+    public Button startButton;        // Nút "Bắt đầu"
 
-    public Transform hostSpawnPoint;   // Điểm spawn của Host
-    public Transform clientSpawnPoint; // Điểm spawn của Client
+    public Transform hostSpawnPoint;   // Điểm spawn cho Host
+    public Transform clientSpawnPoint; // Điểm spawn cho Client
 
-    public TMP_Dropdown tMP_Dropdown;
-    public GameObject Char1, Char2, Char3, Char4;
-
-    // Biến lưu lựa chọn nhân vật của client
-    private NetworkVariable<int> selectedCharacter = new NetworkVariable<int>(0);
+    private GameObject selectedCharacter; // Nhân vật được chọn (chỉ local)
+    private NetworkVariable<int> selectedCharacterIndex = new NetworkVariable<int>(0); // Chỉ số nhân vật (sync qua network)
 
     void Start()
     {
-        if (tMP_Dropdown != null)
+        // Đăng ký sự kiện cho các nút chọn nhân vật
+        if (characterButtons != null && characterButtons.Length > 0)
         {
-            // Đăng ký sự kiện OnValueChanged của Dropdown
-            tMP_Dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+            for (int i = 0; i < characterButtons.Length; i++)
+            {
+                int index = i; // Đảm bảo closure không bị sai
+                characterButtons[i].onClick.AddListener(() => OnCharacterButtonClicked(index));
+            }
+        }
+
+        // Gắn sự kiện cho nút "Bắt đầu"
+        if (startButton != null)
+        {
+            startButton.onClick.AddListener(OnStartButtonClicked);
+            startButton.gameObject.SetActive(false); // Ẩn nút ban đầu
         }
     }
-
-    void Update() { }
 
     public override void OnNetworkSpawn()
     {
@@ -32,46 +40,66 @@ public class PlayerSpawner : NetworkBehaviour
         {
             NetworkManager.OnClientConnectedCallback += OnClientConnected;
         }
-
-        if (IsHost) // Nếu là Host
-        {
-            CharSelect(tMP_Dropdown.value); // Host chọn nhân vật từ dropdown
-        }
     }
 
     private void OnClientConnected(ulong clientId)
     {
         Debug.Log($"Client {clientId} connected.");
-        if (clientId != NetworkManager.LocalClientId)
+    }
+
+    private void OnCharacterButtonClicked(int index)
+    {
+        // Lưu nhân vật được chọn vào biến local
+        selectedCharacter = GetCharacterPrefab(index);
+
+        if (selectedCharacter != null)
         {
-            // Đợi client gửi lựa chọn nhân vật
-            Debug.Log("Waiting for client character selection...");
+            Debug.Log($"Selected character {index}");
+            if (startButton != null)
+            {
+                startButton.gameObject.SetActive(true); // Hiển thị nút "Bắt đầu"
+            }
         }
+    }
+
+    private void OnStartButtonClicked()
+    {
+        if (selectedCharacter == null)
+        {
+            Debug.LogError("No character selected!");
+            return;
+        }
+
+        Debug.Log("Start button clicked. Sending character to server...");
+
+        // Gửi thông tin nhân vật đã chọn lên server
+        int characterIndex = GetCharacterIndex(selectedCharacter);
+        SelectCharacterServerRpc(characterIndex);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void SelectCharacterServerRpc(int characterIndex, ServerRpcParams rpcParams = default)
     {
-        // Lưu lựa chọn nhân vật cho client
-        selectedCharacter.Value = characterIndex;
+        Debug.Log($"Server received character index: {characterIndex}");
 
-        // Spawn nhân vật tại điểm spawn của client
-        SpawnPlayer(clientSpawnPoint.position, rpcParams.Receive.SenderClientId, characterIndex);
+        // Spawn nhân vật cho client
+        ulong clientId = rpcParams.Receive.SenderClientId;
+        Transform spawnPoint = clientId == NetworkManager.ServerClientId ? hostSpawnPoint : clientSpawnPoint;
+        SpawnPlayer(spawnPoint.position, clientId, characterIndex);
     }
 
     private void SpawnPlayer(Vector3 spawnPosition, ulong clientId, int characterIndex)
     {
-        // Chọn prefab dựa trên lựa chọn nhân vật
         GameObject prefabToSpawn = GetCharacterPrefab(characterIndex);
 
         if (prefabToSpawn == null)
         {
             Debug.LogError("Invalid character index. Spawning default character.");
-            prefabToSpawn = playerPrefab;
+            return;
         }
 
-        var playerInstance = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
-        var networkObject = playerInstance.GetComponent<NetworkObject>();
+        GameObject playerInstance = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+        NetworkObject networkObject = playerInstance.GetComponent<NetworkObject>();
 
         if (networkObject != null)
         {
@@ -96,17 +124,12 @@ public class PlayerSpawner : NetworkBehaviour
         }
     }
 
-    public void CharSelect(int i)
+    private int GetCharacterIndex(GameObject character)
     {
-        playerPrefab2 = GetCharacterPrefab(i);
-    }
-
-    public void OnDropdownValueChanged(int value)
-    {
-        if (IsClient)
-        {
-            // Gửi lựa chọn nhân vật lên server
-            SelectCharacterServerRpc(value);
-        }
+        if (character == Char1) return 0;
+        if (character == Char2) return 1;
+        if (character == Char3) return 2;
+        if (character == Char4) return 3;
+        return -1; // Không hợp lệ
     }
 }
