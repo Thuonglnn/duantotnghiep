@@ -19,9 +19,9 @@ public class RoomManager : NetworkBehaviour
     public Button joinRoomButton;
     public TextMeshProUGUI joinCodeText;
 
-    private void Awake() {
-        //DontDestroyOnLoad(gameObject);
-    }
+    PlayerSpawner playerSpawner;
+
+
 
     private async void Start()
     {
@@ -30,12 +30,14 @@ public class RoomManager : NetworkBehaviour
         createRoomButton.onClick.AddListener(StartRelay);
         joinRoomButton.onClick.AddListener(JoinRelay);
 
+        playerSpawner = GetComponent<PlayerSpawner>();
     }
 
     public async void StartRelay()
     {
         string joinCode = await StartHostWithRelay();
         joinCodeText.text = "Join Code: " + joinCode;
+        playerSpawner.playerPrefab = null;
 
         // Chuyển đến scene mới sau khi tạo phòng
         //SceneManager.LoadScene("GameScene"); // Thay "YourNewSceneName" bằng tên scene bạn muốn chuyển đến
@@ -43,6 +45,7 @@ public class RoomManager : NetworkBehaviour
 
     public async void JoinRelay()
     {
+
         bool joined = await StartClientWithRelay(joinRoomInputField.text);
         if (joined)
         {
@@ -54,10 +57,13 @@ public class RoomManager : NetworkBehaviour
         else
         {
             joinCodeText.text = "Failed to Join Room";
+
         }
+
+
     }
 
-    private async Task<string> StartHostWithRelay(int maxConnections = 3)
+    private async Task<string> StartHostWithRelay(int maxConnections = 4)
     {
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
@@ -80,4 +86,12 @@ public class RoomManager : NetworkBehaviour
             return false;
         }
     }
+
+    public void ReloadCurrentScene()
+    {
+        // Tải lại scene hiện tại
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
 }

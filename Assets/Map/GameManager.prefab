@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5845207658692930538}
   - component: {fileID: 3991061518844051279}
   - component: {fileID: 7536934738527695732}
+  - component: {fileID: 1219275899699758505}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -66,7 +67,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e4e23d2b81da743967caa6f9a5938b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1049229034995091640, guid: 3909712135422594b9771b643b110112, type: 3}
-  playerPrefab2: {fileID: 1049229034995091640, guid: 3909712135422594b9771b643b110112, type: 3}
+  playerPrefab: {fileID: 5612742973766186375, guid: 5c1c0315d224e6d4f90e4812bbb7b782, type: 3}
+  playerPrefab2: {fileID: 5612742973766186375, guid: 5c1c0315d224e6d4f90e4812bbb7b782, type: 3}
   hostSpawnPoint: {fileID: 0}
   clientSpawnPoint: {fileID: 0}
+--- !u!114 &1219275899699758505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395097203792453932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b497dbcf770affe41a0a12458a1abdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamemode: 0
+  map: 0
+  pvpArena1: {fileID: 0}
+  pvpArena2: {fileID: 0}
+  pveArena: {fileID: 0}
+  pvpForest1: {fileID: 0}
+  pvpForest2: {fileID: 0}
+  pveForest: {fileID: 0}
+  Arena: {fileID: 0}
+  Forest: {fileID: 0}
+  GamepveArenaManager: {fileID: 0}
+  GamepveForestManager: {fileID: 0}
