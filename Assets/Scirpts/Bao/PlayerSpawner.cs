@@ -12,7 +12,7 @@ public class PlayerSpawner : NetworkBehaviour
     public TMP_Dropdown tMP_Dropdown;
     public GameObject Char1, Char2, Char3, Char4;
 
-    // Biến lưu lựa chọn nhân vật của client
+    // Biến lưu lựa chọn nhân vật của client 
     private NetworkVariable<int> selectedCharacter = new NetworkVariable<int>(0);
 
     void Start()
