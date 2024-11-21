@@ -20,6 +20,7 @@ public class GameManager : NetworkBehaviour
 
 
 
+
     void Awake()
     {
         playerSpawne = GetComponent<PlayerSpawner>();
@@ -30,7 +31,6 @@ public class GameManager : NetworkBehaviour
     {
 
         gamemode = dropdownGameMode.value;
-        character = dropdownChar.value;
 
     }
 

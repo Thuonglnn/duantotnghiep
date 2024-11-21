@@ -8,143 +8,105 @@ public class PlayerSpawner : NetworkBehaviour
 
     public Transform hostSpawnPoint;   // Điểm spawn của Host
     public Transform clientSpawnPoint; // Điểm spawn của Client
+
     public TMP_Dropdown tMP_Dropdown;
     public GameObject Char1, Char2, Char3, Char4;
+
+    // Biến lưu lựa chọn nhân vật của client
+    private NetworkVariable<int> selectedCharacter = new NetworkVariable<int>(0);
+
     void Start()
     {
-
+        if (tMP_Dropdown != null)
+        {
+            // Đăng ký sự kiện OnValueChanged của Dropdown
+            tMP_Dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+        }
     }
-    void Update()
-    {
 
+    void Update() { }
 
-    }
     public override void OnNetworkSpawn()
     {
         if (IsServer)
         {
-
             NetworkManager.OnClientConnectedCallback += OnClientConnected;
-
         }
 
         if (IsHost) // Nếu là Host
         {
-            CharSelect(tMP_Dropdown.value);
-
+            CharSelect(tMP_Dropdown.value); // Host chọn nhân vật từ dropdown
         }
     }
 
     private void OnClientConnected(ulong clientId)
     {
         Debug.Log($"Client {clientId} connected.");
-
         if (clientId != NetworkManager.LocalClientId)
         {
-            Debug.Log("Spawning player for Client.");
-            SpawnPlayer(clientSpawnPoint.position, clientId);
+            // Đợi client gửi lựa chọn nhân vật
+            Debug.Log("Waiting for client character selection...");
         }
     }
 
-    private void SpawnPlayer(Vector3 spawnPosition, ulong clientId = 0)
+    [ServerRpc(RequireOwnership = false)]
+    public void SelectCharacterServerRpc(int characterIndex, ServerRpcParams rpcParams = default)
     {
-        // Tạo nhân vật tại vị trí đã chọn
-        var playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+        // Lưu lựa chọn nhân vật cho client
+        selectedCharacter.Value = characterIndex;
+
+        // Spawn nhân vật tại điểm spawn của client
+        SpawnPlayer(clientSpawnPoint.position, rpcParams.Receive.SenderClientId, characterIndex);
+    }
+
+    private void SpawnPlayer(Vector3 spawnPosition, ulong clientId, int characterIndex)
+    {
+        // Chọn prefab dựa trên lựa chọn nhân vật
+        GameObject prefabToSpawn = GetCharacterPrefab(characterIndex);
+
+        if (prefabToSpawn == null)
+        {
+            Debug.LogError("Invalid character index. Spawning default character.");
+            prefabToSpawn = playerPrefab;
+        }
+
+        var playerInstance = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
         var networkObject = playerInstance.GetComponent<NetworkObject>();
 
         if (networkObject != null)
         {
-            if (clientId == 0)
-            {
-                clientId = NetworkManager.LocalClientId;
-            }
-
             networkObject.SpawnAsPlayerObject(clientId);
-            Debug.Log($"Spawned player object for Client ID: {clientId}");
+            Debug.Log($"Spawned character {characterIndex} for Client ID: {clientId}");
         }
         else
         {
-            Debug.LogError("NetworkObject component not found on playerPrefab.");
+            Debug.LogError("NetworkObject component not found on character prefab.");
         }
     }
-    private void SpawnPlayer1(Vector3 spawnPosition, ulong clientId = 0)
+
+    private GameObject GetCharacterPrefab(int index)
     {
-        // Tạo nhân vật tại vị trí đã chọn
-        var playerInstance = Instantiate(playerPrefab2, spawnPosition, Quaternion.identity);
-        var networkObject = playerInstance.GetComponent<NetworkObject>();
-
-        if (networkObject != null)
+        switch (index)
         {
-            if (clientId == 0)
-            {
-                clientId = NetworkManager.LocalClientId;
-            }
-
-            networkObject.SpawnAsPlayerObject(clientId);
-            Debug.Log($"Spawned player object for Client ID: {clientId}");
-        }
-        else
-        {
-            Debug.LogError("NetworkObject component not found on playerPrefab.");
+            case 0: return Char1;
+            case 1: return Char2;
+            case 2: return Char3;
+            case 3: return Char4;
+            default: return null;
         }
     }
-
-    public void ReloadScript()
-    {
-        // Gọi lại hàm Start hoặc khởi tạo lại
-        Start();
-    }
-
 
     public void CharSelect(int i)
     {
-        switch (i)
-        {
-            case 0:
-
-                playerPrefab2 = Char1;
-                break;
-            case 1:
-                playerPrefab2 = Char2;
-                break;
-            case 2:
-
-                playerPrefab2 = Char3;
-                break;
-            case 3:
-
-                playerPrefab2 = Char4;
-                break;
-            default:
-                break;
-
-        }
+        playerPrefab2 = GetCharacterPrefab(i);
     }
 
-    public void CharSelect2(int i)
+    public void OnDropdownValueChanged(int value)
     {
-        switch (i)
+        if (IsClient)
         {
-            case 0:
-                playerPrefab = Char1;
-
-                break;
-            case 1:
-                playerPrefab = Char2;
-                break;
-            case 2:
-                playerPrefab = Char3;
-
-                break;
-            case 3:
-                playerPrefab = Char4;
-
-                break;
-            default:
-                break;
-
+            // Gửi lựa chọn nhân vật lên server
+            SelectCharacterServerRpc(value);
         }
     }
-
-
 }

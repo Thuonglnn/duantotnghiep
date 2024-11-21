@@ -37,8 +37,6 @@ public class RoomManager : NetworkBehaviour
     {
         string joinCode = await StartHostWithRelay();
         joinCodeText.text = "Join Code: " + joinCode;
-        playerSpawner.playerPrefab = null;
-
         // Chuyển đến scene mới sau khi tạo phòng
         //SceneManager.LoadScene("GameScene"); // Thay "YourNewSceneName" bằng tên scene bạn muốn chuyển đến
     }

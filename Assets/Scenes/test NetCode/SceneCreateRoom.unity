@@ -3925,7 +3925,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_ColorMultiplier: 3.47
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -3959,19 +3959,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CharSelect, Assembly-CSharp
-        m_MethodName: ReloadCode
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &687651388
 MonoBehaviour:
@@ -6332,7 +6320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 534.51, y: 95.6}
+  m_AnchoredPosition: {x: 560, y: 87}
   m_SizeDelta: {x: 1895.8098, y: 1274.5901}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1268742735
@@ -7000,6 +6988,7 @@ RectTransform:
   - {fileID: 1235374863}
   - {fileID: 308330610}
   - {fileID: 6679345}
+  - {fileID: 1718500817}
   - {fileID: 1522947132}
   m_Father: {fileID: 1915499695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8254,11 +8243,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1915499695}
+  m_Father: {fileID: 1452180733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 514, y: -100}
+  m_AnchoredPosition: {x: 512.1, y: -100}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1718500818
@@ -9213,9 +9202,8 @@ RectTransform:
   m_Children:
   - {fileID: 1452180733}
   - {fileID: 896681921}
-  - {fileID: 1718500817}
-  - {fileID: 588573566}
   - {fileID: 1268742734}
+  - {fileID: 588573566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9734,15 +9722,15 @@ PrefabInstance:
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 7556764671446893383, guid: 50f205777c0a1ce45b42b318ca710659, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: tMP_Dropdown
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 687651387}
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: playerPrefab2
       value: 
-      objectReference: {fileID: 7556764671446893383, guid: 50f205777c0a1ce45b42b318ca710659, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7536934738527695732, guid: 1fe4f4d6b2246b14dae373077ac06370, type: 3}
       propertyPath: hostSpawnPoint
       value: 
