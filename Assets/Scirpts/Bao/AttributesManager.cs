@@ -22,6 +22,16 @@ public class AttributesManager : NetworkBehaviour
 
     bool isDie = false;
 
+    public NetworkObject player;
+
+    
+
+    // private void Awake() {
+    //     DontDestroyOnLoad(gameObject);
+    // }
+
+    
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -46,6 +56,7 @@ public class AttributesManager : NetworkBehaviour
                 {
                     isDie = true;
                     animator.SetBool("Death",true);
+                    gameObject.SetActive(false);
                     ScoreManager.Instance.IncreaseScoreServerRpc(IsHost);
                 }
                 else{
@@ -55,6 +66,7 @@ public class AttributesManager : NetworkBehaviour
         }
     }
 
+    
     [ServerRpc(RequireOwnership = false)]
     public void DealDmgServerRpc(NetworkObjectReference targetRef, int attack)
     {

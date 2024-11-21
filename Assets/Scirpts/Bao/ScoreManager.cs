@@ -8,11 +8,8 @@ public class ScoreManager : NetworkBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
-    private NetworkVariable<int> hostScore = new NetworkVariable<int>(0);
-    private NetworkVariable<int> clientScore = new NetworkVariable<int>(0);
-
-    public TextMeshProUGUI TMP_hostScore;
-    public TextMeshProUGUI TMP_clientScore;
+    public TextMeshProUGUI TMP_youWin;
+    public TextMeshProUGUI TMP_youLoss;
 
     void Awake()
     {
@@ -26,34 +23,68 @@ public class ScoreManager : NetworkBehaviour
         }
     }
     
-    private void Update()
+    private void Start()
     {
-        if (TMP_hostScore != null)
-        {
-            TMP_hostScore.text = "" + hostScore.Value;
-        }
-
-        if (TMP_clientScore != null)
-        {
-            TMP_clientScore.text = "" + clientScore.Value;
-        }
+        TMP_youLoss.text = string.Empty;
+        TMP_youWin.text = string.Empty;
     }
     
-    [ServerRpc(RequireOwnership = false)]
-    public void IncreaseScoreServerRpc(bool isHost)
+    [ServerRpc]
+    public void IncreaseScoreServerRpc(bool isHostDead)
     {
-        IncreaseScore(isHost);
+        IncreaseScoreClientRpc(isHostDead);
+    }
+    [ClientRpc]
+    public void IncreaseScoreClientRpc(bool isHostDead)
+    {
+        IncreaseScore(isHostDead);
     }
 
-    public void IncreaseScore(bool isHost)
+    public void IncreaseScore(bool isHostDead)
     {
-        if (isHost)
+       if (isHostDead)
         {
-            hostScore.Value++;
+            if (IsHost)
+            {
+                TMP_youLoss.text = "You Lose!";
+                TMP_youWin.text = string.Empty; // Xóa thông báo thắng
+            }
+            else
+            {
+                TMP_youWin.text = "You Win!";
+                TMP_youLoss.text = string.Empty; // Xóa thông báo thua
+            }
         }
         else
         {
-            clientScore.Value++;
+            if (IsHost)
+            {
+                TMP_youWin.text = "You Win!";
+                TMP_youLoss.text = string.Empty; // Xóa thông báo thua
+            }
+            else
+            {
+                TMP_youLoss.text = "You Lose!";
+                TMP_youWin.text = string.Empty; // Xóa thông báo thắng
+            }
+        }
+    
+    }
+
+
+    public void LeaveRoom()
+    {
+        if (NetworkManager.Singleton.IsHost)
+        {
+            NetworkManager.Singleton.Shutdown(); // Dừng server và ngắt kết nối
+            
+            
+        }
+        else if (NetworkManager.Singleton.IsClient)
+        {
+            NetworkManager.Singleton.Shutdown(); // Ngắt kết nối khỏi server
+        
         }
     }
+    
 }
