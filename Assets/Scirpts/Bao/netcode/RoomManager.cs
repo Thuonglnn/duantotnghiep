@@ -9,8 +9,10 @@ using Unity.Services.Relay;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
-using UnityEngine.SceneManagement; // Thêm dòng này
-
+using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.Networking; 
+using Newtonsoft.Json;
 public class RoomManager : NetworkBehaviour
 {
     // UI Elements
@@ -18,10 +20,27 @@ public class RoomManager : NetworkBehaviour
     public Button createRoomButton;
     public Button joinRoomButton;
     public TextMeshProUGUI joinCodeText;
-
+    public TMP_Dropdown tMP_DropdownMap;
+    public TMP_Dropdown tMP_DropdownGameMode;
     PlayerSpawner playerSpawner;
 
+    string MapName;
+    string GameMode;
 
+    void SwitchName()
+    {
+        switch(tMP_DropdownMap.value){
+            case 0: MapName = "Đấu trường"; break;
+            case 1: MapName = "Rừng Thông"; break;
+            default:  break;
+        }
+        switch(tMP_DropdownGameMode.value){
+            case 0: GameMode = "PVP"; break;
+            case 1: GameMode = "PVE"; break;
+            default:  break;
+        }
+        
+    }
 
     private async void Start()
     {
@@ -33,10 +52,15 @@ public class RoomManager : NetworkBehaviour
         playerSpawner = GetComponent<PlayerSpawner>();
     }
 
+    private void Update() {
+        SwitchName();
+    }
+
     public async void StartRelay()
     {
         string joinCode = await StartHostWithRelay();
         joinCodeText.text = "Join Code: " + joinCode;
+        CreateRoomPost(joinCode,MapName,GameMode);
         // Chuyển đến scene mới sau khi tạo phòng
         //SceneManager.LoadScene("GameScene"); // Thay "YourNewSceneName" bằng tên scene bạn muốn chuyển đến
     }
@@ -91,5 +115,46 @@ public class RoomManager : NetworkBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void CreateRoomPost(string RoomId,string MapName,string GameMode)
+    {
+        string url = "http://localhost:3005/RoomId/createroomid";
+        // Tạo object chứa dữ liệu gửi đi
+        var roomData = new
+        {
+            roomId = RoomId,
+            mapName = MapName,
+            gameMode = GameMode
+        };
 
+        // Chuyển đổi sang JSON
+        string jsonData = JsonConvert.SerializeObject(roomData);
+        Debug.Log(jsonData);
+        Debug.Log(roomData);
+
+        // Gửi yêu cầu POST
+        StartCoroutine(PostRequest(url, jsonData));
+
+        
+    }
+
+    private IEnumerator PostRequest(string url, string jsonData)
+    {
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Phản hồi từ server: " + request.downloadHandler.text);
+        }
+        else
+        {
+            Debug.LogError("Lỗi: " + request.error);
+        }
+    }
 }
+
