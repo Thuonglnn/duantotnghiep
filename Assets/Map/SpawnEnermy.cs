@@ -12,6 +12,9 @@ public class EnemySpawner : NetworkBehaviour
     public float spawnInterval = 5f;            // Khoảng thời gian giữa các lần spawn
     private float spawnTimer;
 
+    public int maxEnemies = 20;                 // Số lượng quái tối đa
+    private int currentEnemyCount = 0;          // Số lượng quái hiện tại
+
     private int currentStage = 1;               // Giai đoạn hiện tại
 
     void Start()
@@ -37,7 +40,7 @@ public class EnemySpawner : NetworkBehaviour
 
     void SpawnEnemyByStage()
     {
-        if (spawnPoints.Count == 0) return;
+        if (spawnPoints.Count == 0 || currentEnemyCount >= maxEnemies) return;
 
         // Chọn ngẫu nhiên một điểm spawn
         int randomSpawnIndex = Random.Range(0, spawnPoints.Count);
@@ -81,6 +84,12 @@ public class EnemySpawner : NetworkBehaviour
         {
             GameObject enemy = Instantiate(prefab, position, rotation);
             enemy.GetComponent<NetworkObject>().Spawn(); // Đồng bộ quái vật trên toàn bộ máy khách
+
+            currentEnemyCount++; // Tăng số lượng quái hiện tại
+
+            // Thêm script Enemy để lắng nghe sự kiện tiêu diệt
+            var enemyScript = enemy.AddComponent<Enemy>();
+            enemyScript.onDestroyed += HandleEnemyDestroyed;
         }
     }
 
@@ -99,10 +108,29 @@ public class EnemySpawner : NetworkBehaviour
         return null;
     }
 
+    private void HandleEnemyDestroyed()
+    {
+        currentEnemyCount--; // Giảm số lượng quái hiện tại
+    }
+
     void UpdateStage()
     {
         if (Time.timeSinceLevelLoad > 90) currentStage = 3;
         else if (Time.timeSinceLevelLoad > 45) currentStage = 2;
         else currentStage = 1;
+    }
+
+}
+
+
+// Script gắn cho quái để lắng nghe sự kiện tiêu diệt
+public class Enemy : MonoBehaviour
+{
+
+    public event System.Action onDestroyed;
+
+    private void OnDestroy()
+    {
+        onDestroyed?.Invoke(); // Gọi sự kiện khi quái bị phá hủy
     }
 }

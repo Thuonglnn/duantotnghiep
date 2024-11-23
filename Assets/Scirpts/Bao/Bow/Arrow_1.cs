@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 public class Arrow_1 : NetworkBehaviour
 {
-    public float speed = 10f; 
+    public float speed = 10f;
     public float timeDestroy = 3f;
     public int dmgBonus = 2;
     public AttributesManager creatorAttributes;
@@ -26,7 +26,22 @@ public class Arrow_1 : NetworkBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player1"))
+        {
+            // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
+            if (other.GetComponent<NetworkObject>() == creatorNetworkObject)
+            {
+                return; // Bỏ qua nếu đúng là người tạo ra
+            }
+
+            AttributesManager enemy = other.GetComponent<AttributesManager>();
+            if (enemy != null)
+            {
+                creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + dmgBonus);
+                Destroy(gameObject);
+            }
+        }
+        if (other.gameObject.CompareTag("Enemy"))
         {
             // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
             if (other.GetComponent<NetworkObject>() == creatorNetworkObject)
@@ -48,7 +63,7 @@ public class Arrow_1 : NetworkBehaviour
         Destroy(gameObject, 3f);
     }
 
-   
+
 
     [ServerRpc]
     public void RequestDestroyServerRpc()

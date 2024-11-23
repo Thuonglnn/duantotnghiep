@@ -17,6 +17,7 @@ TagManager:
   - HealthBar
   - Enemy
   - Ground
+  - Player1
   layers:
   - Default
   - TransparentFX

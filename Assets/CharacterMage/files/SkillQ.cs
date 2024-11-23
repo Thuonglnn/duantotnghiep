@@ -42,7 +42,21 @@ public class SkillQ : MonoBehaviour
         }
         Destroy(gameObject, 5.0f);
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player1"))
+        {
+            // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
+            if (other.GetComponent<NetworkObject>() == creatorNetworkObject)
+            {
+                return; // Bỏ qua nếu đúng là người tạo ra
+            }
+
+            AttributesManager enemy = other.GetComponent<AttributesManager>();
+            if (enemy != null)
+            {
+                creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + dmgBonus);
+            }
+        }
+        if (other.gameObject.CompareTag("Enemy"))
         {
             // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
             if (other.GetComponent<NetworkObject>() == creatorNetworkObject)

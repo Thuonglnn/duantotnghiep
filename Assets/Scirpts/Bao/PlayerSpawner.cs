@@ -14,8 +14,17 @@ public class PlayerSpawner : NetworkBehaviour
     private GameObject selectedCharacter; // Nhân vật được chọn (chỉ local)
     private NetworkVariable<int> selectedCharacterIndex = new NetworkVariable<int>(0); // Chỉ số nhân vật (sync qua network)
 
+    GameManager gameManager;
+    bool mode = false;
     void Start()
     {
+        gameManager = GetComponent<GameManager>();
+
+        if (gameManager.dropdownGameMode != null)
+        {
+            gameManager.dropdownGameMode.onValueChanged.AddListener(OnGameModeChanged);
+            OnGameModeChanged(gameManager.dropdownGameMode.value); // Kiểm tra giá trị ban đầu
+        }
         // Đăng ký sự kiện cho các nút chọn nhân vật
         if (characterButtons != null && characterButtons.Length > 0)
         {
@@ -33,6 +42,7 @@ public class PlayerSpawner : NetworkBehaviour
             startButton.gameObject.SetActive(false); // Ẩn nút ban đầu
         }
     }
+
 
     public override void OnNetworkSpawn()
     {
@@ -132,4 +142,44 @@ public class PlayerSpawner : NetworkBehaviour
         if (character == Char4) return 3;
         return -1; // Không hợp lệ
     }
+
+    void OnGameModeChanged(int modeValue)
+    {
+        string newTag = modeValue == 0 ? "Player1" : "Player";
+
+        // Gắn tag cho Host
+        SetCharactersTag(newTag);
+
+        // Nếu là Host, đồng bộ tag đến Client
+        if (IsServer)
+        {
+            SyncCharacterTagsClientRpc(newTag);
+            Debug.Log($"Host set all characters to tag '{newTag}' and synced with clients.");
+        }
+        // if (modeValue == 0) // Game Mode là 0
+        // {
+        //     SetCharactersTag("Player1");
+        //     Debug.Log("Game Mode 0: Set all characters to tag 'Player1'.");
+        // }
+        // else
+        // {
+        //     SetCharactersTag("Untagged"); // Hoặc tag khác tùy bạn
+        //     Debug.Log($"Game Mode {modeValue}: Reset character tags.");
+        // }
+    }
+
+    void SetCharactersTag(string tag)
+    {
+        if (Char1 != null) Char1.tag = tag;
+        if (Char2 != null) Char2.tag = tag;
+        if (Char3 != null) Char3.tag = tag;
+        if (Char4 != null) Char4.tag = tag;
+    }
+
+    [ClientRpc]
+    void SyncCharacterTagsClientRpc(string tag)
+    {
+        SetCharactersTag(tag);
+    }
+
 }

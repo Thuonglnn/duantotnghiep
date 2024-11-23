@@ -23,7 +23,32 @@ public class CharacterDmgSkill : NetworkBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player1"))
+        {
+            // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
+            if (other.GetComponent<NetworkObject>() == creatorNetworkObject)
+            {
+                return; // Bỏ qua nếu đúng là người tạo ra
+            }
+
+            AttributesManager enemy = other.GetComponent<AttributesManager>();
+            if (enemy != null)
+            {
+                // Nếu enemy không có trong dictionary, thêm nó vào với thời gian ban đầu là 0
+                if (!enemyLastDamageTime.ContainsKey(enemy))
+                {
+                    enemyLastDamageTime[enemy] = 0f;
+                }
+
+                // Kiểm tra nếu đã qua thời gian trễ có thể gây sát thương
+                if (Time.time >= enemyLastDamageTime[enemy] + damageInterval)
+                {
+                    creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + AtkBonus);
+                    enemyLastDamageTime[enemy] = Time.time;
+                }
+            }
+        }
+        if (other.gameObject.CompareTag("Enemy"))
         {
             // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
             if (other.GetComponent<NetworkObject>() == creatorNetworkObject)

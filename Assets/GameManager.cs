@@ -64,24 +64,13 @@ public class GameManager : NetworkBehaviour
                     playerSpawne.hostSpawnPoint = pveArena;
                     playerSpawne.clientSpawnPoint = pveArena;
                     GamepveArenaManager.SetActive(true);
-                    GamepveForestManager.SetActive(false);
                 }
                 else if (map == 1)
                 {
-                    playerSpawne.hostSpawnPoint = pveArena;
-                    playerSpawne.clientSpawnPoint = pveArena;
+                    playerSpawne.hostSpawnPoint = pveForest;
+                    playerSpawne.clientSpawnPoint = pveForest;
                     GamepveForestManager.SetActive(true);
-                    GamepveArenaManager.SetActive(false);
-                }
 
-
-                break;
-            case 2:
-                if (map == 0)
-                {
-                }
-                else if (map == 1)
-                {
                 }
 
 
@@ -92,35 +81,9 @@ public class GameManager : NetworkBehaviour
         }
 
 
-
-        // CharSelect(character);
-
     }
 
-    // public void CharSelect(int i)
-    // {
-    //     switch (i)
-    //     {
-    //         case 0:
-    //             playerSpawne.playerPrefab = Char1;
-    //             playerSpawne.playerPrefab2 = Char1;
-    //             break;
-    //         case 1:
-    //             playerSpawne.playerPrefab = Char2;
-    //             break;
-    //         case 2:
-    //             playerSpawne.playerPrefab = Char3;
-    //             playerSpawne.playerPrefab2 = Char3;
-    //             break;
-    //         case 3:
-    //             playerSpawne.playerPrefab = Char4;
-    //             playerSpawne.playerPrefab2 = Char4;
-    //             break;
-    //         default:
-    //             break;
 
-    //     }
-    // }
 
 
     public void ReloadScript()

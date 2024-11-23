@@ -11,7 +11,15 @@ public class Weapon_Dmg : NetworkBehaviour
     {
         if (IsOwner)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player1"))
+            {
+                AttributesManager enemy = other.GetComponent<AttributesManager>();
+                if (player != null && enemy != null)
+                {
+                    player.DealDmg(enemy.gameObject, player.atk);
+                }
+            }
+            if (other.CompareTag("Enemy"))
             {
                 AttributesManager enemy = other.GetComponent<AttributesManager>();
                 if (player != null && enemy != null)

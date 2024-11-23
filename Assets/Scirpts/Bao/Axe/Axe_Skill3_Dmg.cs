@@ -23,14 +23,32 @@ public class Axe_Skill3_Dmg : NetworkBehaviour
         //         player = playerObject.GetComponent<AttributesManager>();
         //     }
         // }
-        
+
     }
 
-    void OnTriggerStay (Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if(IsOwner)
+        if (IsOwner)
         {
-            if(other.gameObject.CompareTag("Player") )
+            if (other.gameObject.CompareTag("Player1"))
+            {
+                AttributesManager enemy = other.GetComponent<AttributesManager>();
+                if (enemy != null)
+                {
+                    if (!enemyLastDamageTime.ContainsKey(enemy))
+                    {
+                        enemyLastDamageTime[enemy] = 0f;
+                    }
+
+                    if (Time.time >= enemyLastDamageTime[enemy] + damageInterval)
+                    {
+                        player.DealDmg(enemy.gameObject, player.atk - 4);
+                        enemyLastDamageTime[enemy] = Time.time;
+                    }
+                }
+            }
+
+            if (other.gameObject.CompareTag("Enemy"))
             {
                 AttributesManager enemy = other.GetComponent<AttributesManager>();
                 if (enemy != null)
@@ -48,10 +66,10 @@ public class Axe_Skill3_Dmg : NetworkBehaviour
                 }
             }
         }
-        
-        
+
+
     }
 
-    
+
 
 }
