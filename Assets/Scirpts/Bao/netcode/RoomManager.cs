@@ -20,6 +20,11 @@ public class RoomManager : NetworkBehaviour
     public Button createRoomButton;
     public Button joinRoomButton;
     public TextMeshProUGUI joinCodeText;
+    public TextMeshProUGUI Notification;
+
+    public GameObject joinRoom;
+    public GameObject unJoinRoom;
+
     public TMP_Dropdown tMP_DropdownMap;
     public TMP_Dropdown tMP_DropdownGameMode;
     PlayerSpawner playerSpawner;
@@ -56,11 +61,18 @@ public class RoomManager : NetworkBehaviour
         SwitchName();
     }
 
+    public void SetActiveButton()
+    {
+        unJoinRoom.SetActive(false);
+        joinRoom.SetActive(true);
+    }
     public async void StartRelay()
     {
         string joinCode = await StartHostWithRelay();
-        joinCodeText.text = "Join Code: " + joinCode;
+        joinCodeText.text = "Mã phòng: " + joinCode;
         CreateRoomPost(joinCode,MapName,GameMode);
+        SetActiveButton();
+        Notification.text = "Vào phòng thành công";
         // Chuyển đến scene mới sau khi tạo phòng
         //SceneManager.LoadScene("GameScene"); // Thay "YourNewSceneName" bằng tên scene bạn muốn chuyển đến
     }
@@ -71,17 +83,17 @@ public class RoomManager : NetworkBehaviour
         bool joined = await StartClientWithRelay(joinRoomInputField.text);
         if (joined)
         {
-            joinCodeText.text = "Joined Room";
-
+            joinCodeText.text = "Mã phòng : " + joinRoomInputField.text;
+            Notification.text = "Vào phòng thành công";
+            SetActiveButton();
             // Chuyển đến scene mới sau khi tham gia phòng
             //SceneManager.LoadScene("GameScene"); // Thay "YourNewSceneName" bằng tên scene bạn muốn chuyển đến
         }
         else
         {
-            joinCodeText.text = "Failed to Join Room";
+            Notification.text = "Vào phòng thất bại";
 
         }
-
 
     }
 
@@ -90,11 +102,10 @@ public class RoomManager : NetworkBehaviour
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-
         return NetworkManager.Singleton.StartHost() ? joinCode : null;
     }
 
-    private async Task<bool> StartClientWithRelay(string joinCode)
+    public async Task<bool> StartClientWithRelay(string joinCode)
     {
         try
         {
