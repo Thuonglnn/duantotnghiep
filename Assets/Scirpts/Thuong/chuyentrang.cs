@@ -37,6 +37,12 @@ public class chuyentrang : MonoBehaviour
         Time.timeScale = 1;
     }
 
+     public void QuenMK()
+    {
+        SceneManager.LoadScene("QuenMK");
+        Time.timeScale = 1;
+    }
+
     public void Thoat()
     {
         Application.Quit(); // Thoát ứng dụng
@@ -123,6 +129,9 @@ public void shop()
         SceneManager.LoadScene("tuong");
         Time.timeScale = 1;
     }
+
+
+    
 
 
     

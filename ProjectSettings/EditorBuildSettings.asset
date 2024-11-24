@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DangKi.unity
     guid: 592a20f7993d77447b79ff37c261fb29
   - enabled: 1
+    path: Assets/Scenes/QuenMK.unity
+    guid: 0dd5dbb3c1100fa408cc3e2a74dd0669
+  - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 7fa7efa0a91b76046915bf8f52dbabcc
   - enabled: 1
@@ -53,6 +56,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TuDo.unity
     guid: a3cbd6a8318ed2f4796bfc83107e926b
+  - enabled: 1
+    path: Assets/Scenes/trangbituong.unity
+    guid: 96630cce20048324dbd8e33101972433
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: b379db363593e1346aa2d9752a805268
