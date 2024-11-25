@@ -126,6 +126,7 @@ public class RoomManager : NetworkBehaviour
         {
             string joinCode = joinCodeText.text.Replace("Mã phòng: ", "").Trim();
             StartCoroutine(DeleteRoomPost(joinCode));
+            ReloadCurrentScene();
         }
     }
 
@@ -136,6 +137,7 @@ public class RoomManager : NetworkBehaviour
         {
             string joinCode = joinCodeText.text.Replace("Mã phòng: ", "").Trim();
             StartCoroutine(DeleteRoomPost(joinCode));
+            ReloadCurrentScene();
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : NetworkBehaviour
 {
@@ -22,13 +23,13 @@ public class ScoreManager : NetworkBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     private void Start()
     {
         TMP_youLoss.text = string.Empty;
         TMP_youWin.text = string.Empty;
     }
-    
+
     [ServerRpc]
     public void IncreaseScoreServerRpc(bool isHostDead)
     {
@@ -42,17 +43,20 @@ public class ScoreManager : NetworkBehaviour
 
     public void IncreaseScore(bool isHostDead)
     {
-       if (isHostDead)
+        if (isHostDead)
         {
             if (IsHost)
             {
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
+                ReloadAfterDelay(5f);
+
             }
             else
             {
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
+                ReloadAfterDelay(5f);
             }
         }
         else
@@ -61,14 +65,18 @@ public class ScoreManager : NetworkBehaviour
             {
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
+                ReloadAfterDelay(5f);
             }
             else
             {
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
+                ReloadAfterDelay(5f);
             }
         }
-    
+
+
+
     }
 
 
@@ -77,14 +85,26 @@ public class ScoreManager : NetworkBehaviour
         if (NetworkManager.Singleton.IsHost)
         {
             NetworkManager.Singleton.Shutdown(); // Dừng server và ngắt kết nối
-            
-            
+
+
         }
         else if (NetworkManager.Singleton.IsClient)
         {
             NetworkManager.Singleton.Shutdown(); // Ngắt kết nối khỏi server
-        
+
         }
     }
-    
+    // Hàm để bắt đầu việc load lại với độ trễ
+    public void ReloadSceneWithDelay(float delay)
+    {
+        StartCoroutine(ReloadAfterDelay(delay));
+    }
+
+    // Coroutine thực hiện việc chờ
+    private IEnumerator ReloadAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
 }

@@ -7,6 +7,7 @@ using Unity.Netcode;
 public class AttributesManager : NetworkBehaviour
 {
     public NetworkVariable<int> hp = new NetworkVariable<int>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private NetworkVariable<bool> isdie = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public int def = 100;
     public int atk = 10;
     public float critRate = 0.5f; // 50%
@@ -55,13 +56,13 @@ public class AttributesManager : NetworkBehaviour
                 if (attributesManager.hp.Value <= 0 && !isDie)
                 {
                     isDie = true;
-                    animator.SetBool("Death", true);
+                    UpdateAnimationStateClientRpc("Death", isdie.Value);
                     gameObject.SetActive(false);
                     ScoreManager.Instance.IncreaseScoreServerRpc(IsHost);
                 }
                 else
                 {
-                    animator.SetBool("Death", false);
+                    UpdateAnimationStateClientRpc("Death", isdie.Value);
                 }
             }
         }
@@ -111,7 +112,11 @@ public class AttributesManager : NetworkBehaviour
             }
         }
     }
-
+    [ClientRpc]
+    void UpdateAnimationStateClientRpc(string parameter, bool state)
+    {
+        animator.SetBool(parameter, state);
+    }
 
 
 }
