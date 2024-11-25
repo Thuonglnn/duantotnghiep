@@ -24,13 +24,13 @@ public class AttributesManager : NetworkBehaviour
 
     public NetworkObject player;
 
-    
+
 
     // private void Awake() {
     //     DontDestroyOnLoad(gameObject);
     // }
 
-    
+
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class AttributesManager : NetworkBehaviour
             healthBar.maxValue = hp.Value;
             healthBar.minValue = 0;
         }
-       
+
     }
 
     private void Update()
@@ -50,23 +50,24 @@ public class AttributesManager : NetworkBehaviour
         {
             healthBar.value = hp.Value;
 
-            if(attributesManager)
+            if (attributesManager)
             {
-                if(attributesManager.hp.Value<=0 && !isDie)
+                if (attributesManager.hp.Value <= 0 && !isDie)
                 {
                     isDie = true;
-                    animator.SetBool("Death",true);
+                    animator.SetBool("Death", true);
                     gameObject.SetActive(false);
                     ScoreManager.Instance.IncreaseScoreServerRpc(IsHost);
                 }
-                else{
-                    animator.SetBool("Death",false);
+                else
+                {
+                    animator.SetBool("Death", false);
                 }
             }
         }
     }
 
-    
+
     [ServerRpc(RequireOwnership = false)]
     public void DealDmgServerRpc(NetworkObjectReference targetRef, int attack)
     {

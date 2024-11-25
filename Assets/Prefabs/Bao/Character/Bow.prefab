@@ -1645,10 +1645,10 @@ MonoBehaviour:
   hp:
     m_InternalValue: 100
   def: 5
-  atk: 10
+  atk: 30
   critRate: 0.5
   critDamage: 2
-  attributesManager: {fileID: 0}
+  attributesManager: {fileID: -6157861749496719163}
   healthBar: {fileID: 2019080162438543720}
   player: {fileID: 4326129562270122647}
 --- !u!114 &5027904083538949089

@@ -11,7 +11,7 @@ using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using UnityEngine.Networking; 
+using UnityEngine.Networking;
 using Newtonsoft.Json;
 
 public class RoomManager : NetworkBehaviour

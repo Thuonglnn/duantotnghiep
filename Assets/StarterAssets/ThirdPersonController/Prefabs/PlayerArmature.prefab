@@ -2006,12 +2006,12 @@ MonoBehaviour:
   hp:
     m_InternalValue: 100
   def: 100
-  atk: 10
+  atk: 20
   critRate: 0.5
   critDamage: 2
   attributesManager: {fileID: 8491352783656549040}
   healthBar: {fileID: 8829360303712685559}
-  player: {fileID: 0}
+  player: {fileID: 8018548028742318578}
 --- !u!114 &7141071665641269539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4179,6 +4179,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelPause
       objectReference: {fileID: 0}
+    - target: {fileID: 1020761670708444236, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7735898848127661115}
+    - target: {fileID: 4922547022171559275, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7735898848127661115}
+    - target: {fileID: 5394728436947582748, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7735898848127661115}
     - target: {fileID: 8225544824446726954, guid: e710934ede3416541bfde886ab007500, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

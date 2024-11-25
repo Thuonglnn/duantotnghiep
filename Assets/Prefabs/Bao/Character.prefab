@@ -4914,10 +4914,10 @@ MonoBehaviour:
   hp:
     m_InternalValue: 100
   def: 4
-  atk: 10
+  atk: 20
   critRate: 0.5
   critDamage: 2
-  attributesManager: {fileID: 0}
+  attributesManager: {fileID: 7368211625317793696}
   healthBar: {fileID: 7044519425723945693}
   player: {fileID: 1077370408336232541}
 --- !u!114 &2214874557813539458

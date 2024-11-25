@@ -96,12 +96,17 @@ public class ListManager : MonoBehaviour
                         {
                             Debug.Log("Successfully joined room: " + capturedItem.roomId);
                             roomManager.SetActiveButton();
+                            roomManager.joinCodeText.text = "Mã phòng : " + capturedItem.roomId;
+                            roomManager.Notification.text = " Kết nối thành công";
+
+
                             // Show success message or proceed to the next scene
                         }
                         else
                         {
                             Debug.LogError("Failed to join room: " + capturedItem.roomId);
-                            // Show error message to the user
+                            roomManager.Notification.text = " Kết nối thất bại";
+
                         }
                     }
                     else
