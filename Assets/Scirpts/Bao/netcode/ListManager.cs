@@ -15,11 +15,16 @@ public class ListManager : MonoBehaviour
 
     private List<RoomData> items = new List<RoomData>();
 
+    public Button button;
+
     int indexList;
+
+    public RoomManager roomManager;
 
     void Start()
     {
         StartCoroutine(GetRoomList());
+        //roomManager = GetComponent<RoomManager>();
     }
 
     IEnumerator GetRoomList()
@@ -72,6 +77,38 @@ public class ListManager : MonoBehaviour
                 {
                     text.text = item.gameMode;
                 }
+            }
+
+            Button itemButton = newItem.GetComponentInChildren<Button>();
+            if (itemButton != null)
+            {
+                RoomData capturedItem = item; // Capture the current item in a local variable
+                itemButton.onClick.AddListener(async () =>
+                {
+                    Debug.Log("Room ID: " + capturedItem.roomId);
+
+                    // Check if roomManager is set
+                    if (roomManager != null)
+                    {
+                        // Attempt to join the room using the captured room ID
+                        bool JoinRoom = await roomManager.StartClientWithRelay(capturedItem.roomId);
+                        if (JoinRoom)
+                        {
+                            Debug.Log("Successfully joined room: " + capturedItem.roomId);
+                            roomManager.SetActiveButton();
+                            // Show success message or proceed to the next scene
+                        }
+                        else
+                        {
+                            Debug.LogError("Failed to join room: " + capturedItem.roomId);
+                            // Show error message to the user
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("RoomManager is not set.");
+                    }
+                });
             }
         }
     }
