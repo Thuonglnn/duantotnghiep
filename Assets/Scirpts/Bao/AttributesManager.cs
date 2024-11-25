@@ -16,6 +16,7 @@ public class AttributesManager : NetworkBehaviour
     Animator animator;
 
     ScoreManager scoreManager;
+    //ok
 
     public AttributesManager attributesManager;
 
