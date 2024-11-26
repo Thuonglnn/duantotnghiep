@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
+
 
 public class AttributesManager : NetworkBehaviour
 {
@@ -57,16 +59,26 @@ public class AttributesManager : NetworkBehaviour
                 if (attributesManager.hp.Value <= 0 && !isDie)
                 {
                     isDie = true;
-                    UpdateAnimationStateClientRpc("Death", isdie.Value);
-                    gameObject.SetActive(false);
+                    isdie.Value = true;
+                    UpdateAnimationStateServerRpc("Death",isdie.Value);
+                    //gameObject.SetActive(false);
                     ScoreManager.Instance.IncreaseScoreServerRpc(IsHost);
                 }
                 else
                 {
-                    UpdateAnimationStateClientRpc("Death", isdie.Value);
+                    isdie.Value = false;
+                    UpdateAnimationStateServerRpc("Death",isdie.Value);
                 }
             }
         }
+    }
+
+    private IEnumerator ReloadSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Tải lại scene hiện tại
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
@@ -113,6 +125,13 @@ public class AttributesManager : NetworkBehaviour
             }
         }
     }
+
+    [ServerRpc]
+    void UpdateAnimationStateServerRpc(string parameter, bool state)
+    {
+        UpdateAnimationStateClientRpc(parameter,state);
+    }
+    
     [ClientRpc]
     void UpdateAnimationStateClientRpc(string parameter, bool state)
     {
