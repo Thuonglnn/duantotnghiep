@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HeroInfo.unity
     guid: c4340724c5eeed647b3544b50fced1e0
   - enabled: 1
+    path: Assets/Scirpts/Thuong/Shop.unity
+    guid: 2290fbb0e4fa1a5439d11a54d70a6d71
+  - enabled: 1
     path: Assets/Scenes/PK.unity
     guid: a9fd3de9776e2c645976a0480b9cd4f8
   - enabled: 1

@@ -83,11 +83,10 @@ public class ScoreManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        roomManager.DeleteRoom();
+        yield return StartCoroutine(roomManager.DeleteRoom());
         // Tải lại scene hiện tại
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 
     // public void LeaveRoom()
     // {
