@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class weaponmanager : MonoBehaviour
 {
-    public Transform contentParent; 
+    public Transform contentParent;
     public GameObject listweaponPrefab;
 
     public Sprite MVImage;
@@ -22,30 +22,30 @@ public class weaponmanager : MonoBehaviour
     public Sprite AVImage;
     public Sprite ADImage;
 
-    public Image Skill1, Skill2, Skill3;    
+    public Image Skill1, Skill2, Skill3;
     public Sprite KNdausia1, KNdausia2, KNdausia3;
     public Sprite KNdausib1, KNdausib2, KNdausib3;
     public Sprite KNcungthu1, KNcungthu2, KNcungthu3;
     public Sprite KNphapsu1, KNphapsu2, KNphapsu3;
-    
-    public TextMeshProUGUI nametuong , HP, MP, ATK, DEF;
+
+    public TextMeshProUGUI nametuong, HP, MP, ATK, DEF;
     public TextMeshProUGUI HPthem, MPthem, ATKthem, DEFthem;
     public TextMeshProUGUI HPtong, MPtong, ATKtong, DEFtong;
 
     public Button dausia, dausib, cungthu, phapsu;
-    public Image tbdausia1, tbdausia2, tbdausia3, tbdausia4, tbdausia5;   
-    public Image tbdausib1, tbdausib2, tbdausib3, tbdausib4, tbdausib5; 
-    public Image tbcungthu1, tbcungthu2, tbcungthu3, tbcungthu4, tbcungthu5; 
+    public Image tbdausia1, tbdausia2, tbdausia3, tbdausia4, tbdausia5;
+    public Image tbdausib1, tbdausib2, tbdausib3, tbdausib4, tbdausib5;
+    public Image tbcungthu1, tbcungthu2, tbcungthu3, tbcungthu4, tbcungthu5;
     public Image tbphapsu1, tbphapsu2, tbphapsu3, tbphapsu4, tbphapsu5;
 
     void Start()
     {
-        UpdateWeapons();    
+        UpdateWeapons();
 
         dausia.onClick.AddListener(() => OnButtonClick("dausia"));
         dausib.onClick.AddListener(() => OnButtonClick("dausib"));
         cungthu.onClick.AddListener(() => OnButtonClick("cungthu"));
-        phapsu.onClick.AddListener(() => OnButtonClick("phapsu")); 
+        phapsu.onClick.AddListener(() => OnButtonClick("phapsu"));
     }
 
     public void UpdateWeapons()
@@ -56,7 +56,7 @@ public class weaponmanager : MonoBehaviour
 
     IEnumerator GetUserWeapons(string username)
     {
-        var url = "http://localhost:3000/users/get-user-weapons?username=" + username;
+        var url = "http://localhost:3005/users/get-user-weapons?username=" + username;
         var request = UnityWebRequest.Get(url);
         request.SetRequestHeader("Content-Type", "application/json");
 
@@ -100,7 +100,7 @@ public class weaponmanager : MonoBehaviour
                     else if (weapon.weaponId == "AV")
                         CreateWeapon(weapon.quantity, "Áo Vàng", AVImage, "DEF+100");
                     else if (weapon.weaponId == "AD")
-                        CreateWeapon(weapon.quantity, "Áo Đỏ", ADImage, "DEF+200");   
+                        CreateWeapon(weapon.quantity, "Áo Đỏ", ADImage, "DEF+200");
                 }
             }
             else
@@ -126,44 +126,44 @@ public class weaponmanager : MonoBehaviour
     }
 
     void OnButtonClick(string buttonName)
-{
-    if (buttonName == "dausia")
     {
-        SetCharacterStats("Đấu Sĩ A", 1000, 700, 500, 800, KNdausia1, KNdausia2, KNdausia3);
-        SetCurrentIDForWeapons("dausia");  // Gửi currentID là "dausia"
-    }
-    else if (buttonName == "dausib")
-    {
-        SetCharacterStats("Đấu Sĩ B", 1200, 600, 550, 750, KNdausib1, KNdausib2, KNdausib3);
-        SetCurrentIDForWeapons("dausib");  // Gửi currentID là "dausib"
-    }
-    else if (buttonName == "cungthu")
-    {
-        SetCharacterStats("Cung Thủ", 900, 1000, 600, 500, KNcungthu1, KNcungthu2, KNcungthu3);
-        SetCurrentIDForWeapons("cungthu");  // Gửi currentID là "cungthu"
-    }
-    else if (buttonName == "phapsu")
-    {
-        SetCharacterStats("Pháp Sư", 800, 1000, 700, 500, KNphapsu1, KNphapsu2, KNphapsu3);
-        SetCurrentIDForWeapons("phapsu");  // Gửi currentID là "phapsu"
-    }
-}
-
-void SetCurrentIDForWeapons(string currentID)
-{
-    // Lấy tất cả các item vũ khí đã tạo từ prefab
-    foreach (Transform child in contentParent)
-    {
-        var listWeaponScript = child.GetComponent<listweapon>();
-        if (listWeaponScript != null)
+        if (buttonName == "dausia")
         {
-            listWeaponScript.SetCurrentID(currentID);  // Cập nhật currentID cho mỗi item vũ khí
+            SetCharacterStats("Đấu Sĩ A", 1000, 700, 500, 800, KNdausia1, KNdausia2, KNdausia3);
+            SetCurrentIDForWeapons("dausia");  // Gửi currentID là "dausia"
+        }
+        else if (buttonName == "dausib")
+        {
+            SetCharacterStats("Đấu Sĩ B", 1200, 600, 550, 750, KNdausib1, KNdausib2, KNdausib3);
+            SetCurrentIDForWeapons("dausib");  // Gửi currentID là "dausib"
+        }
+        else if (buttonName == "cungthu")
+        {
+            SetCharacterStats("Cung Thủ", 900, 1000, 600, 500, KNcungthu1, KNcungthu2, KNcungthu3);
+            SetCurrentIDForWeapons("cungthu");  // Gửi currentID là "cungthu"
+        }
+        else if (buttonName == "phapsu")
+        {
+            SetCharacterStats("Pháp Sư", 800, 1000, 700, 500, KNphapsu1, KNphapsu2, KNphapsu3);
+            SetCurrentIDForWeapons("phapsu");  // Gửi currentID là "phapsu"
         }
     }
-}
+
+    void SetCurrentIDForWeapons(string currentID)
+    {
+        // Lấy tất cả các item vũ khí đã tạo từ prefab
+        foreach (Transform child in contentParent)
+        {
+            var listWeaponScript = child.GetComponent<listweapon>();
+            if (listWeaponScript != null)
+            {
+                listWeaponScript.SetCurrentID(currentID);  // Cập nhật currentID cho mỗi item vũ khí
+            }
+        }
+    }
 
 
-  
+
 
     void SetCharacterStats(string name, int hp, int mp, int atk, int def, Sprite skill1, Sprite skill2, Sprite skill3)
     {
@@ -193,5 +193,5 @@ void SetCurrentIDForWeapons(string currentID)
         public int quantity;
     }
 
-   
+
 }

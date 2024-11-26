@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class RegisterUser : MonoBehaviour
 {
-    public TMP_InputField edtnickname,edtUser, edtPass, edtRepass;
+    public TMP_InputField edtnickname, edtUser, edtPass, edtRepass;
     public TMP_Text txtError;
     public Selectable first;
     private EventSystem enventsytem;
@@ -23,12 +23,14 @@ public class RegisterUser : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
-        
-     }
+    void Update()
+    {
+
+    }
 
     public void checkregister()
-    {   var name = edtnickname.text;
+    {
+        var name = edtnickname.text;
         var user = edtUser.text;
         var pass = edtPass.text;
         var repass = edtRepass.text;
@@ -40,7 +42,7 @@ public class RegisterUser : MonoBehaviour
             return;
         }
 
-        RegisterModel userModel = new RegisterModel(user,name, pass);
+        RegisterModel userModel = new RegisterModel(user, name, pass);
         StartCoroutine(Register(userModel));
     }
 
@@ -48,7 +50,7 @@ public class RegisterUser : MonoBehaviour
     {
         string jsonStringRequest = JsonConvert.SerializeObject(userModel);
 
-        var request = new UnityWebRequest("http://localhost:3000/users/register", "POST");
+        var request = new UnityWebRequest("http://localhost:3005/users/register", "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonStringRequest);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; // Thêm thư viện này để sử dụng UI
 
 public class chuyentrang : MonoBehaviour
@@ -9,14 +9,14 @@ public class chuyentrang : MonoBehaviour
 
     void Start()
     {
-     
+
     }
 
 
 
     void Update()
     {
-        
+
     }
 
     public void UndoDNDK()
@@ -37,7 +37,7 @@ public class chuyentrang : MonoBehaviour
         Time.timeScale = 1;
     }
 
-     public void QuenMK()
+    public void QuenMK()
     {
         SceneManager.LoadScene("QuenMK");
         Time.timeScale = 1;
@@ -46,9 +46,9 @@ public class chuyentrang : MonoBehaviour
     public void Thoat()
     {
         Application.Quit(); // Thoát ứng dụng
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // Dừng chế độ chơi trong Unity Editor
-        #endif
+#endif
     }
 
     public void PK()
@@ -66,6 +66,13 @@ public class chuyentrang : MonoBehaviour
     public void PK_TEAM()
     {
         SceneManager.LoadScene("PK_TEAM");
+        Time.timeScale = 1;
+    }
+
+
+    public void SearchRoom()
+    {
+        SceneManager.LoadScene("SceneCreateRoom");
         Time.timeScale = 1;
     }
 
@@ -89,14 +96,14 @@ public class chuyentrang : MonoBehaviour
 
 
 
-// chuyển trang ở home
+    // chuyển trang ở home
 
-public void shop()
+    public void shop()
     {
         SceneManager.LoadScene("Shop");
         Time.timeScale = 1;
     }
-    
+
     public void tudo()
     {
         SceneManager.LoadScene("TuDo");
@@ -110,12 +117,12 @@ public void shop()
         Time.timeScale = 1;
     }
 
-   
 
-   
 
-  
-// trở về trang chủ
+
+
+
+    // trở về trang chủ
     public void UndoHome()
     {
         SceneManager.LoadScene("Home");
@@ -123,7 +130,7 @@ public void shop()
     }
 
 
-// từ chi tiết tướng trở về tướng
+    // từ chi tiết tướng trở về tướng
     public void Undotuong()
     {
         SceneManager.LoadScene("tuong");
@@ -131,8 +138,8 @@ public void shop()
     }
 
 
-    
 
 
-    
+
+
 }

@@ -7,47 +7,47 @@ using UnityEngine.Networking;
 
 public class Home : MonoBehaviour
 {
-     public TMP_Text txtnickname;
+    public TMP_Text txtnickname;
     void Start()
     {
         updatename();
     }
 
     public void updatename()
-{
-    var username = LoginUser.loginResponseModel.username; // Lấy tên người dùng từ thông tin đăng nhập
-    StartCoroutine(Getname(username)); // Gọi coroutine với tên người dùng
-}
-
-IEnumerator Getname(string username)
-{
-    // Tạo yêu cầu GET đến API lấy tên người dùng
-    var request = new UnityWebRequest("http://localhost:3000/users/getName?username=" + username, "GET");
-    request.downloadHandler = new DownloadHandlerBuffer();
-    
-    request.SetRequestHeader("Content-Type", "application/json");
-
-    yield return request.SendWebRequest(); // Gửi yêu cầu
-
-    if (request.result != UnityWebRequest.Result.Success)
     {
-        Debug.Log(request.error); // Log lỗi nếu có
+        var username = LoginUser.loginResponseModel.username; // Lấy tên người dùng từ thông tin đăng nhập
+        StartCoroutine(Getname(username)); // Gọi coroutine với tên người dùng
     }
-    else
-    {
-        var jsonString = request.downloadHandler.text.ToString();
-        LoginReponseModel loginResponseModel = JsonConvert.DeserializeObject<LoginReponseModel>(jsonString);
 
-        if (loginResponseModel.status == 1)
+    IEnumerator Getname(string username)
+    {
+        // Tạo yêu cầu GET đến API lấy tên người dùng
+        var request = new UnityWebRequest("http://localhost:3005/users/getName?username=" + username, "GET");
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest(); // Gửi yêu cầu
+
+        if (request.result != UnityWebRequest.Result.Success)
         {
-            // Cập nhật nickname và hiển thị lên giao diện
-            txtnickname.text = loginResponseModel.name; // Cập nhật nickname từ API
-            Debug.Log("Nickname updated: " + loginResponseModel.name);
+            Debug.Log(request.error); // Log lỗi nếu có
         }
         else
         {
-            Debug.Log("Error retrieving name: " + loginResponseModel.message); // In ra thông báo lỗi
+            var jsonString = request.downloadHandler.text.ToString();
+            LoginReponseModel loginResponseModel = JsonConvert.DeserializeObject<LoginReponseModel>(jsonString);
+
+            if (loginResponseModel.status == 1)
+            {
+                // Cập nhật nickname và hiển thị lên giao diện
+                txtnickname.text = loginResponseModel.name; // Cập nhật nickname từ API
+                Debug.Log("Nickname updated: " + loginResponseModel.name);
+            }
+            else
+            {
+                Debug.Log("Error retrieving name: " + loginResponseModel.message); // In ra thông báo lỗi
+            }
         }
     }
-}
 }

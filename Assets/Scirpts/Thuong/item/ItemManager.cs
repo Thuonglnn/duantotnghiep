@@ -13,12 +13,12 @@ public class ItemManager : MonoBehaviour
 
     public Transform contentParentweapon; // Nơi chứa các BuyItem trong ScrollView
     public GameObject weaponPrefab;
-    public GameObject itemDetailPrefab; 
+    public GameObject itemDetailPrefab;
 
     public GameObject weaponDetailPrefab;
-    
-    
-    
+
+
+
     public Transform itemDetailParent; // Nơi hiển thị chi tiết item
 
     // Các hình ảnh item
@@ -56,7 +56,7 @@ public class ItemManager : MonoBehaviour
 
 
 
-  
+
 
 
 
@@ -80,53 +80,53 @@ public class ItemManager : MonoBehaviour
         UpdateUserItems();
         UpdateUserWeapons();
 
-      
-        
+
+
     }
 
-public void khoaitem()
-{
-    // Duyệt qua tất cả các đối tượng trong scene
-    foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
+    public void khoaitem()
     {
-        // Kiểm tra nếu tên của đối tượng là "pnuse1(Clone)"
-        if (obj.name == "pnuse1(Clone)")
+        // Duyệt qua tất cả các đối tượng trong scene
+        foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
         {
-            Destroy(obj);  // Xóa đối tượng khỏi scene
+            // Kiểm tra nếu tên của đối tượng là "pnuse1(Clone)"
+            if (obj.name == "pnuse1(Clone)")
+            {
+                Destroy(obj);  // Xóa đối tượng khỏi scene
+            }
         }
     }
-}
 
-public void khoaweapon()
-{
-    // Duyệt qua tất cả các đối tượng trong scene
-    foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
+    public void khoaweapon()
     {
-        // Kiểm tra nếu tên của đối tượng là "pnweapon(Clone)"
-        if (obj.name == "pnweapon(Clone)")
+        // Duyệt qua tất cả các đối tượng trong scene
+        foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
         {
-            Destroy(obj);  // Xóa đối tượng khỏi scene
+            // Kiểm tra nếu tên của đối tượng là "pnweapon(Clone)"
+            if (obj.name == "pnweapon(Clone)")
+            {
+                Destroy(obj);  // Xóa đối tượng khỏi scene
+            }
         }
     }
-}
 
-public void xoaCaHai()
-{
-    // Duyệt qua tất cả các đối tượng trong scene
-    foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
+    public void xoaCaHai()
     {
-        // Kiểm tra nếu tên của đối tượng là "pnuse1(Clone)" hoặc "pnweapon(Clone)"
-        if (obj.name == "pnuse1(Clone)" || obj.name == "pnweapon(Clone)")
+        // Duyệt qua tất cả các đối tượng trong scene
+        foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
         {
-            Destroy(obj);  // Xóa đối tượng khỏi scene
+            // Kiểm tra nếu tên của đối tượng là "pnuse1(Clone)" hoặc "pnweapon(Clone)"
+            if (obj.name == "pnuse1(Clone)" || obj.name == "pnweapon(Clone)")
+            {
+                Destroy(obj);  // Xóa đối tượng khỏi scene
+            }
         }
     }
-}
 
 
 
 
-    
+
 
     public void UpdateUserItems()
     {
@@ -136,7 +136,7 @@ public void xoaCaHai()
 
     IEnumerator GetUserItems(string username)
     {
-        var url = "http://localhost:3000/users/get-user-items?username=" + username;
+        var url = "http://localhost:3005/users/get-user-items?username=" + username;
         var request = UnityWebRequest.Get(url);
         request.SetRequestHeader("Content-Type", "application/json");
 
@@ -209,7 +209,7 @@ public void xoaCaHai()
 
 
 
-  public void ShowItemDetails(string name, string info, int quantity, Sprite image)
+    public void ShowItemDetails(string name, string info, int quantity, Sprite image)
     {
         // Tạo prefab chi tiết item
         var newItemDetail = Instantiate(itemDetailPrefab, itemDetailParent);
@@ -220,7 +220,7 @@ public void xoaCaHai()
             itemDetailScript.Setup(name, info, quantity, image);  // Truyền thông tin vào
         }
     }
-   
+
 
 
 
@@ -245,7 +245,7 @@ public void xoaCaHai()
 
     IEnumerator GetUserWeapons(string username)
     {
-        var url = "http://localhost:3000/users/get-user-weapons?username=" + username;
+        var url = "http://localhost:3005/users/get-user-weapons?username=" + username;
         var request = UnityWebRequest.Get(url);
         request.SetRequestHeader("Content-Type", "application/json");
 
@@ -277,21 +277,21 @@ public void xoaCaHai()
                     else if (weapon.weaponId == "NxD")
                         CreateWeapon(weapon.quantity, "Nhẫn Xương Đỏ", NxDImage, "ATK+200");
 
-                     else if (weapon.weaponId == "SV")
+                    else if (weapon.weaponId == "SV")
                         CreateWeapon(weapon.quantity, "Sao Vàng", SVImage, "MP+100");
                     else if (weapon.weaponId == "SD")
-                        CreateWeapon(weapon.quantity, "Sao Đỏ", SDImage, "MP+200");    
-                    
-                     else if (weapon.weaponId == "QV")
+                        CreateWeapon(weapon.quantity, "Sao Đỏ", SDImage, "MP+200");
+
+                    else if (weapon.weaponId == "QV")
                         CreateWeapon(weapon.quantity, "Quần Vàng", QVImage, "DEF+100");
                     else if (weapon.weaponId == "QD")
                         CreateWeapon(weapon.quantity, "Quần Đỏ", QDImage, "DEF+200");
 
 
-                      else if (weapon.weaponId == "AV")
+                    else if (weapon.weaponId == "AV")
                         CreateWeapon(weapon.quantity, "Áo Vàng", AVImage, "DEF+100");
                     else if (weapon.weaponId == "AD")
-                        CreateWeapon(weapon.quantity, "Áo Đỏ", ADImage, "DEF+200");    
+                        CreateWeapon(weapon.quantity, "Áo Đỏ", ADImage, "DEF+200");
                 }
             }
             else
@@ -323,7 +323,7 @@ public void xoaCaHai()
 
 
 
-  public void ShowweaponDetails(string name, string info, int quantity, Sprite image)
+    public void ShowweaponDetails(string name, string info, int quantity, Sprite image)
     {
         // Tạo prefab chi tiết item
         var newItemDetail = Instantiate(weaponDetailPrefab, itemDetailParent);
@@ -348,7 +348,7 @@ public void xoaCaHai()
 
 
     // Hiển thị thông tin chi tiết khi nhấn vào item
-   
+
 
     // Các lớp để xử lý dữ liệu API
     public class ResponseModel

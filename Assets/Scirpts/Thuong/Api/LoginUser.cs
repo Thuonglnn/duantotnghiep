@@ -17,18 +17,18 @@ public class LoginUser : MonoBehaviour
 {
     public TMP_InputField edtUser, edtPass;
     public TMP_Text txtError;
-    
+
     public Selectable first;
     private EventSystem enventsytem;
 
-public static LoginReponseModel loginResponseModel; // Đảm bảo đây là tĩnh
+    public static LoginReponseModel loginResponseModel; // Đảm bảo đây là tĩnh
 
     // Start is called before the first frame update
     void Start()
     {
         enventsytem = EventSystem.current;
         first.Select();
-        
+
     }
 
     // Update is called once per frame
@@ -44,44 +44,44 @@ public static LoginReponseModel loginResponseModel; // Đảm bảo đây là t�
     }
 
     IEnumerator Login(UserModel userModel)
-{
-    string jsonStringRequest = JsonConvert.SerializeObject(userModel);
-
-    var request = new UnityWebRequest("http://localhost:3000/users/login", "POST");
-    byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonStringRequest);
-    request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-    request.downloadHandler = new DownloadHandlerBuffer();
-    request.SetRequestHeader("Content-Type", "application/json");
-    yield return request.SendWebRequest();
-
-    if (request.result != UnityWebRequest.Result.Success)
     {
-        Debug.Log(request.error);
-    }
-    else
-    {
-        var jsonString = request.downloadHandler.text.ToString();
-        loginResponseModel = JsonConvert.DeserializeObject<LoginReponseModel>(jsonString); // Sửa ở đây
+        string jsonStringRequest = JsonConvert.SerializeObject(userModel);
 
-        if (loginResponseModel.status == 20)
+        var request = new UnityWebRequest("http://localhost:3005/users/login", "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonStringRequest);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
         {
-            SceneManager.LoadScene("HeroInfo"); 
-        }
-        else if(loginResponseModel.status == 10)
-        {
-            SceneManager.LoadScene("Home"); 
+            Debug.Log(request.error);
         }
         else
         {
-            txtError.text = loginResponseModel.message;
+            var jsonString = request.downloadHandler.text.ToString();
+            loginResponseModel = JsonConvert.DeserializeObject<LoginReponseModel>(jsonString); // Sửa ở đây
+
+            if (loginResponseModel.status == 20)
+            {
+                SceneManager.LoadScene("HeroInfo");
+            }
+            else if (loginResponseModel.status == 10)
+            {
+                SceneManager.LoadScene("Home");
+            }
+            else
+            {
+                txtError.text = loginResponseModel.message;
+            }
         }
     }
-}
 
 
-   
 
-  
+
+
 
 }
 

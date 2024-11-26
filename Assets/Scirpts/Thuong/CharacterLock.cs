@@ -15,20 +15,20 @@ public class CharacterLock : MonoBehaviour
 
 
 
- 
+
     void Start()
     {
         // Hiển thị tất cả biểu tượng khóa
-        lockIconA.gameObject.SetActive(true); 
-        lockIconA1.gameObject.SetActive(true); 
+        lockIconA.gameObject.SetActive(true);
+        lockIconA1.gameObject.SetActive(true);
         lockIconB.gameObject.SetActive(true);
         lockIconC.gameObject.SetActive(true);
 
-         UnClock();
+        UnClock();
     }
 
     public void UnClock()
-    {    
+    {
         // Gọi hàm GetGeneralIds với username
         var username = LoginUser.loginResponseModel.username;
         StartCoroutine(GetGeneralIds(username));
@@ -37,10 +37,10 @@ public class CharacterLock : MonoBehaviour
     IEnumerator GetGeneralIds(string username)
     {
         // Địa chỉ URL cho yêu cầu
-        var request = new UnityWebRequest("http://localhost:3000/users/get-general-id?username=" + username, "GET");
+        var request = new UnityWebRequest("http://localhost:3005/users/get-general-id?username=" + username, "GET");
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        
+
         // Gửi yêu cầu và chờ kết quả
         yield return request.SendWebRequest();
 
@@ -71,11 +71,11 @@ public class CharacterLock : MonoBehaviour
                 }
                 if (responseModel.generalIds.Contains("b123"))
                 {
-                    UnlockCharacter(lockIconB); 
+                    UnlockCharacter(lockIconB);
                 }
                 if (responseModel.generalIds.Contains("c123"))
                 {
-                    UnlockCharacter(lockIconC); 
+                    UnlockCharacter(lockIconC);
                 }
             }
             else
