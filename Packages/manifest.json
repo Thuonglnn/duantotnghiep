@@ -7,11 +7,8 @@
     "com.unity.feature.development": "1.0.1",
     "com.unity.inputsystem": "1.7.0",
     "com.unity.mathematics": "1.2.6",
-<<<<<<< HEAD
     "com.unity.nuget.newtonsoft-json": "3.0.1",
     "com.unity.postprocessing": "3.4.0",
-=======
->>>>>>> 86b40ddb77d9d0e6d97370cfd7ec045b2b4b7e44
     "com.unity.textmeshpro": "3.0.9",
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
