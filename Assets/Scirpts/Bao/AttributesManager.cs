@@ -82,14 +82,6 @@ public class AttributesManager : NetworkBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private IEnumerator ReloadSceneAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        // Tải lại scene hiện tại
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
 
     [ServerRpc(RequireOwnership = false)]
     public void DealDmgServerRpc(NetworkObjectReference targetRef, int attack)
