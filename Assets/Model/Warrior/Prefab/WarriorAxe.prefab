@@ -1426,7 +1426,7 @@ MonoBehaviour:
   atk: 11
   critRate: 0.1
   critDamage: 2
-  attributesManager: {fileID: 0}
+  attributesManager: {fileID: 4201566300697224413}
   healthBar: {fileID: 7412566139971708409}
   player: {fileID: 148331473611604349}
 --- !u!114 &3311767425273718537

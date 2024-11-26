@@ -2005,7 +2005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp:
     m_InternalValue: 100
-  def: 100
+  def: 10
   atk: 20
   critRate: 0.5
   critDamage: 2

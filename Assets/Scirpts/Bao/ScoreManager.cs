@@ -45,33 +45,35 @@ public class ScoreManager : NetworkBehaviour
     {
         if (isHostDead)
         {
+            ReloadAfterDelay(5f);
             if (IsHost)
             {
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
-                ReloadAfterDelay(5f);
+
 
             }
             else
             {
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
-                ReloadAfterDelay(5f);
+
             }
         }
         else
         {
+            ReloadAfterDelay(5f);
             if (IsHost)
             {
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
-                ReloadAfterDelay(5f);
+
             }
             else
             {
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
-                ReloadAfterDelay(5f);
+
             }
         }
 

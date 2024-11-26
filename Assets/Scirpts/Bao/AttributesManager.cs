@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class AttributesManager : NetworkBehaviour
 {
@@ -57,12 +58,15 @@ public class AttributesManager : NetworkBehaviour
                 if (attributesManager.hp.Value <= 0 && !isDie)
                 {
                     isDie = true;
+                    isdie.Value = true;
                     UpdateAnimationStateClientRpc("Death", isdie.Value);
                     gameObject.SetActive(false);
                     ScoreManager.Instance.IncreaseScoreServerRpc(IsHost);
+                    ReloadSceneWithDelay(5f);
                 }
                 else
                 {
+                    isdie.Value = false;
                     UpdateAnimationStateClientRpc("Death", isdie.Value);
                 }
             }
@@ -119,5 +123,18 @@ public class AttributesManager : NetworkBehaviour
         animator.SetBool(parameter, state);
     }
 
+
+    public void ReloadSceneWithDelay(float delay)
+    {
+        StartCoroutine(ReloadAfterDelay(delay));
+    }
+
+    // Coroutine thực hiện việc chờ
+    private IEnumerator ReloadAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
 
 }

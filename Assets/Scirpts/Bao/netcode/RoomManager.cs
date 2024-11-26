@@ -126,8 +126,9 @@ public class RoomManager : NetworkBehaviour
         {
             string joinCode = joinCodeText.text.Replace("Mã phòng: ", "").Trim();
             StartCoroutine(DeleteRoomPost(joinCode));
-            ReloadCurrentScene();
+
         }
+        ReloadCurrentScene();
     }
 
     private void OnClientDisconnect(ulong clientId)
@@ -137,8 +138,9 @@ public class RoomManager : NetworkBehaviour
         {
             string joinCode = joinCodeText.text.Replace("Mã phòng: ", "").Trim();
             StartCoroutine(DeleteRoomPost(joinCode));
-            ReloadCurrentScene();
+
         }
+        ReloadCurrentScene();
     }
 
     public void ReloadCurrentScene()
