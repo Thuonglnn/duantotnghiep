@@ -12,6 +12,8 @@ public class ScoreManager : NetworkBehaviour
     public TextMeshProUGUI TMP_youWin;
     public TextMeshProUGUI TMP_youLoss;
 
+    RoomManager roomManager;
+
     void Awake()
     {
         if (Instance == null)
@@ -26,6 +28,7 @@ public class ScoreManager : NetworkBehaviour
 
     private void Start()
     {
+        roomManager = GetComponent<RoomManager>();
         TMP_youLoss.text = string.Empty;
         TMP_youWin.text = string.Empty;
     }
@@ -45,68 +48,60 @@ public class ScoreManager : NetworkBehaviour
     {
         if (isHostDead)
         {
-            ReloadAfterDelay(5f);
+
             if (IsHost)
             {
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
-
 
             }
             else
             {
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
-
             }
+            StartCoroutine(ReloadSceneAfterDelay(3));
         }
         else
         {
-            ReloadAfterDelay(5f);
+
             if (IsHost)
             {
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
-
             }
             else
             {
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
-
             }
-        }
-
-
-
-    }
-
-
-    public void LeaveRoom()
-    {
-        if (NetworkManager.Singleton.IsHost)
-        {
-            NetworkManager.Singleton.Shutdown(); // Dừng server và ngắt kết nối
-
-
-        }
-        else if (NetworkManager.Singleton.IsClient)
-        {
-            NetworkManager.Singleton.Shutdown(); // Ngắt kết nối khỏi server
-
+            StartCoroutine(ReloadSceneAfterDelay(3));
         }
     }
-    // Hàm để bắt đầu việc load lại với độ trễ
-    public void ReloadSceneWithDelay(float delay)
-    {
-        StartCoroutine(ReloadAfterDelay(delay));
-    }
 
-    // Coroutine thực hiện việc chờ
-    private IEnumerator ReloadAfterDelay(float delay)
+    private IEnumerator ReloadSceneAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+
+        roomManager.DeleteRoom();
+        // Tải lại scene hiện tại
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+
+    // public void LeaveRoom()
+    // {
+    //     if (NetworkManager.Singleton.IsHost)
+    //     {
+    //         NetworkManager.Singleton.Shutdown(); // Dừng server và ngắt kết nối
+
+    //     }
+    //     else if (NetworkManager.Singleton.IsClient)
+    //     {
+    //         NetworkManager.Singleton.Shutdown(); // Ngắt kết nối khỏi server
+    //     }
+    // }
+    // Hàm để bắt đầu việc load lại với độ trễ
+    // Coroutine thực hiện việc chờ
+
 }

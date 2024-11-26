@@ -119,6 +119,16 @@ public class RoomManager : NetworkBehaviour
         }
     }
 
+    public void DeleteRoom()
+    {
+        // Xử lý khi ứng dụng thoát
+        if (IsHost)
+        {
+            string joinCode = joinCodeText.text.Replace("Mã phòng: ", "").Trim();
+            StartCoroutine(DeleteRoomPost(joinCode));
+        }
+    }
+
     private void OnApplicationQuit()
     {
         // Xử lý khi ứng dụng thoát
@@ -126,7 +136,6 @@ public class RoomManager : NetworkBehaviour
         {
             string joinCode = joinCodeText.text.Replace("Mã phòng: ", "").Trim();
             StartCoroutine(DeleteRoomPost(joinCode));
-
         }
         ReloadCurrentScene();
     }
@@ -140,7 +149,10 @@ public class RoomManager : NetworkBehaviour
             StartCoroutine(DeleteRoomPost(joinCode));
 
         }
-        ReloadCurrentScene();
+        else
+        {
+            ReloadCurrentScene();
+        }
     }
 
     public void ReloadCurrentScene()

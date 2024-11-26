@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe
       objectReference: {fileID: 0}
+    - target: {fileID: 4201566300697224413, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: attributesManager
+      value: 
+      objectReference: {fileID: 2908619844601340857}
     - target: {fileID: 4280119743823950847, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5978556
@@ -69,3 +73,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+--- !u!114 &2908619844601340857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4201566300697224413, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+  m_PrefabInstance: {fileID: 1302534374122719076}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af04a586259ce9a49b0cba306a753d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
