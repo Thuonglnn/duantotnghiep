@@ -21,12 +21,15 @@ public class AttributesManager : NetworkBehaviour
     //ok
 
     public AttributesManager attributesManager;
+    public AttributesManager attributesManagerEnemy;
+
 
     public Slider healthBar;
 
     bool isDie = false;
 
     public NetworkObject player;
+    SpiderQueenAI spiderQueenAI;
 
 
 
@@ -38,6 +41,7 @@ public class AttributesManager : NetworkBehaviour
 
     private void Start()
     {
+        spiderQueenAI = GetComponent<SpiderQueenAI>();
         animator = GetComponent<Animator>();
         scoreManager = GetComponent<ScoreManager>();
         if (IsOwner && healthBar != null)
@@ -71,7 +75,19 @@ public class AttributesManager : NetworkBehaviour
                     UpdateAnimationStateServerRpc("Death", isdie.Value);
                 }
             }
+
         }
+
+        if (hp.Value <= 0)
+        {
+
+            if (attributesManagerEnemy)
+            {
+                Destroy(gameObject);
+            }
+
+        }
+
     }
 
     private IEnumerator ReloadSceneAfterDelay(float delay)

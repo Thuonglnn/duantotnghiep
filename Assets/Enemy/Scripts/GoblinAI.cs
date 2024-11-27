@@ -224,8 +224,8 @@ public class GoblinAI : NetworkBehaviour
         // Cận chiến
 
         Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+        rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 3f, ForceMode.Impulse);
     }
 }
 

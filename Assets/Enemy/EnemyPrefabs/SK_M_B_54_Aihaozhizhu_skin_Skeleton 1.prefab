@@ -1,5 +1,143 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3300829731496693227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2782627748763478280}
+  - component: {fileID: 6089589801372905649}
+  - component: {fileID: 2759829474101151550}
+  m_Layer: 0
+  m_Name: Dmg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2782627748763478280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300829731496693227}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2393681650294610737}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6089589801372905649
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300829731496693227}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2759829474101151550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300829731496693227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69222f14d1f2c8d499132911749d9823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6905821076322696504}
+--- !u!1 &6217958872439792994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3511236604120977743}
+  - component: {fileID: 988011970093175623}
+  - component: {fileID: 918161950143495964}
+  m_Layer: 0
+  m_Name: Dmg (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3511236604120977743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217958872439792994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3122322380774970613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &988011970093175623
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217958872439792994}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &918161950143495964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217958872439792994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69222f14d1f2c8d499132911749d9823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6905821076322696504}
 --- !u!1001 &1176409300794683186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_TagString
-      value: SpiderQueen
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       propertyPath: m_Controller
@@ -78,7 +216,13 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: e50b57833ea13e64b8a062095c7e77d4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3561048515251237891, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2782627748763478280}
+    - targetCorrespondingSourceObject: {fileID: -4969786307698148409, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3511236604120977743}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
       insertIndex: -1
@@ -342,10 +486,23 @@ MonoBehaviour:
   hp:
     m_InternalValue: 100
   def: 5
-  atk: 10
+  atk: 18
   critRate: 0.5
   critDamage: 2
+  attributesManager: {fileID: 0}
+  attributesManagerEnemy: {fileID: 6905821076322696504}
   healthBar: {fileID: 0}
+  player: {fileID: 0}
+--- !u!4 &2393681650294610737 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3561048515251237891, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
+  m_PrefabInstance: {fileID: 1176409300794683186}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3122322380774970613 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4969786307698148409, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}
+  m_PrefabInstance: {fileID: 1176409300794683186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &4700042426278318755 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 432aadd7c053e234a9e750b765d28fb4, type: 3}

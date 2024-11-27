@@ -119,13 +119,13 @@ public class RoomManager : NetworkBehaviour
         }
     }
 
-    public void DeleteRoom()
+    public IEnumerator DeleteRoom()
     {
         // Xử lý khi ứng dụng thoát
         if (IsHost)
         {
             string joinCode = joinCodeText.text.Replace("Mã phòng: ", "").Trim();
-            StartCoroutine(DeleteRoomPost(joinCode));
+            yield return StartCoroutine(DeleteRoomPost(joinCode));
         }
     }
 

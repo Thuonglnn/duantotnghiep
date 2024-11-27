@@ -44,9 +44,11 @@ public class SpiderQueenAI : MonoBehaviour
     //     player = GameObject.Find("PlayerObj").transform;
     //     agent = GetComponent<NavMeshAgent>();
     // }
+    AttributesManager attributesManager;
 
     void Start()
     {
+        attributesManager = GetComponent<AttributesManager>();
         anim = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();

@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 33407584003241822}
   - component: {fileID: 23221504225770740}
   - component: {fileID: 5604347231122491111}
-  - component: {fileID: 6211416144269571051}
+  - component: {fileID: 8238030000071161934}
   m_Layer: 0
   m_Name: mace_low
   m_TagString: Untagged
@@ -251,7 +251,7 @@ CapsuleCollider:
   m_Height: 151.58
   m_Direction: 1
   m_Center: {x: 15.797457, y: -199.4, z: -39.262047}
---- !u!114 &6211416144269571051
+--- !u!114 &8238030000071161934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1077419662316846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0b27af570038c40ae649f28c5a6d2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 69222f14d1f2c8d499132911749d9823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 579787863577903044}
@@ -3248,7 +3248,7 @@ GameObject:
   - component: {fileID: 579787863577903044}
   m_Layer: 0
   m_Name: troll
-  m_TagString: CaveTroll
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3570,11 +3570,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp:
     m_InternalValue: 100
-  def: 100
-  atk: 10
+  def: 20
+  atk: 30
   critRate: 0.5
   critDamage: 2
+  attributesManager: {fileID: 0}
+  attributesManagerEnemy: {fileID: 579787863577903044}
   healthBar: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1868828153997032
 GameObject:
   m_ObjectHideFlags: 0

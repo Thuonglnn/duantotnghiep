@@ -1,31 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class DametoPlayer : MonoBehaviour
+public class DametoPlayer : NetworkBehaviour
 {
-    public int damageAmount = 20;
-    public int Atk = 20;
+    public AttributesManager creatorAttributes;
+    public NetworkObject creatorNetworkObject;
+    public float DestroyTime = 1f;
+    public int AtkBonus = 20;
 
-    // Start is called before the first frame update
+    // Thời gian trễ khi gây sát thương
+    public float damageInterval = 0.8f;
+    // Từng quái vật sẽ có thời gian gây sát thương riêng
+    private Dictionary<AttributesManager, float> enemyLastDamageTime = new Dictionary<AttributesManager, float>();
+
     void Start()
     {
-
+        // Hủy đối tượng này sau một khoảng thời gian
+        DestroyAfterTime();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Destroy(gameObject, 2f);
-    }
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            //other.GetComponent<AttributesManager>().DealDmg()
-            Destroy(gameObject);
+            // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
+            if (other.GetComponent<NetworkObject>() == creatorNetworkObject)
+            {
+                return; // Bỏ qua nếu đúng là người tạo ra
+            }
+
+            AttributesManager enemy = other.GetComponent<AttributesManager>();
+            if (enemy != null)
+            {
+                // Nếu enemy không có trong dictionary, thêm nó vào với thời gian ban đầu là 0
+                if (!enemyLastDamageTime.ContainsKey(enemy))
+                {
+                    enemyLastDamageTime[enemy] = 0f;
+                }
+
+                // Kiểm tra nếu đã qua thời gian trễ có thể gây sát thương
+                if (Time.time >= enemyLastDamageTime[enemy] + damageInterval)
+                {
+                    creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + AtkBonus);
+                    enemyLastDamageTime[enemy] = Time.time;
+                }
+            }
         }
 
+
+        // if (other.gameObject.CompareTag("Enemy"))
+        // {
+        //     // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
+        //     if (other.GetComponent<NetworkObject>() == creatorNetworkObject)
+        //     {
+        //         return; // Bỏ qua nếu đúng là người tạo ra
+        //     }
+
+        //     AttributesManager enemy = other.GetComponent<AttributesManager>();
+        //     if (enemy != null)
+        //     {
+        //         // Nếu enemy không có trong dictionary, thêm nó vào với thời gian ban đầu là 0
+        //         if (!enemyLastDamageTime.ContainsKey(enemy))
+        //         {
+        //             enemyLastDamageTime[enemy] = 0f;
+        //         }
+
+        //         // Kiểm tra nếu đã qua thời gian trễ có thể gây sát thương
+        //         if (Time.time >= enemyLastDamageTime[enemy] + damageInterval)
+        //         {
+        //             creatorAttributes.DealDmg(enemy.gameObject, creatorAttributes.atk + AtkBonus);
+        //             enemyLastDamageTime[enemy] = Time.time;
+        //         }
+        //     }
+        // }
+    }
+
+    void DestroyAfterTime()
+    {
+        Destroy(gameObject, DestroyTime);
     }
 }

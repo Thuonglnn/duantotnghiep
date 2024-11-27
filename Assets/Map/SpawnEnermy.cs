@@ -16,6 +16,10 @@ public class EnemySpawner : NetworkBehaviour
     private int currentEnemyCount = 0;          // Số lượng quái hiện tại
 
     private int currentStage = 1;               // Giai đoạn hiện tại
+    private bool bossSpawned = false;           // Xác định boss đã spawn hay chưa
+    private bool bossDefeated = false;          // Xác định boss đã bị tiêu diệt hay chưa
+
+    private float[] stageThresholds = { 0, 45, 90 }; // Thời gian chuyển giai đoạn
 
     void Start()
     {
@@ -30,17 +34,25 @@ public class EnemySpawner : NetworkBehaviour
 
         if (spawnTimer <= 0)
         {
-            SpawnEnemyByStage(); // Gọi hàm spawn quái theo giai đoạn
+            if (currentStage < stageThresholds.Length) // Chưa đến giai đoạn cuối
+            {
+                SpawnEnemyByStage(); // Spawn quái như bình thường
+            }
+            else if (!bossSpawned) // Giai đoạn cuối và boss chưa được spawn
+            {
+                SpawnBoss();
+            }
+
             spawnTimer = spawnInterval;
         }
 
-        // Nâng cấp giai đoạn khi đáp ứng điều kiện (có thể dựa trên thời gian hoặc điểm số)
         UpdateStage();
     }
 
     void SpawnEnemyByStage()
     {
-        if (spawnPoints.Count == 0 || currentEnemyCount >= maxEnemies) return;
+        if (spawnPoints.Count == 0 || currentEnemyCount >= maxEnemies ||
+            (normalEnemies.Count == 0 && eliteEnemies.Count == 0)) return;
 
         // Chọn ngẫu nhiên một điểm spawn
         int randomSpawnIndex = Random.Range(0, spawnPoints.Count);
@@ -59,20 +71,27 @@ public class EnemySpawner : NetworkBehaviour
                     ? normalEnemies[Random.Range(0, normalEnemies.Count)]
                     : eliteEnemies[Random.Range(0, eliteEnemies.Count)];
                 break;
-            case 3:
-                if (Random.value > 0.8f)
-                    enemyToSpawn = bossPrefab; // Spawn boss với tỉ lệ 20%
-                else
-                    enemyToSpawn = Random.value > 0.5f
-                        ? normalEnemies[Random.Range(0, normalEnemies.Count)]
-                        : eliteEnemies[Random.Range(0, eliteEnemies.Count)];
-                break;
         }
 
         if (enemyToSpawn != null)
         {
-            // Spawn quái vật trên máy chủ và đồng bộ đến các máy khách
             SpawnEnemyServerRpc(enemyToSpawn.name, spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+
+    void SpawnBoss()
+    {
+        if (spawnPoints.Count == 0 || bossSpawned) return;
+
+        // Chọn ngẫu nhiên một điểm spawn
+        int randomSpawnIndex = Random.Range(0, spawnPoints.Count);
+        Transform spawnPoint = spawnPoints[randomSpawnIndex];
+
+        if (bossPrefab != null)
+        {
+            SpawnEnemyServerRpc(bossPrefab.name, spawnPoint.position, spawnPoint.rotation);
+            bossSpawned = true; // Đánh dấu boss đã spawn
+            Debug.Log("Boss has spawned!");
         }
     }
 
@@ -86,10 +105,19 @@ public class EnemySpawner : NetworkBehaviour
             enemy.GetComponent<NetworkObject>().Spawn(); // Đồng bộ quái vật trên toàn bộ máy khách
 
             currentEnemyCount++; // Tăng số lượng quái hiện tại
+            Debug.Log($"Spawned: {prefabName} at {position}. Current enemy count: {currentEnemyCount}");
 
-            // Thêm script Enemy để lắng nghe sự kiện tiêu diệt
-            var enemyScript = enemy.AddComponent<Enemy>();
-            enemyScript.onDestroyed += HandleEnemyDestroyed;
+            // Nếu là boss, gắn sự kiện tiêu diệt đặc biệt
+            if (prefab == bossPrefab)
+            {
+                var bossScript = enemy.AddComponent<Enemy>();
+                bossScript.onDestroyed += HandleBossDefeated;
+            }
+            else
+            {
+                var enemyScript = enemy.AddComponent<Enemy>();
+                enemyScript.onDestroyed += HandleEnemyDestroyed;
+            }
         }
     }
 
@@ -110,23 +138,41 @@ public class EnemySpawner : NetworkBehaviour
 
     private void HandleEnemyDestroyed()
     {
-        currentEnemyCount--; // Giảm số lượng quái hiện tại
+        if (currentEnemyCount > 0) currentEnemyCount--; // Giảm số lượng quái hiện tại
+        Debug.Log($"Enemy destroyed. Remaining: {currentEnemyCount}");
+    }
+
+    private void HandleBossDefeated()
+    {
+        bossDefeated = true; // Đánh dấu boss đã bị tiêu diệt
+        Debug.Log("Boss defeated! You win!");
+
+        OnPlayerWin();
+    }
+
+    void OnPlayerWin()
+    {
+        Debug.Log("Congratulations! You have defeated the boss!");
+
+        // Logic thêm nếu cần: chuyển cảnh, hiển thị UI chiến thắng
     }
 
     void UpdateStage()
     {
-        if (Time.timeSinceLevelLoad > 90) currentStage = 3;
-        else if (Time.timeSinceLevelLoad > 45) currentStage = 2;
-        else currentStage = 1;
+        for (int i = stageThresholds.Length - 1; i >= 0; i--)
+        {
+            if (Time.timeSinceLevelLoad >= stageThresholds[i])
+            {
+                currentStage = i + 1;
+                break;
+            }
+        }
     }
-
 }
-
 
 // Script gắn cho quái để lắng nghe sự kiện tiêu diệt
 public class Enemy : MonoBehaviour
 {
-
     public event System.Action onDestroyed;
 
     private void OnDestroy()

@@ -48,6 +48,8 @@ public class CharacterDmgSkill : NetworkBehaviour
                 }
             }
         }
+
+
         if (other.gameObject.CompareTag("Enemy"))
         {
             // Kiểm tra xem đối tượng va chạm có phải là người tạo ra quả cầu hay không
