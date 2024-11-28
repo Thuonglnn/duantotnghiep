@@ -67,7 +67,7 @@ public class AttributesManager : NetworkBehaviour
                     UpdateAnimationStateServerRpc("Death", isdie.Value);
                     //gameObject.SetActive(false);
                     ScoreManager.Instance.IncreaseScoreServerRpc(IsHost);
-                    ReloadSceneWithDelay(5f);
+                    //ReloadSceneWithDelay(5f);
                 }
                 else
                 {

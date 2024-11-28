@@ -13,7 +13,8 @@ public class ScoreManager : NetworkBehaviour
     public TextMeshProUGUI TMP_youWin;
     public TextMeshProUGUI TMP_youLoss;
     public GameObject panelScore;
-    public Button buttonout;
+    public TextMeshProUGUI timeOut;
+    public float countdownTime = 10f;
 
     RoomManager roomManager;
 
@@ -27,6 +28,7 @@ public class ScoreManager : NetworkBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     private void Start()
@@ -34,8 +36,10 @@ public class ScoreManager : NetworkBehaviour
         roomManager = GetComponent<RoomManager>();
         TMP_youLoss.text = string.Empty;
         TMP_youWin.text = string.Empty;
-
+        timeOut.text = string.Empty;
+        panelScore.SetActive(false);
     }
+
 
     [ServerRpc]
     public void IncreaseScoreServerRpc(bool isHostDead)
@@ -52,26 +56,22 @@ public class ScoreManager : NetworkBehaviour
     {
         if (isHostDead)
         {
-            panelScore.SetActive(true);
             if (IsHost)
             {
-
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
-
-
             }
             else
             {
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
             }
-            buttonout.onClick.AddListener(reLoadScen);
-            //StartCoroutine(ReloadSceneAfterDelay(3));
+            
+            StartCoroutine(CountdownTimer());
         }
         else
         {
-            panelScore.SetActive(true);
+            
             if (IsHost)
             {
                 TMP_youWin.text = "You Win!";
@@ -82,11 +82,42 @@ public class ScoreManager : NetworkBehaviour
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
             }
-
-            buttonout.onClick.AddListener(reLoadScen);
-            // StartCoroutine(ReloadSceneAfterDelay(3));
+            
+            StartCoroutine(CountdownTimer());
         }
     }
+
+        public void IncreaseScoreWin()
+        {
+            TMP_youWin.text = "You Win!";
+            TMP_youLoss.text = string.Empty;
+                
+            StartCoroutine(CountdownTimer());
+        
+            
+        }
+
+
+
+
+    public IEnumerator CountdownTimer()
+    {
+        float currentTime = countdownTime;
+        panelScore.SetActive(true);
+        while (currentTime > 0)
+        {
+            // Cập nhật đối tượng TextMeshProUGUI với thời gian còn lại
+            timeOut.text = currentTime.ToString("F2"); // Định dạng 2 chữ số thập phân
+            yield return new WaitForSeconds(1f); // Chờ 1 giây
+            currentTime--;
+        }
+
+        // Khi đếm ngược kết thúc, gọi coroutine reload
+        yield return StartCoroutine(ReloadSceneAfterDelay(countdownTime)); // Truyền một độ trễ nếu cần
+    }
+
+    
+
 
     private IEnumerator ReloadSceneAfterDelay(float delay)
     {
@@ -95,12 +126,15 @@ public class ScoreManager : NetworkBehaviour
         yield return StartCoroutine(roomManager.DeleteRoom());
         // Tải lại scene hiện tại
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        panelScore.SetActive(false);
     }
 
-    private void reLoadScen()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    // private IEnumerator reLoadScen()
+    // {
+    //     yield return StartCoroutine(roomManager.DeleteRoom());
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    //     panelScore.SetActive(false);
+    // }
 
     // public void LeaveRoom()
     // {

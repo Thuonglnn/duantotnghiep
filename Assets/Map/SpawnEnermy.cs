@@ -21,9 +21,12 @@ public class EnemySpawner : NetworkBehaviour
 
     private float[] stageThresholds = { 0, 45, 90 }; // Thời gian chuyển giai đoạn
 
+    ScoreManager scoreManager;
+
     void Start()
     {
         spawnTimer = spawnInterval;
+        scoreManager = GetComponent<ScoreManager>();
     }
 
     void Update()
@@ -153,6 +156,8 @@ public class EnemySpawner : NetworkBehaviour
     void OnPlayerWin()
     {
         Debug.Log("Congratulations! You have defeated the boss!");
+
+        ScoreManager.Instance.IncreaseScoreWin();
 
         // Logic thêm nếu cần: chuyển cảnh, hiển thị UI chiến thắng
     }
