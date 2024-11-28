@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ScoreManager : NetworkBehaviour
 {
@@ -11,6 +12,8 @@ public class ScoreManager : NetworkBehaviour
 
     public TextMeshProUGUI TMP_youWin;
     public TextMeshProUGUI TMP_youLoss;
+    public GameObject panelScore;
+    public Button buttonout;
 
     RoomManager roomManager;
 
@@ -31,6 +34,7 @@ public class ScoreManager : NetworkBehaviour
         roomManager = GetComponent<RoomManager>();
         TMP_youLoss.text = string.Empty;
         TMP_youWin.text = string.Empty;
+
     }
 
     [ServerRpc]
@@ -48,11 +52,13 @@ public class ScoreManager : NetworkBehaviour
     {
         if (isHostDead)
         {
-
+            panelScore.SetActive(true);
             if (IsHost)
             {
+
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
+
 
             }
             else
@@ -60,11 +66,12 @@ public class ScoreManager : NetworkBehaviour
                 TMP_youWin.text = "You Win!";
                 TMP_youLoss.text = string.Empty; // Xóa thông báo thua
             }
-            StartCoroutine(ReloadSceneAfterDelay(3));
+            buttonout.onClick.AddListener(reLoadScen);
+            //StartCoroutine(ReloadSceneAfterDelay(3));
         }
         else
         {
-
+            panelScore.SetActive(true);
             if (IsHost)
             {
                 TMP_youWin.text = "You Win!";
@@ -75,7 +82,9 @@ public class ScoreManager : NetworkBehaviour
                 TMP_youLoss.text = "You Lose!";
                 TMP_youWin.text = string.Empty; // Xóa thông báo thắng
             }
-            StartCoroutine(ReloadSceneAfterDelay(3));
+
+            buttonout.onClick.AddListener(reLoadScen);
+            // StartCoroutine(ReloadSceneAfterDelay(3));
         }
     }
 
@@ -85,6 +94,11 @@ public class ScoreManager : NetworkBehaviour
 
         yield return StartCoroutine(roomManager.DeleteRoom());
         // Tải lại scene hiện tại
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void reLoadScen()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
