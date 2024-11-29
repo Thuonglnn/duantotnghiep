@@ -15,7 +15,7 @@ public class ScoreManager : NetworkBehaviour
     public GameObject panelScore;
     public TextMeshProUGUI timeOut;
     public float countdownTime = 10f;
-
+    public GameObject esc;
     RoomManager roomManager;
 
     void Awake()
@@ -31,6 +31,8 @@ public class ScoreManager : NetworkBehaviour
         
     }
 
+    
+
     private void Start()
     {
         roomManager = GetComponent<RoomManager>();
@@ -40,6 +42,13 @@ public class ScoreManager : NetworkBehaviour
         panelScore.SetActive(false);
     }
 
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            esc.SetActive(true);
+        }
+    }
 
     [ServerRpc]
     public void IncreaseScoreServerRpc(bool isHostDead)
@@ -97,6 +106,13 @@ public class ScoreManager : NetworkBehaviour
             
         }
 
+        public void ESC()
+        {
+                
+            StartCoroutine(reLoadScen());
+        
+        }
+
 
 
 
@@ -129,12 +145,11 @@ public class ScoreManager : NetworkBehaviour
         panelScore.SetActive(false);
     }
 
-    // private IEnumerator reLoadScen()
-    // {
-    //     yield return StartCoroutine(roomManager.DeleteRoom());
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //     panelScore.SetActive(false);
-    // }
+    private IEnumerator reLoadScen()
+    {
+        yield return StartCoroutine(roomManager.DeleteRoom());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     // public void LeaveRoom()
     // {

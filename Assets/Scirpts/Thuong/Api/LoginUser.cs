@@ -23,12 +23,14 @@ public class LoginUser : MonoBehaviour
 
     public static LoginReponseModel loginResponseModel; // Đảm bảo đây là tĩnh
 
+    public GameObject loading;
+
     // Start is called before the first frame update
     void Start()
     {
         enventsytem = EventSystem.current;
         first.Select();
-
+        loading.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class LoginUser : MonoBehaviour
     {
         var username = edtUser.text;
         var pass = edtPass.text;
-
+        loading.SetActive(true);
         UserModel userModel = new UserModel(username, pass);
         StartCoroutine(Login(userModel));
         Login(userModel);
@@ -76,6 +78,7 @@ public class LoginUser : MonoBehaviour
                 txtError.text = loginResponseModel.message;
             }
         }
+        loading.SetActive(false);
     }
 
 

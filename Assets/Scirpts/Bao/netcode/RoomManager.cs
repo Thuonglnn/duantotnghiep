@@ -30,6 +30,8 @@ public class RoomManager : NetworkBehaviour
     public TMP_Dropdown tMP_DropdownGameMode;
     PlayerSpawner playerSpawner;
 
+    public GameObject loading;
+
     string MapName;
     string GameMode;
 
@@ -51,6 +53,7 @@ public class RoomManager : NetworkBehaviour
 
     private async void Start()
     {
+        loading.SetActive(false);
         await UnityServices.InitializeAsync();
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
         createRoomButton.onClick.AddListener(StartRelay);
@@ -79,6 +82,7 @@ public class RoomManager : NetworkBehaviour
         CreateRoomPost(joinCode, MapName, GameMode);
         SetActiveButton();
         Notification.text = "Vào phòng thành công";
+        loading.SetActive(false);
     }
 
     public async void JoinRelay()
@@ -94,6 +98,7 @@ public class RoomManager : NetworkBehaviour
         {
             Notification.text = "Vào phòng thất bại";
         }
+        loading.SetActive(false);
     }
 
     private async Task<string> StartHostWithRelay(int maxConnections = 4)
@@ -110,11 +115,12 @@ public class RoomManager : NetworkBehaviour
         {
             JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
-
+            loading.SetActive(false);
             return NetworkManager.Singleton.StartClient();
         }
         catch
         {
+            loading.SetActive(false);
             return false;
         }
     }
@@ -129,7 +135,7 @@ public class RoomManager : NetworkBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    public void OnApplicationQuit()
     {
         // Xử lý khi ứng dụng thoát
         if (IsHost)

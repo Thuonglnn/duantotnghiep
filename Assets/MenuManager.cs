@@ -1,17 +1,19 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
+public class MenuManager : NetworkBehaviour
 {
     private bool isCursorVisible = false, isPanelVisible = false; // Trạng thái mặc định: ẩn con trỏ
-    public GameObject panel;
+    //public GameObject panel;
 
+    RoomManager roomManager;
     void Start()
     {
         // // Khởi tạo con trỏ bị ẩn và khóa vào giữa màn hình
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        panel.SetActive(false);
+        //panel.SetActive(false);
     }
 
     void Update()
@@ -29,9 +31,9 @@ public class MenuManager : MonoBehaviour
 
 
             // Hiển thị hoặc ẩn panel
-            panel.SetActive(isPanelVisible);
+            //panel.SetActive(isPanelVisible);
         }
-        panel.SetActive(isPanelVisible);
+        //panel.SetActive(isPanelVisible);
         if (isPanelVisible)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -44,15 +46,18 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    public void ReloadCurrentScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    // public void ReloadCurrentScene()
+    // {
+       
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    // }
 
-    public void ChangeScene()
-    {
-        SceneManager.LoadScene("Home");
-    }
+    
+
+    // public void ChangeScene()
+    // {
+    //     SceneManager.LoadScene("Home");
+    // }
 
     public void IsPanelActive()
     {

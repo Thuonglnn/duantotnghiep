@@ -20,6 +20,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2979538897246096660, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6019776
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979538897246096660, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.21211845
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979538897246096660, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.72606665
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979538897246096660, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.25584364
+      objectReference: {fileID: 0}
     - target: {fileID: 3471671226700884293, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_Name
       value: Axe
