@@ -11207,8 +11207,8 @@ MonoBehaviour:
   timeOut: {fileID: 832118381}
   countdownTime: 10
   esc: {fileID: 345976875}
-  check: {fileID: 0}
-  check2: {fileID: 0}
+  check: {fileID: 1452180732}
+  check2: {fileID: 1268742733}
 --- !u!1 &1924992165
 GameObject:
   m_ObjectHideFlags: 0
