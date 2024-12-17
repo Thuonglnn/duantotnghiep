@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 148331473611604349, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1300631505
+      value: 2106887039
       objectReference: {fileID: 0}
     - target: {fileID: 2554122629320881709, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -43,6 +43,18 @@ PrefabInstance:
     - target: {fileID: 3471671226700884293, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_TagString
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201566300697224413, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: atk
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201566300697224413, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: def
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201566300697224413, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: hp.m_InternalValue
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4280119743823950847, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -83,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 4280119743823950847, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078647646380713969, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 7244867634802157377, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_IsActive

@@ -2149,6 +2149,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275580750}
   m_CullTransparentMesh: 1
+--- !u!1 &297244713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 573194671483345958, guid: e710934ede3416541bfde886ab007500, type: 3}
+  m_PrefabInstance: {fileID: 679173704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &297244714 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8225544824446726954, guid: e710934ede3416541bfde886ab007500, type: 3}
+  m_PrefabInstance: {fileID: 679173704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &317116009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6871,8 +6881,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174217077}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31148097, y: -0.108035006, z: 0.0356691, w: 0.9434171}
-  m_LocalPosition: {x: -1.2961774, y: 8.292122, z: -22.398762}
+  m_LocalRotation: {x: -0.23384526, y: -0.71629405, z: -0.28204915, w: 0.59387505}
+  m_LocalPosition: {x: 0.68446666, y: 0.9000081, z: -1.1024398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11128,6 +11138,7 @@ RectTransform:
   - {fileID: 896681921}
   - {fileID: 1739769087}
   - {fileID: 1863270013}
+  - {fileID: 297244714}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11195,7 +11206,7 @@ MonoBehaviour:
   panelScore: {fileID: 588573565}
   timeOut: {fileID: 832118381}
   countdownTime: 10
-  esc: {fileID: 345976875}
+  esc: {fileID: 297244713}
   check: {fileID: 1452180732}
   check2: {fileID: 1268742733}
 --- !u!1 &1924992165
