@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 6656347058092482091}
   - component: {fileID: 3537183739758275147}
   - component: {fileID: 1806843489731406494}
+  - component: {fileID: 7262997800184786988}
   m_Layer: 0
   m_Name: Spider_Flower
   m_TagString: Enemy
@@ -273,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2784198424
+  GlobalObjectIdHash: 3186462246
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -396,6 +397,22 @@ MonoBehaviour:
   attributesManagerEnemy: {fileID: 1806843489731406494}
   healthBar: {fileID: 0}
   player: {fileID: 0}
+--- !u!114 &7262997800184786988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143180963066806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0ecc49379fbc348a94d54d08864561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPotion: {fileID: 1000013846074356, guid: 11e31a2ebb4e6e246bcf8c0ba034a031, type: 3}
+  coin: {fileID: 1936253077087948385, guid: c0d8d13725a3ed743b8d083c95c63ea3, type: 3}
+  healthPotionDropRate: 20
+  coinDropRate: 50
 --- !u!1 &1149313386028478
 GameObject:
   m_ObjectHideFlags: 0

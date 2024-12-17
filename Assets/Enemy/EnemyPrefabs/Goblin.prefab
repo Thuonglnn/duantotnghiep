@@ -95,6 +95,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 247c80268b595f74aad500096f912a45, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4829249289028712515}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 247c80268b595f74aad500096f912a45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3940496370423384213}
     - targetCorrespondingSourceObject: {fileID: -8675523233305179770, guid: 247c80268b595f74aad500096f912a45, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3334908377414149307}
@@ -422,3 +425,19 @@ MonoBehaviour:
   attributesManagerEnemy: {fileID: 4829249289028712515}
   healthBar: {fileID: 0}
   player: {fileID: 505902595579375246}
+--- !u!114 &3940496370423384213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011887291537401152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0ecc49379fbc348a94d54d08864561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPotion: {fileID: 1000013846074356, guid: 11e31a2ebb4e6e246bcf8c0ba034a031, type: 3}
+  coin: {fileID: 1936253077087948385, guid: c0d8d13725a3ed743b8d083c95c63ea3, type: 3}
+  healthPotionDropRate: 20
+  coinDropRate: 50

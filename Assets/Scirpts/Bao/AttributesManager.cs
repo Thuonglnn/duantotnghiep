@@ -31,6 +31,8 @@ public class AttributesManager : NetworkBehaviour
     public NetworkObject player;
     SpiderQueenAI spiderQueenAI;
 
+    DropItem dropItem;
+
 
 
     // private void Awake() {
@@ -49,6 +51,7 @@ public class AttributesManager : NetworkBehaviour
             healthBar.maxValue = hp.Value;
             healthBar.minValue = 0;
         }
+        dropItem = GetComponent<DropItem>();
 
     }
 
@@ -83,6 +86,10 @@ public class AttributesManager : NetworkBehaviour
 
             if (attributesManagerEnemy)
             {
+                if (dropItem != null)
+                {
+                    dropItem.Drop();
+                }
                 Destroy(gameObject);
             }
 
