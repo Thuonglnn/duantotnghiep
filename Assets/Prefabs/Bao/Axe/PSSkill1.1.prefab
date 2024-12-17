@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2480420846440382216}
     m_Modifications:
+    - target: {fileID: 643967876093625634, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2053583067306098826, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
       propertyPath: looping
       value: 0
@@ -102,6 +106,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2480420846440382216}
     m_Modifications:
+    - target: {fileID: 643967876093625634, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2053583067306098826, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
       propertyPath: looping
       value: 0
@@ -196,6 +204,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2480420846440382216}
     m_Modifications:
+    - target: {fileID: 643967876093625634, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2053583067306098826, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
       propertyPath: looping
       value: 0
@@ -290,6 +302,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2480420846440382216}
     m_Modifications:
+    - target: {fileID: 643967876093625634, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2053583067306098826, guid: 038bc20650c0acf4fbedeea5713b7ef2, type: 3}
       propertyPath: looping
       value: 0
@@ -533,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2117671618
+  GlobalObjectIdHash: 2022109501
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -554,5 +570,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992f5f67091f1364d8eebe17cfac7b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3166959338065762288, guid: 5b530a9f1c0bfa84d95cbedcdf1cb5e4, type: 3}
+  creatorAttributes: {fileID: 0}
+  creatorNetworkObject: {fileID: 0}
+  DestroyTime: 3
+  AtkBonus: 10
   damageInterval: 0.62
