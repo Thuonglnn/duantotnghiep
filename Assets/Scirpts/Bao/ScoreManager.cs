@@ -44,6 +44,9 @@ public class ScoreManager : NetworkBehaviour
         TMP_youWin.text = string.Empty;
         timeOut.text = string.Empty;
         panelScore.SetActive(false);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()
