@@ -4577,6 +4577,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1020761670708444236, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1915499699}
+    - target: {fileID: 1020761670708444236, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020761670708444236, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScoreManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922547022171559275, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1915499699}
+    - target: {fileID: 4922547022171559275, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922547022171559275, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScoreManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5394728436947582748, guid: e710934ede3416541bfde886ab007500, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -11094,7 +11118,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1915499695
 RectTransform:
@@ -11183,6 +11207,8 @@ MonoBehaviour:
   timeOut: {fileID: 832118381}
   countdownTime: 10
   esc: {fileID: 345976875}
+  check: {fileID: 0}
+  check2: {fileID: 0}
 --- !u!1 &1924992165
 GameObject:
   m_ObjectHideFlags: 0
