@@ -16,7 +16,11 @@ public class ScoreManager : NetworkBehaviour
     public TextMeshProUGUI timeOut;
     public float countdownTime = 10f;
     public GameObject esc;
+
+    public GameObject check,check2;
     RoomManager roomManager;
+
+    private bool isCursorVisible = false, isPanelVisible = false;
 
     void Awake()
     {
@@ -44,11 +48,44 @@ public class ScoreManager : NetworkBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            esc.SetActive(true);
+        if(!check.activeInHierarchy && !check2.activeInHierarchy){
+            
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                isCursorVisible = !isCursorVisible;
+                isPanelVisible = !isPanelVisible;
+                Cursor.visible = isCursorVisible;
+                
+                //Cursor.lockState = !isPanelVisible ? CursorLockMode.None : CursorLockMode.Locked;
+                esc.SetActive(isPanelVisible);
+            }
+            
+            if (isPanelVisible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
+        
     }
+
+    public void Menu()
+    {
+        isCursorVisible = false;
+        isPanelVisible = false;
+        esc.SetActive(isPanelVisible);
+    }
+
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene("Home");
+    }
+    
+
 
     [ServerRpc]
     public void IncreaseScoreServerRpc(bool isHostDead)

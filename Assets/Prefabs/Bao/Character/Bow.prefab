@@ -1496,7 +1496,7 @@ PrefabInstance:
       addedObject: {fileID: -6157861749496719163}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f1a17348672f6347a9a1e797d876de4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5027904083538949089}
+      addedObject: {fileID: -5752507019510845103}
   m_SourcePrefab: {fileID: 100100000, guid: 3f1a17348672f6347a9a1e797d876de4, type: 3}
 --- !u!4 &415541260210196994 stripped
 Transform:
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   attributesManagerEnemy: {fileID: 0}
   healthBar: {fileID: 2019080162438543720}
   player: {fileID: 4326129562270122647}
---- !u!114 &5027904083538949089
+--- !u!114 &-5752507019510845103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2410,6 +2410,10 @@ PrefabInstance:
     - target: {fileID: 573194671483345958, guid: e710934ede3416541bfde886ab007500, type: 3}
       propertyPath: m_Name
       value: PanelPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 573194671483345958, guid: e710934ede3416541bfde886ab007500, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8225544824446726954, guid: e710934ede3416541bfde886ab007500, type: 3}
       propertyPath: m_Pivot.x
