@@ -17,7 +17,7 @@ public class nhanutbk : MonoBehaviour
         // Kiểm tra nếu nhấn bất kỳ phím nào
         if (Input.anyKeyDown)
         {
-            // Chuyển sang scene
+              AudioManager.instance.ButtonMusic();
             SceneManager.LoadScene("DNDK"); 
              Time.timeScale = 1;
         }

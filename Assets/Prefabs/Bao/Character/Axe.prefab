@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 148331473611604349, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 2106887039
+      value: 1300631505
       objectReference: {fileID: 0}
     - target: {fileID: 2554122629320881709, guid: e101a35b4ca77ab4fba56fc46360b79f, type: 3}
       propertyPath: m_AnchorMax.x

@@ -6,23 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Scene/DangNhap.unity
-    guid: 7de495c63e3c873429a3b6156bfcf4cb
-  - enabled: 1
     path: Assets/Scenes/Scene/NhanNutBatKi.unity
     guid: 9cdaa1517e2eb0548ac23c6fbfc0f5ec
-  - enabled: 1
-    path: Assets/Scenes/Scene/DNDK.unity
-    guid: 3c6502b40ebc8814295b5c3a05de5e68
-  - enabled: 1
-    path: Assets/Scenes/Scene/DangKi.unity
-    guid: 592a20f7993d77447b79ff37c261fb29
   - enabled: 1
     path: Assets/Scenes/Scene/Start.unity
     guid: 7fa7efa0a91b76046915bf8f52dbabcc
   - enabled: 1
-    path: Assets/Scenes/HeroInfo.unity
-    guid: c4340724c5eeed647b3544b50fced1e0
+    path: Assets/Scenes/Scene/DNDK.unity
+    guid: 3c6502b40ebc8814295b5c3a05de5e68
+  - enabled: 1
+    path: Assets/Scenes/Scene/DangNhap.unity
+    guid: 7de495c63e3c873429a3b6156bfcf4cb
+  - enabled: 1
+    path: Assets/Scenes/Scene/DangKi.unity
+    guid: 592a20f7993d77447b79ff37c261fb29
   - enabled: 1
     path: Assets/Scenes/Scene/Shop.unity
     guid: 2290fbb0e4fa1a5439d11a54d70a6d71
@@ -45,17 +42,11 @@ EditorBuildSettings:
     path: Assets/Scenes/PL_TEAM.unity
     guid: 9b29d80d0a9cb684b8ee60cb2290ee15
   - enabled: 1
-    path: Assets/Scenes/tuong.unity
+    path: Assets/Scenes/Scene/tuong.unity
     guid: f8367330272144f44b957faa27bed9f1
   - enabled: 1
     path: Assets/Scenes/chitiettuong.unity
     guid: 8e8a5f61a9832f04185b0bf185b660ab
-  - enabled: 1
-    path: Assets/Scenes/TuDo.unity
-    guid: 1d3f8a44f4db586409fab07999cd2888
-  - enabled: 0
-    path: Assets/Scenes/Shop.unity
-    guid: a2160cf95a0457344ac6579ac759f0a7
   - enabled: 1
     path: Assets/Scenes/test NetCode/SceneCreateRoom.unity
     guid: d9621a3c892b21c4fad5be88eaedc2fb
@@ -65,5 +56,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene/Home.unity
     guid: 2c29536df0714ec46a87f537fb0e65f1
+  - enabled: 1
+    path: Assets/Scenes/Scene/HeroInfo.unity
+    guid: be62d9f3ac15c5d49a5de15cc8fff751
+  - enabled: 1
+    path: Assets/Scenes/Scene/TuDo.unity
+    guid: d428ad8b4e1f6d14587bad0d887640c5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
