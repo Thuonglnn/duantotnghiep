@@ -25,6 +25,8 @@ public class AttributesManager : NetworkBehaviour
 
 
     public Slider healthBar;
+    public int healthPotionCount = 3; // Số lượng bình máu ban đầu
+
 
     bool isDie = false;
 
@@ -79,6 +81,12 @@ public class AttributesManager : NetworkBehaviour
                 }
             }
 
+            // Tiêu thụ bình máu khi nhấn phím 1
+            if (Input.GetKeyDown(KeyCode.Alpha1) && healthPotionCount > 0)
+            {
+                UseHealthPotion();
+            }
+
         }
 
         if (hp.Value <= 0)
@@ -104,6 +112,36 @@ public class AttributesManager : NetworkBehaviour
         // Tải lại scene hiện tại
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Kiểm tra nếu đối tượng có tag là "HealthPotion"
+        if (other.CompareTag("HealthPotion"))
+        {
+            if (IsOwner)
+            {
+                // Cộng thêm 30 HP nhưng không vượt quá giá trị tối đa
+                hp.Value = (int)Mathf.Min(hp.Value + 30, healthBar.maxValue);
+
+                // Hủy bình máu sau khi sử dụng
+                Destroy(other.gameObject);
+            }
+        }
+    }
+
+
+    private void UseHealthPotion()
+    {
+        // Tăng HP thêm 30 nhưng không vượt quá giá trị tối đa
+        hp.Value = Mathf.Min(hp.Value + 30, (int)healthBar.maxValue);
+
+        // Giảm số lượng bình máu
+        healthPotionCount--;
+
+        // Log hiển thị (tùy chọn)
+        Debug.Log("Used a health potion. Remaining potions: " + healthPotionCount);
+    }
+
 
 
     [ServerRpc(RequireOwnership = false)]

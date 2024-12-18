@@ -1735,6 +1735,7 @@ MonoBehaviour:
   attributesManager: {fileID: -6157861749496719163}
   attributesManagerEnemy: {fileID: 0}
   healthBar: {fileID: 2019080162438543720}
+  healthPotionCount: 3
   player: {fileID: 4326129562270122647}
 --- !u!114 &-5752507019510845103
 MonoBehaviour:

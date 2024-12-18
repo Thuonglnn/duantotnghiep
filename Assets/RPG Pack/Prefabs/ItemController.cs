@@ -13,18 +13,18 @@ public class ItemController : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Kiểm tra va chạm với người chơi
-        if (other.CompareTag("Player"))
-        {
-            // Xử lý logic khi người chơi nhận vật phẩm
-            CollectItem(other);
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     // Kiểm tra va chạm với người chơi
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         // Xử lý logic khi người chơi nhận vật phẩm
+    //         CollectItem(other);
 
-            // Hủy vật phẩm sau khi thu thập
-            Destroy(gameObject);
-        }
-    }
+    //         // Hủy vật phẩm sau khi thu thập
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     private void CollectItem(Collider player)
     {

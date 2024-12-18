@@ -18,6 +18,7 @@ TagManager:
   - Enemy
   - Ground
   - Player1
+  - HealthPotion
   layers:
   - Default
   - TransparentFX
